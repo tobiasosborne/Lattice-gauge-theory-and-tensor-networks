@@ -1708,11 +1708,13 @@ We find the infinitesimal operators representing $a_1$, $a_2$, and $a_3$ for the
 In this section we describe a simple quantum-information inspired mnemonic to remember how to construct the irreps of \su2. To carry out this construction all we need to remember are the following objects. Consider $2\ell$ qubits, $\ell \in \frac12\mathbb{Z}^+$, with hilbert space $\mathcal{H}_\ell \cong \mathbb{C}^{2^{2\ell}}$, and construct the \emph{generalised $W$ states}:
 \begin{equation}
 	\begin{split}
-		|W_{-\ell}\rangle &\equiv |\uparrow\dots \uparrow\rangle \\
-		|W_{-\ell+1}\rangle &\equiv \frac{1}{\sqrt{2\ell }} \left(|\downarrow \uparrow\uparrow\dots \uparrow\rangle + |\uparrow\downarrow\uparrow\dots \uparrow\rangle + \cdots + |\uparrow\dots \uparrow\downarrow\rangle\right) \\
-		|W_{-\ell+2}\rangle &\equiv \frac{1}{\sqrt{\binom{2\ell }{2}}} \left(|\downarrow\downarrow\uparrow\dots \uparrow\rangle + |\downarrow\uparrow\downarrow\dots \uparrow\rangle + \cdots + |\uparrow\dots \uparrow\downarrow\downarrow\rangle\right)\\
+		|W_{\ell}\rangle &\equiv |\uparrow\dots \uparrow\rangle \\
+		|W_{\ell-1}\rangle &\equiv \frac{1}{\sqrt{2\ell }} \left(|\downarrow \uparrow\uparrow\dots \uparrow\rangle + |\uparrow\downarrow\uparrow\dots \uparrow\rangle + \cdots + |\uparrow\dots \uparrow\downarrow\rangle\right) \\
+		|W_{\ell-2}\rangle &\equiv \frac{1}{\sqrt{\binom{2\ell }{2}}} \left(|\downarrow\downarrow\uparrow\dots \uparrow\rangle + |\downarrow\uparrow\downarrow\dots \uparrow\rangle + \cdots + |\uparrow\dots \uparrow\downarrow\downarrow\rangle\right)\\
 		&\vdots \\
-		|W_{\ell}\rangle &\equiv |\downarrow\downarrow\dots \downarrow\rangle. \\
+		|W_{j}\rangle &\equiv \frac{1}{\sqrt{\binom{2\ell }{\ell-j}}} \left(|\underbrace{\downarrow\cdots\downarrow}_{\text{$\ell-j$ }} \underbrace{\uparrow\cdots \uparrow}_{\text{$\ell+j$}}\rangle + \text{permutations}\right) \\
+		&\vdots \\
+		|W_{-\ell}\rangle &\equiv |\downarrow\downarrow\dots \downarrow\rangle. \\
 	\end{split}
 \end{equation}
 The generalised $W$-state $|W_j\rangle$ is an equal superposition over all permutations of $j$ down arrows and $2\ell - j$ up arrows.  
@@ -1725,14 +1727,14 @@ We can now directly derive the orthonormality of the matrix elements $\tau_{jk}^
 \begin{equation}
 		({\tau}^{\ell'}_{j'k'}, {\tau}^{\ell}_{jk}) \equiv \int dU\,\overline{\tau}^{\ell'}_{j'k'}(U){\tau}^{\ell}_{jk}(U) = \int dU\, \langle W_{k'}| \underbrace{U^\dag \otimes \cdots \otimes U^\dag}_{\text{$2\ell'$ times}}  |W_{j'}\rangle \langle W_j| \underbrace{U\otimes \cdots \otimes U}_{\text{$2\ell$ times}} |W_k\rangle.
 \end{equation}
-From this expression we immediately dedude that for the RHS to be nonzero we need $\ell' = \ell$ (just use the left invariance of the haar measure). To deduce the rest of the result we simply exploit the left invariance of the haar measure to change variables to $V = \Phi U$, where $\Phi = e^{i\phi \sigma^z}$:
+From this expression we immediately deduce that for the RHS to be nonzero we need $\ell' = \ell$ (just use the left invariance of the haar measure). To deduce the rest of the result we simply exploit the left invariance of the haar measure to change variables to $V = \Phi U$, where $\Phi = e^{i\phi \sigma^z}$:
 \begin{multline}
-		({\tau}^{\ell'}_{j'k'}, {\tau}^{\ell}_{jk}) = \int dV\, \langle W_{k'}| \underbrace{V^\dag \otimes \cdots \otimes V^\dag}_{\text{$2\ell'$ times}}  (\Phi^\dag\otimes \cdots \otimes \Phi^\dag)|W_{j'}\rangle \langle W_j|(\Phi\otimes \cdots \otimes \Phi) \underbrace{V\otimes \cdots \otimes V}_{\text{$2\ell$ times}} |W_k\rangle \\ = e^{-i\phi(\ell - j' - (\ell + j')}e^{i\phi(\ell - j - (\ell + j)} ({\tau}^{\ell'}_{j'k'}, {\tau}^{\ell}_{jk}) = e^{2i\phi (j'-j)} ({\tau}^{\ell'}_{j'k'}, {\tau}^{\ell}_{jk}).
+		({\tau}^{\ell'}_{j'k'}, {\tau}^{\ell}_{jk}) = \int dV\, \langle W_{k'}| \underbrace{V^\dag \otimes \cdots \otimes V^\dag}_{\text{$2\ell'$ times}}  (\Phi^\dag\otimes \cdots \otimes \Phi^\dag)|W_{j'}\rangle \langle W_j|(\Phi\otimes \cdots \otimes \Phi) \underbrace{V\otimes \cdots \otimes V}_{\text{$2\ell$ times}} |W_k\rangle \\ = e^{-2i j'\phi }e^{2ij\phi} ({\tau}^{\ell'}_{j'k'}, {\tau}^{\ell}_{jk}) = e^{2i\phi (j-j')} ({\tau}^{\ell'}_{j'k'}, {\tau}^{\ell}_{jk}).
 \end{multline}
-Since this is true for all $\phi \in [0, 2\pi)$ we find that $j=j'$ in order for the inner product to be nonzero.
+Since this is true for all $\phi \in [0, \pi)$ we find that $j=j'$ in order for the inner product to be nonzero.
 Similarly, we deduce that
 \begin{equation}
-	({\tau}^{\ell'}_{j'k'}, {\tau}^{\ell}_{jk}) = e^{2i\phi (k-k')} ({\tau}^{\ell'}_{j'k'}, {\tau}^{\ell}_{jk}),
+	({\tau}^{\ell'}_{j'k'}, {\tau}^{\ell}_{jk}) = e^{2i\phi (k'-k)} ({\tau}^{\ell'}_{j'k'}, {\tau}^{\ell}_{jk}),
 \end{equation}
 so that we require $k = k'$ for the inner product to be nonzero. Finally, we exploit the completeness relation $\mathbb{I} = \sum_{j} |W_j\rangle \langle W_j|$ on the subspace spanned by the $W$ states to deduce that
 \begin{equation}
@@ -1758,9 +1760,22 @@ Write $P_{\ell}$ for the projection onto the subspace spanned by the $W$ states 
 \begin{equation}
 	\mathbb{I}_{\frac12}\otimes P_{\ell} = P_{\ell+\frac12} \oplus P_{\ell-\frac12}.
 \end{equation}
-Our task is to work out the unitary operation realising this decomposition.
-
-Here we want to decomp
+Our task is to work out the unitary operation realising this decomposition. This is actually very easy: we know that the projection $P_{\ell+\frac12}$ onto the space spanned by the generalised $W$ states on $2\ell+1$ qubits is completely contained within $\mathbb{I}_{\frac12}\otimes P_{\ell}$, i.e.,
+\begin{equation}
+	P_{\ell+\frac12} \le \mathbb{I}_{\frac12}\otimes P_{\ell}
+\end{equation}
+in the positive semidefinite ordering. Hence we immediately obtain that
+\begin{equation}
+	P_{\ell-\frac12} \equiv (\mathbb{I} - P_{\ell+\frac12})\mathbb{I}_{\frac12}\otimes P_{\ell}.
+\end{equation}
+How do we find the unitary $U_{\text{CG}}$ rotating from the basis $|\alpha\rangle|W_j^{\ell}\rangle$ to the basis $\{|W_j^{\ell+\frac12}\rangle, |W_k^{\ell-\frac12}\rangle\,|\, j = -\ell-\frac12,\ldots, \ell+\frac12, k = \ell+\frac12, \ldots, \ell - \frac12\rangle\}$? (Note that the vectors $|W_k^{\ell-\frac12}\rangle$ are not just simply the generalised $W$ states on $2\ell-1$ qubits; rather they are a basis for the subspace $(\mathbb{I} - P_{\ell+\frac12})\mathbb{I}_{\frac12}\otimes P_{\ell}$.) To build $U_{\text{CG}}$ we need the matrix elements
+\begin{equation}
+	c_{k,(\alpha,j)} = \langle W_k^{\ell+\frac12}|\alpha, W_j^{\ell}\rangle = \begin{cases} \binom{2\ell+1}{\ell-j}^{-\frac12}\binom{2\ell}{\ell-j}^{\frac12} &\quad k = j+\frac12, \alpha = \uparrow\\ \binom{2\ell+1}{\ell-j+1}^{-\frac12}\binom{2\ell}{\ell-j}^{\frac12} &\quad k = j-\frac12, \alpha = \downarrow\end{cases},
+\end{equation}
+which simplifies to
+\begin{equation}
+	c_{k,(\alpha,j)} = \langle W_k^{\ell+\frac12}|\alpha, W_j^{\ell}\rangle = \begin{cases} \sqrt{\frac{\ell+j+1}{2\ell+1}} &\quad k = j+\frac12, \alpha = \uparrow\\ \binom{2\ell+1}{\ell-j+1}^{-\frac12}\binom{2\ell}{\ell-j}^{\frac12} &\quad k = j-\frac12, \alpha = \downarrow\end{cases}
+\end{equation}
 
 \subsection{Diagonalising products of unitaries}\label{app:diagprod}
 In this subsection we detail the calculations of the diagonalising matrix for a product $UV$ of two elements from $\su2$.
