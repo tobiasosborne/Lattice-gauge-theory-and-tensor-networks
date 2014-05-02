@@ -154,7 +154,7 @@ with ``inner product''
 \begin{equation}
 	\langle g|h\rangle = \delta(g-h).
 \end{equation}
-Formally we work with a hilbert space $\mathcal{h} \cong L^2(G)$ whose elements may be represented as
+Formally we work with a hilbert space $\mathcal{H} \cong L^2(G)$ whose elements may be represented as
 \begin{equation}
 	|\psi\rangle = \int dg\, \psi(g)|g\rangle,
 \end{equation}
@@ -229,11 +229,11 @@ Note that, for $U = \left(\begin{smallmatrix}\alpha & -\overline{\beta} \\ \beta
 \end{equation}
 
 
-There are several important operations on $\mathcal{h}\cong L^2(\su2)$. The first are the left and right rotations
+There are several important operations on $\mathcal{H}\cong L^2(\su2)$. The first are the left and right rotations
 \begin{equation}
 	R_g|h\rangle \equiv |hg^{-1}\rangle, \quad \text{and}\quad L_g|h\rangle \equiv |gh\rangle, \quad g, h \in G.
 \end{equation}
-One can show that both $R_g$ and $L_g$ are unitary operations on $\mathcal{h}$ and that $[L_g, R_h] = 0$ for all $g,h\in G$. Note that $R_{g^{-1}} = R_{g}^{-1}$ and $L_{g^{-1}} = L_{g}^{-1}$. We also define 
+One can show that both $R_g$ and $L_g$ are unitary operations on $\mathcal{H}$ and that $[L_g, R_h] = 0$ for all $g,h\in G$. Note that $R_{g^{-1}} = R_{g}^{-1}$ and $L_{g^{-1}} = L_{g}^{-1}$. We also define 
 \begin{equation}
 	\Delta_{g} \equiv L_gR_g.
 \end{equation}
@@ -359,7 +359,7 @@ The basic building block of our constructions is the \emph{controlled rotation}:
 \begin{equation}
 	\CU \equiv \int dg\, |g\rangle\langle g| \otimes U(g),
 \end{equation}
-on $L^2(G)\otimes V$. The first tensor factor is called the \emph{control} and the second factor the \emph{target}. When $\CU$ acts on a multipartite system $W\otimes \mathcal{h}_c\otimes V_t\otimes W'$ we use the notation
+on $L^2(G)\otimes V$. The first tensor factor is called the \emph{control} and the second factor the \emph{target}. When $\CU$ acts on a multipartite system $W\otimes \mathcal{H}_c\otimes V_t\otimes W'$ we use the notation
 \begin{equation}
 	\CU_{ct} \equiv \mathbb{I}_W\otimes \CU\otimes \mathbb{I}_{W'}
 \end{equation}
@@ -445,9 +445,9 @@ The group $\mathcal{G}$ acts on $\mathcal{A}$ by
 where $A_e$ denotes the component of $A \in \mathcal{A}$ associated with the edge $e$ and, similarly, $x_v$ denotes the component of $x\in \mathcal{G}$ associated with vertex $v$ 
 
 
-The quantum degree of freedom we associate with each edge is then the hilbert space $\mathcal{h}\cong L^2(G)$. Thus the total hilbert space for our system is
+The quantum degree of freedom we associate with each edge is then the hilbert space $L^2(G)$. Thus the total hilbert space for our system is
 \begin{equation}
-	\mathcal{H} = \bigotimes_{e\in E} \mathcal{h}.
+	\mathcal{H} = \bigotimes_{e\in E} \mathcal{H}_e.
 \end{equation}
 For $G \cong \su2$ we visualise the state $|\psi\rangle_e$ of a single edge as follows
 \begin{center}
@@ -462,7 +462,7 @@ may simply associate the state
 $|\psi\rangle_e = \sum_{n\in \mathbb{Z}} \widehat{\psi}^n |n\rangle_e$
 with the complete edge $e$.
 
-We henceforth associate the left tensor factor in the direct sum for $\mathcal{h}_e$ with the source vertex $v = e_-$  and the right tensor factor with the target vertex $w = e_+$. (As we'll see, this identification is congruent with the action of the local gauge group $\mathcal{G}$.) Thus, each vertex $v$ in the graph $(V,E)$ is associated with the left and right factors of $\mathcal{h}_e$ for each edge incident with $v$, as in the following diagram.
+We henceforth associate the left tensor factor in the direct sum for $\mathcal{H}_e$ with the source vertex $v = e_-$  and the right tensor factor with the target vertex $w = e_+$. (As we'll see, this identification is congruent with the action of the local gauge group $\mathcal{G}$.) Thus, each vertex $v$ in the graph $(V,E)$ is associated with the left and right factors of $\mathcal{H}_e$ for each edge incident with $v$, as in the following diagram.
 \begin{center}
 	\includegraphics{vertexspace.pdf}
 \end{center}
@@ -542,7 +542,7 @@ Another important gauge-invariant state is that of a \emph{loop} consisting of a
 \begin{center}
 	\includegraphics{singlevertex.pdf}
 \end{center}
-Here the total hilbert space is simply $\mathcal{h}$. The local gauge group $\mathcal{G} \cong G$ acts as
+Here the total hilbert space is simply $\mathcal{H}$. The local gauge group $\mathcal{G} \cong G$ acts as
 \begin{equation}
 	|\psi\rangle \mapsto L_xR_x |\psi\rangle, \quad \forall x\in G.
 \end{equation}
@@ -1721,7 +1721,7 @@ The generalised $W$-state $|W_j\rangle$ is an equal superposition over all permu
 
 Given these states and the simple fact that the $2\ell$-fold tensor product $U\otimes \cdots \otimes U$ maps the subspace of $\mathcal{H}_\ell$ to itself we construct the matrix elements of the irrep of \su2 labelled by $\ell$ via
 \begin{equation}
-	\tau_{jk}^\ell(U) \equiv \langle W_j| U\otimes \cdots \otimes U |W_k\rangle.
+	\tau_{jk}^\ell(U) \equiv \langle W_j| U\otimes \cdots \otimes U |W_k\rangle, \quad j,k = -\ell, -\ell+1, \ldots, \ell.
 \end{equation}
 We can now directly derive the orthonormality of the matrix elements $\tau_{jk}^\ell(U)$ according to the inner product induced by the haar measure. Write
 \begin{equation}
@@ -1768,14 +1768,40 @@ in the positive semidefinite ordering. Hence we immediately obtain that
 \begin{equation}
 	P_{\ell-\frac12} \equiv (\mathbb{I} - P_{\ell+\frac12})\mathbb{I}_{\frac12}\otimes P_{\ell}.
 \end{equation}
-How do we find the unitary $U_{\text{CG}}$ rotating from the basis $|\alpha\rangle|W_j^{\ell}\rangle$ to the basis $\{|W_j^{\ell+\frac12}\rangle, |W_k^{\ell-\frac12}\rangle\,|\, j = -\ell-\frac12,\ldots, \ell+\frac12, k = \ell+\frac12, \ldots, \ell - \frac12\rangle\}$? (Note that the vectors $|W_k^{\ell-\frac12}\rangle$ are not just simply the generalised $W$ states on $2\ell-1$ qubits; rather they are a basis for the subspace $(\mathbb{I} - P_{\ell+\frac12})\mathbb{I}_{\frac12}\otimes P_{\ell}$.) To build $U_{\text{CG}}$ we need the matrix elements
+How do we find the unitary $U_{\text{CG}}$ rotating from the basis $|\alpha\rangle|W_j^{\ell}\rangle$ to the basis $\{|W_j^{\ell+\frac12}\rangle, |W_k^{\ell-\frac12}\rangle\,|\, j = -\ell-\frac12,\ldots, \ell+\frac12, k = -\ell+\frac12, \ldots, \ell - \frac12\rangle\}$? (Note that the vectors $|W_k^{\ell-\frac12}\rangle$ are not just simply the generalised $W$ states on $2\ell-1$ qubits; rather they are a basis for the subspace $(\mathbb{I} - P_{\ell+\frac12})\mathbb{I}_{\frac12}\otimes P_{\ell}$.) To build $U_{\text{CG}}$ we need the matrix elements
 \begin{equation}
-	c_{k,(\alpha,j)} = \langle W_k^{\ell+\frac12}|\alpha, W_j^{\ell}\rangle = \begin{cases} \binom{2\ell+1}{\ell-j}^{-\frac12}\binom{2\ell}{\ell-j}^{\frac12} &\quad k = j+\frac12, \alpha = \uparrow\\ \binom{2\ell+1}{\ell-j+1}^{-\frac12}\binom{2\ell}{\ell-j}^{\frac12} &\quad k = j-\frac12, \alpha = \downarrow\end{cases},
+	c_{k,(\alpha,j)} = \langle W_k^{\ell+\frac12}|\alpha, W_j^{\ell}\rangle = \binom{2\ell+1}{\ell+\frac12-k}^{-\frac12}\binom{2\ell}{\ell-j}^{\frac12}, \quad k = j+\alpha,
 \end{equation}
 which simplifies to
 \begin{equation}
-	c_{k,(\alpha,j)} = \langle W_k^{\ell+\frac12}|\alpha, W_j^{\ell}\rangle = \begin{cases} \sqrt{\frac{\ell+j+1}{2\ell+1}} &\quad k = j+\frac12, \alpha = \uparrow\\ \binom{2\ell+1}{\ell-j+1}^{-\frac12}\binom{2\ell}{\ell-j}^{\frac12} &\quad k = j-\frac12, \alpha = \downarrow\end{cases}
+	c_{k,(\alpha,j)} = \sqrt{\frac{\ell+2\alpha j + 1}{2\ell+1}}\delta_{k, j + \alpha},
 \end{equation}
+where $\alpha = \pm\frac12$. This gives us just over half of the matrix elements unitary transformation between the two bases. To complete our specification of $U_{CG}$ we need to find a basis of vectors for the subspace $(\mathbb{I} - P_{\ell+\frac12})\mathbb{I}_{\frac12}\otimes P_{\ell}$. We do this directly by observing that 
+\begin{equation}
+	d_{k',(\alpha,j)} = -2\alpha\sqrt{\frac{\ell-2\alpha j}{2\ell+1}}\delta_{k', j+\alpha}, \quad k' = -\ell+\frac12, \ldots, \ell-\frac12. 
+\end{equation}
+We hence obtain the unitary matrix
+\begin{equation}
+	U_{\text{CG}} = \sum_{k = -\ell-\frac12}^{\ell+\frac12} c_{k,(\alpha,j)} |k,\ell+\tfrac12\rangle \langle \alpha, j| + \sum_{k = -\ell+\frac12}^{\ell-\frac12} d_{k,(\alpha,j)}|k,\ell-\tfrac12\rangle\langle \alpha, j|.
+\end{equation}
+
+As an example consider the case $\ell = 1$; we find
+\begin{equation}
+	U_{\text{CG}} = 
+	\begin{pmatrix}
+		1 & 0 & 0 & 0 & 0 & 0   \\
+		0 & \sqrt{\tfrac23} & 0 & \sqrt{\tfrac13} & 0 & 0  \\
+		0 & 0 & \sqrt{\tfrac13} & 0 & \sqrt{\tfrac23} & 0  \\
+		0 & 0 & 0 & 0 & 0 & 1  \\
+		0 & \sqrt{\tfrac13} & 0 & -\sqrt{\tfrac23} & 0 & 0  \\
+		0 & 0 & \sqrt{\tfrac23} & 0 & -\sqrt{\tfrac13} & 0  
+	\end{pmatrix},
+\end{equation}
+where the rows are labelled by $[-\tfrac32, -\tfrac12, \tfrac12, \tfrac32, -\tfrac12, \tfrac12]$, and the columns by 
+
+$[(-\tfrac12, -1), (-\tfrac12, 0), (-\tfrac12, 1), (\tfrac12, -1), (\tfrac12, 0), (\tfrac12, 1)]$.
+
+
 
 \subsection{Diagonalising products of unitaries}\label{app:diagprod}
 In this subsection we detail the calculations of the diagonalising matrix for a product $UV$ of two elements from $\su2$.
