@@ -934,6 +934,40 @@ Denoting the energy of a plaquette before the subdivision as $E' = 2\cos(\phi_+)
 \end{equation} 
 where $T_n(z)$ is the $n$th Chebyshev polynomial.
 
+\subsection{Interpolating the cube}
+To study the realistic case of Yang-Mills theory in $(3+1)$ dimensions we need to be able to perform subdivisions of $3$-dimensional cubes. Here we encounter a new complication: while the procedure still requires the solution of a linear problem it results in a generalised eigenvalue problem rather than a simple eigenvalue problem. 
+
+Suppose we have a gauge field configuration on an elementary cube in the regular lattice $\mathbb{R}^3$. Our objective is to, as per the previous subsection, subdivide this cube into $8$ subcubes in as flat a way as possible. If we just aim to optimise the curvature over all the new edges we encounter a nonlinear optimisation problem. This doesn't completely render this problem impossible; we can still say a lot about the existence of and the properties of the solutions (more on this later).
+
+Here we first follow a different route: we break our problem into two linear subproblems. While this may not give the globally optimal solution it will give a solution that respects the symmetries of our problem.
+
+The first stage of our linearised approach is to subdivide the faces of the cube using our existing subdivision solution:
+\begin{center}
+	\includegraphics{cubeinterpf1.pdf}
+\end{center}
+The next task is to add in the interior edges:
+\begin{center}
+	\includegraphics{cubeinterpf2.pdf}
+\end{center}
+We now discuss this step. Given that the connections on all the subdivided faces are fixed we can combine those relevant for the curvature of the newly added interior edges; we end up with the problem of interpolating a diamond:
+\begin{center}
+	\includegraphics{diamondinterp.pdf}
+\end{center}
+The curvature of the new edges is proportional to
+\begin{equation}
+	\begin{split}
+		\text{Re}\Big[	\tr(U_0 A_1^\dag B_0) + \tr(U_1 B_1^\dag A_1) &+ \tr(U_2 A_0^\dag B_1) + \tr(U_3 B_0^\dag A_0) +  \\
+						\tr(V_0 A_1^\dag C_0) + \tr(V_1 C_1^\dag A_1) &+ \tr(V_2 A_0^\dag C_1) + \tr(V_3 C_0^\dag A_0) + \\
+						\tr(W_0 C_1^\dag B_0) + \tr(W_1 B_1^\dag C_1) &+ \tr(W_2 C_0^\dag B_1) + \tr(W_3 B_0^\dag C_0)\Big],
+	\end{split}
+\end{equation}
+where we've labelled the connections according to
+ \begin{center}
+	\includegraphics{diamondconn.pdf}
+\end{center}
+
+
+
 \subsection{Response to perturbations}
 In this subsection we study the response of the interpolated set $A_j$ arising from a plaquette subdivision to a perturbation of one of the elements $U_j$.
 
@@ -1162,7 +1196,9 @@ Carrying out the maximisation gives us
 	H_j(s) = \frac1{2\lambda_j}(\Delta_j(s)+\Delta_j^\dag(s)) - \frac1{4\lambda_j}\tr(\Delta_j(s)+\Delta_j^\dag(s))\mathbb{I}.
 \end{equation}
 
-This prescription generalises in a natural way to arbitrary graphs and even allows us to carry out interpolations that would otherwise require the solution of a nonlinear equation. 
+This prescription generalises in a natural way to arbitrary graphs and, as we'll see in the next subsection, even allows us to carry out interpolations that would otherwise require the solution of a nonlinear equation. 
+
+ 
 
 \subsection{Quantum Wilson flow}
 Here we describe how to use the classical Wilson flow described in the previous section to arrive a quantum interpolation scheme. The main observation is that the quantum Wilson flow is essentially the classical Wilson flow: for the simple plaquette bisection case we see that
