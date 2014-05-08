@@ -1004,7 +1004,86 @@ Multiplying these equations against $\tau^\mu$ and summing over $\mu$ gives us
 		-2\lambda_C(1) C_1 &= 2A_1 V_1 + 2A_0 V_2^\dag + 2B_0 W_0 + 2B_1W_1^\dag. \\ 
 	\end{split}
 \end{equation}
+These equations can be conveniently summarised in the following matrix equation (replacing $\lambda_\alpha(j) \mapsto -\lambda_\alpha(j)$):
+\begin{multline}
+	\begin{pmatrix}
+		A_0 & A_1 & B_0 & B_1 & C_0 & C_1
+	\end{pmatrix}
+	\begin{pmatrix}
+		0 & 0 & U_3^\dag & U_2 & V_3^\dag & V_2 \\
+		0 & 0 & U_0 & U_1^\dag & V_0 & V_1^\dag \\
+		U_3  & U_0^\dag & 0 & 0 & W_3 & W_0^\dag \\
+		U_2^\dag & U_1 & 0 & 0 & W_2^\dag & W_1  \\
+		V_3 & V_0^\dag & W_3^\dag & W_2 & 0 & 0 \\
+		V_2^\dag & V_1 & W_0 & W_1^\dag & 0 & 0 \\
+	\end{pmatrix}
+	= \\ \begin{pmatrix}
+		A_0 & A_1 & B_0 & B_1 & C_0 & C_1
+	\end{pmatrix}
+	\begin{pmatrix}
+		\lambda_A(0) & 0 & 0 & 0 & 0 & 0 \\
+		0 & \lambda_A(1) & 0 & 0 & 0 & 0 \\
+		0 & 0 & \lambda_B(0) & 0 & 0 & 0 \\
+		0 & 0 & 0 & \lambda_B(1) & 0 & 0 \\
+		0 & 0 & 0 & 0 & \lambda_C(0) & 0 \\
+		0 & 0 & 0 & 0 & 0 & \lambda_C(1) \\
+	\end{pmatrix}
+\end{multline}
+We can rewrite this in a general form simply as
+\begin{equation}\label{eq:mwlw}
+	MW = \Lambda W,
+\end{equation}
+where
+\begin{equation}
+	M = \sum_{e\in E} U_{e} \otimes |e_+\rangle\langle e_-| + \text{h.c.},
+\end{equation}
+\begin{equation}
+	W = \sum_{v\in V} A_v^\dag \otimes |v\rangle,
+\end{equation}
+and
+\begin{equation}
+	\Lambda = \sum_{v\in V} \lambda_v |v\rangle\langle v|,
+\end{equation}
+with $A_v\in \su2$, $\forall v\in V$ and $U_e\in \su2$, $\forall e\in E$.
 
+Superficially (\ref{eq:mwlw}) has the structure of a generalised eigenvalue problem, however, it is not quite yet in the form of a standard generalised eigenvalue problem. To bring this equation into the form of a generalised eigenvalue problem we need to exploit an anti-unitary symmetry of the equation arising from the ``spin-flip'' symmetry of \su2:
+\begin{equation}
+	U = \sigma^y U^* \sigma^y,\quad U\in \su2.
+\end{equation}
+This is also known as \emph{conjugation} in the quaternion picture. 
+
+The representation of this anti-unitary symmetry is via 
+\begin{equation}
+	M \mapsto (\sigma^u\otimes \mathbb{I}) M^* (\sigma^u\otimes \mathbb{I}).
+\end{equation}
+Notice that the RHS of (\ref{eq:mwlw}) doesn't, as written, enjoy this symmetry. To impose it we must set $\lambda_A(0) = \lambda_A(1)$, $\lambda_B(0) = \lambda_B(1)$, and $\lambda_C(0) = \lambda_C(1)$, only then do we find that
+\begin{equation}
+	\Lambda = (\sigma^u\otimes \mathbb{I}) \Lambda^* (\sigma^u\otimes \mathbb{I}).
+\end{equation}
+We can now exploit the spin-flip symmetry to reduce the solution of (\ref{eq:mwlw}) to the solution of 
+\begin{equation}\label{eq:mvlv}
+	M|\Psi\rangle = \Lambda |\Psi\rangle,
+\end{equation}
+where
+\begin{equation}
+	|\Psi\rangle = \sum_{v\in V} |\psi_v\rangle \otimes |v\rangle.
+\end{equation}
+This follows from noting that 
+\begin{equation}
+	|\psi_\perp\rangle \equiv \sigma^y (|\psi\rangle^*)
+\end{equation}
+is orthogonal to $|\psi\rangle$ for all $|\psi\rangle$, i.e., $\langle \psi|\psi_\perp\rangle = 0$. Hence, given a solution $|\Psi\rangle$ of (\ref{eq:mvlv}), we can construct an orthogonal solution by applying the spin-flip transformation:
+\begin{equation}
+	|\Psi_\perp\rangle \equiv (\sigma^u\otimes \mathbb{I}) (|\Psi\rangle^*).
+\end{equation}
+If $|\Psi\rangle$ further satisfies the property that $\langle \psi_v|\psi_v\rangle = \text{const.}$, $\forall v\in V$ then we obtain a solution to (\ref{eq:mwlw}) upon setting
+\begin{equation}
+	A^\dag_v \propto \begin{pmatrix} 
+		|\psi_v\rangle &|&\sigma^y(|\psi_v\rangle)^*
+	\end{pmatrix}.
+\end{equation}
+
+Therefore we know that the answer is simply given in terms of the eigenvectors of $\Lambda^{-1}M$ or, equivalently $\Lambda^{-\frac12}M\Lambda^{-\frac12}$. The problem now is that we need to satisfy the constraint that $A_v \in \su2$, $\forall v\in V$, which can be achieved by satisfying the constraint $\langle\psi_v|\psi_v\rangle = \text{const.}$, $\forall v\in V$. We can do this by tuning the lagrange multipliers in $\Lambda$. Unfortunately the eigenvectors of $\Lambda^{-\frac12}M\Lambda^{-\frac12}$ depend in a complicated way on $\Lambda$ and there is no obvious general formula to write down the assignment which satisfies our constraint.  {\color{red} This problem is listed in the issue tracker.}
 
 \subsection{Response to perturbations}
 In this subsection we study the response of the interpolated set $A_j$ arising from a plaquette subdivision to a perturbation of one of the elements $U_j$.
