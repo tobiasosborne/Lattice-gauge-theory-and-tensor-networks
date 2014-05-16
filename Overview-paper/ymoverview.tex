@@ -143,7 +143,7 @@ and the summations over $j$ and $k$ are taken in integer steps from $-l$ to $l$.
 \begin{equation}
 	\widehat{\phi}_{jk}^l = {_l\langle jk|\phi\rangle} = \sqrt{2l+1}\int dU \, \overline{t^l_{jk}}(U) \phi(U).
 \end{equation}
-Thanks to Eq.~(\ref{eq:peterweyl}) we know that $L^2(\su2)$ is the direct sum structure of bipartite hilbert spaces thus it may be regarded, \emph{for all practical purposes}, as the state space of a bipartite quantum system. This is one point where $\su2$ and $\uone$ differ: crucially we do \emph{not} have this bipartite structure in the $\uone$ case because all of its irreps are one dimensional. In the $\su2$ case we visualise the bipartite-like structure graphically by adding virtual vertices to the ends of a link, intended to represent these two different subsystems: we now picture an arbitrary state $|\psi\rangle$ of a single link as  
+Thanks to Eq.~(\ref{eq:peterweyl}) we know that $L^2(\su2)$ has the structure of a direct sum of bipartite hilbert spaces thus it may be regarded, \emph{for all practical purposes}, as the state space of a bipartite quantum system. This is one point where $\su2$ and $\uone$ differ: crucially we do \emph{not} have this bipartite structure in the $\uone$ case because all of its irreps are one dimensional. In the $\su2$ case we visualise the bipartite-like structure graphically by adding virtual vertices to the ends of a link, intended to represent these two different subsystems: we now picture an arbitrary state $|\psi\rangle$ of a single link as  
 \begin{center}
 \includegraphics{edgespace.pdf}
 \end{center}
@@ -699,22 +699,13 @@ where $\square \sim \square'$ means that both plaquettes are situated within the
 
 
 \section{The continuum limit}
-We now begin the discussion of how to take the continuum limit. Conditioned on the validity of the previously mentioned conjectures, we've produced a sequence of states $|\Psi_m\rangle$ which tend, in the limit, to the zero-coupling state. The important observation here is that since each term in our sequence is a MERA the correlation length of $|\Psi_m\rangle$ is given by $\xi_m = a_m\lambda^m$, for some $\lambda>0$.  Given that the correlation length $\xi$ of pure Yang-Mills theory is only determined up to a constant which is ultimately fixed by experiment forces us to set the lattice spacing $a_m$ of the state $|\Psi_m\rangle$ to $a_m = a_0\lambda^{-m}$, where $a_0$ is a constant. Thus we have a sequence of states $|\Psi_m\rangle$ for lattices of ever finer discretisation. Further, we can compute all $n$-point functions for this sequence. This is exactly the input required for the continuum limit procedure described in the next section.
-
-
-Here we discuss the approach to the continuum of the Kogut-Susskind model in the scaling limit $g_H\rightarrow 0$. The objective here is to first derive an effective quantum field model for the low-energy physics of the scaling limit and then to check whether this model exhibits the properties expected of a nonabelian gauge theory. 
-
-The key to understanding continuum limits of lattice models in the hamiltonian formalism is to first agree on a limited set  observables, being discretisations of corresponding field operators, and to ignore all other observables. We then calculate the expectation values of these observables and if they converge as the lattice spacing is reduced to zero then we declare these expectation values to be those of the correspond quantum field operators. 
-
+Conditioned on the validity of the previously mentioned conjectures, we've produced a sequence of states $|\Psi_m\rangle$ which tend, in the limit, to the (lattice) zero-coupling state. The important observation here is that since each term in our sequence is a MERA the correlation length of $|\Psi_m\rangle$ is given by $\xi_m = a_m\lambda^m$, for some $\lambda>0$.  Given that the correlation length $\xi$ of pure Yang-Mills theory is only determined up to a constant which is ultimately fixed by experiment forces us to set the lattice spacing $a_m$ of the state $|\Psi_m\rangle$ to $a_m = a_0\lambda^{-m}$, where $a_0$ is a constant. Thus we have a sequence of states $|\Psi_m\rangle$ for lattices of ever finer discretisation. Further, we can compute all $n$-point functions for this sequence. 
 
 \section{Conclusions}
 
 \bibliography{Physics}
 
 \widetext
-
-
-
 
 \appendix
 
