@@ -14,6 +14,7 @@
 %\usepackage[mtpcal,subscriptcorrection,nofontinfo]{mtpro2}
 %\usepackage{lucimatx}
 \usepackage[shortalphabetic]{amsrefs}
+\usepackage{accents}
 
 
 \newcommand{\spec}{\operatorname{spec}}
@@ -129,8 +130,24 @@ We have that $\sgn_\gamma(e_1) = -1$, $\sgn_\gamma(e_2) = +1$, $\sgn_\gamma(e_3)
 
 \end{remark}
 
-\subsection{Simplicial complexes}
-We start by defining \emph{simplices}: an $n$-simplex is that smallest convex set containing $n+1$ points $v_0, v_1, \ldots, v_n$ from a euclidean space $\mathbb{R}^m$, all of which are assumed not to lie in a hyperplane of dimension less than $n$. The simplex is denoted $[v_0, v_1,\ldots, v_n]$, which is an \emph{ordered} tuple, as the vertex order of a simplex is significant. Deleting any single vertex, say the $j$th one $v_j$, from an $n$-simplex yields an $(n-1)$-simplex, called a \emph{face} of $[v_0, v_1, \ldots, v_n]$. Faces are traditionally denoted by $[v_0, \ldots, \widehat{v}_j, \ldots, v_n]$, where the hat indicates that $v_j$ has been deleted. We assume that any subsimplex spanned by a subset of the vertices has the ordering induced by that of the original simplex.
+\subsection{Simplicial complexes, homology, and cohomology}
+We start by defining \emph{simplices}: an $n$-simplex is that smallest convex set containing $n+1$ points $v_0, v_1, \ldots, v_n$ from a euclidean space $\mathbb{R}^m$, all of which are assumed not to lie in a hyperplane of dimension less than $n$. The simplex is denoted $[v_0, v_1,\ldots, v_n]$, which is an \emph{ordered} tuple, as the vertex order of a simplex is significant. Deleting any single vertex, say the $j$th one $v_j$, from an $n$-simplex yields an $(n-1)$-simplex, called a \emph{face} of $[v_0, v_1, \ldots, v_n]$. Faces are traditionally denoted by $[v_0, \ldots, \widehat{v}_j, \ldots, v_n]$, where the hat indicates that $v_j$ has been deleted. We assume that any subsimplex spanned by a subset of the vertices has the ordering induced by that of the original simplex. 
+
+The \emph{standard $n$-simplex} is the set
+\begin{equation}
+	\Delta^n = \left\{ (t_0, t_1, \ldots, t_n) \in \mathbb{R}^{n+1}\,\middle|\, \sum_{j=0}^n t_j = 1\ \text{and}\  t_j\ge 0, \forall j\right\}.
+\end{equation}
+
+The \emph{boundary} $\partial \Delta^n$ of the standard simplex $\Delta^n$ is the union of all the faces of $\Delta^n$. The \emph{open simplex} (also known as the \emph{interior} of $\Delta^n$) $\mathring{\Delta}^n$ is given by $\Delta^n \setminus \partial{\Delta}^n$.
+
+\begin{definition}
+	A \emph{$\Delta$-complex} structure on a space $X$ is a collection of maps $\sigma_\alpha:\Delta^n\rightarrow X$, with $n$ depending on $\alpha$, such that 
+	\begin{enumerate}
+		\item The restriction $\sigma_\alpha|_{\mathring{\Delta}^n}$ is injective and every point in $X$ is in the image of exactly one such restriction.
+		\item The restriction of $\sigma_\alpha$ to a face of $\Delta^n$ is also one of the maps $\sigma_\beta:\Delta^{n-1}\rightarrow X$. 
+		\item The set $A\subset X$ is open if and only if $\sigma^{-1}_\alpha(A)$ is open in $\Delta^n$ for each $\sigma_\alpha$.
+	\end{enumerate}
+\end{definition}
 
 As for graphs, let $V$ denote a (finite) set of points in a euclidean space $\mathbb{R}^m$, called the \emph{vertex set}. Let $X$ be a non-empty collection of subsets of $V$ such that whenever $F\in X$ then $G\subset F$ implies that $G\in X$. Thus $\emptyset \in X$. 
 
