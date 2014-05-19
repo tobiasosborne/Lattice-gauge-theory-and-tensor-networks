@@ -131,6 +131,7 @@ We have that $\sgn_\gamma(e_1) = -1$, $\sgn_\gamma(e_2) = +1$, $\sgn_\gamma(e_3)
 \end{remark}
 
 \subsection{Simplicial complexes, homology, and cohomology}
+\subsubsection{Simplices}
 We start by defining \emph{simplices}: an $n$-simplex is that smallest convex set containing $n+1$ points $v_0, v_1, \ldots, v_n$ from a euclidean space $\mathbb{R}^m$, all of which are assumed not to lie in a hyperplane of dimension less than $n$. The simplex is denoted $[v_0, v_1,\ldots, v_n]$, which is an \emph{ordered} tuple, as the vertex order of a simplex is significant. Deleting any single vertex, say the $j$th one $v_j$, from an $n$-simplex yields an $(n-1)$-simplex, called a \emph{face} of $[v_0, v_1, \ldots, v_n]$. Faces are traditionally denoted by $[v_0, \ldots, \widehat{v}_j, \ldots, v_n]$, where the hat indicates that $v_j$ has been deleted. We assume that any subsimplex spanned by a subset of the vertices has the ordering induced by that of the original simplex. 
 
 The \emph{standard $n$-simplex} is the set
@@ -149,7 +150,28 @@ The \emph{boundary} $\partial \Delta^n$ of the standard simplex $\Delta^n$ is th
 	\end{enumerate}
 \end{definition}
 
-As for graphs, let $V$ denote a (finite) set of points in a euclidean space $\mathbb{R}^m$, called the \emph{vertex set}. Let $X$ be a non-empty collection of subsets of $V$ such that whenever $F\in X$ then $G\subset F$ implies that $G\in X$. Thus $\emptyset \in X$. 
+Because a $\Delta$-complex may be regarded as a quotient space of a collection of disjoint simplices $\Delta_\alpha^n$ the data specifying a $\Delta$-complex can be described purely combinatorially as a collection of simplices $\Delta_\alpha^n$ together with functions identifying each face of every $n$-simplex $\Delta_\alpha^n$ with an $(n-1)$-simplex $\Delta_\beta^{n-1}$.
+
+\subsubsection{Simplicial homology}
+Suppose that $X$ is a $\Delta$-complex. We now construct a free abelian group $\Delta_n(X)$ associated with $X$ called the (group of) \emph{$n$-chains}, which is given by the set of all formal sums $\sum_\alpha n_\alpha e_\alpha^n$, where $n_\alpha \in \mathbb{Z}$ and $e_\alpha^n$ are the \emph{open} $n$-simplices of $X$. 
+
+Intuitively there ought to be a way to connect elements of $\Delta_n(X)$ with their \emph{boundaries} in $\Delta_{n-1}(X)$. To this end we define the \emph{boundary homomorphism} $\partial_n:\Delta_n(X)\rightarrow \Delta_{n-1}(X)$
+\begin{equation}
+	\partial_n(\sigma_\alpha) = \sum_{j}(-1)^j \sigma_{\alpha}|_{[v_0, \ldots, \widehat{v}_j, \ldots, v_n]}.
+\end{equation}
+We have the following fundamental 
+\begin{lemma}
+	The composition of two boundary homomorphisms is zero, i.e.\ the map given by
+	\begin{equation}
+		\Delta_n(X) \overset{\partial_n}{\rightarrow} \Delta_{n-1}(X) \overset{\partial_{n-1}}{\rightarrow} \Delta_{n-2}(X)
+	\end{equation}
+	is zero.
+\end{lemma}
+Thus we encounter the algebraic situation where we have a sequence of homomorphisms of abelian groups:
+\begin{equation}
+	\cdots \overset{\partial_{n+1}}{\rightarrow} C_{n} \overset{\partial_{n}}{\rightarrow} C_{n-1} \overset{\partial_{n-1}}{\rightarrow} \cdots \overset{\partial_{2}}{\rightarrow} C_{1} \overset{\partial_{1}}{\rightarrow} C_{0} \overset{\partial_{0}}{\rightarrow} 0,
+\end{equation}
+such that $\partial_n\partial_{n+1} = 0$, for all $n$. Such a sequence is called a \emph{chain complex}.
 
 \subsection{Group theory}
 We work with quantum degrees of freedom whose \emph{position variable} is an element of a compact group $G$. Informally the ``position basis'' for such a degree of freedom is written as  
