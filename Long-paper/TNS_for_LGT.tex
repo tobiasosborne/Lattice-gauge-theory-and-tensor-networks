@@ -130,7 +130,7 @@ We have that $\sgn_\gamma(e_1) = -1$, $\sgn_\gamma(e_2) = +1$, $\sgn_\gamma(e_3)
 
 \end{remark}
 
-\subsection{Simplicial complexes, homology, and cohomology}
+\subsection{Simplicial complexes and barycentric subdivision}
 \subsubsection{Simplices}
 We start by defining \emph{simplices}: an $n$-simplex is that smallest convex set containing $n+1$ points $v_0, v_1, \ldots, v_n$ from a euclidean space $\mathbb{R}^m$, all of which are assumed not to lie in a hyperplane of dimension less than $n$. The simplex is denoted $[v_0, v_1,\ldots, v_n]$, which is an \emph{ordered} tuple, as the vertex order of a simplex is significant. Deleting any single vertex, say the $j$th one $v_j$, from an $n$-simplex yields an $(n-1)$-simplex, called a \emph{face} of $[v_0, v_1, \ldots, v_n]$. Faces are traditionally denoted by $[v_0, \ldots, \widehat{v}_j, \ldots, v_n]$, where the hat indicates that $v_j$ has been deleted. We assume that any subsimplex spanned by a subset of the vertices has the ordering induced by that of the original simplex. 
 
@@ -172,6 +172,17 @@ Thus we encounter the algebraic situation where we have a sequence of homomorphi
 	\cdots \overset{\partial_{n+1}}{\rightarrow} C_{n} \overset{\partial_{n}}{\rightarrow} C_{n-1} \overset{\partial_{n-1}}{\rightarrow} \cdots \overset{\partial_{2}}{\rightarrow} C_{1} \overset{\partial_{1}}{\rightarrow} C_{0} \overset{\partial_{0}}{\rightarrow} 0,
 \end{equation}
 such that $\partial_n\partial_{n+1} = 0$, for all $n$. Such a sequence is called a \emph{chain complex}.
+
+\subsubsection{Barycentric subdivision}
+A crucial tool in the sequel is that of the \emph{subdivision} of a complex whereby a refined complex is produced from a coarser one by breaking each simplex into smaller pieces.
+
+\begin{definition}
+	Let $[v_0, v_1, \ldots, v_n]$ be a simplex: this is the set consisting of all points with coordinates given by the linear combinations
+	\begin{equation}
+		\sum_{j=0}^n t_j v_j, 
+	\end{equation}
+	where $\sum_{j=0}^n t_j = 1$ and $t_j\ge 0$ for all $j = 0, 1, \ldots, n$. The \emph{barycentre} or \emph{centre of gravity} of the simplex is the point $b = \sum_{j=0}^n t_j v_j$ whose coordinates are all equal, i.e., $t_j = 1/(n+1)$ for all $j$. The \emph{barycentric subdivision} of $[v_0, v_1, \ldots, v_n]$ is the decomposition of $[v_0, v_1, \ldots, v_n]$ into the $n$-simplices $[b, w_0, w_1, \ldots, w_{n-1}]$ where we inductively define $[w_0, w_1, \ldots, w_{n-1}]$ to be the $(n-1)$-simplex in the barycentric subdivision of a face $[v_0, \ldots, \widehat{v}_j, \ldots, v_n]$.
+\end{definition}
 
 \subsection{Group theory}
 We work with quantum degrees of freedom whose \emph{position variable} is an element of a compact group $G$. Informally the ``position basis'' for such a degree of freedom is written as  
@@ -455,9 +466,10 @@ In the case of $G\cong \su2$:
 For $G\cong \uone$, the final results are the same except that there are no 
 indices on the position operators.
 
-\section{Gauge theory on a graph}
+\section{Gauge theory on graphs and complexes}
 In this section we introduce the main object of our study, namely, \emph{gauge theories on graphs}. Here we largely follow the formulation of Baez \cite{baez:1996a}.
 
+\subsubsection{Gauge theory on a graph}
 Let $(V,E)$ be an oriented graph. Our gauge theories are principle $G$-bundles $P$ over the vertex space $V$ with the discrete topology. Since such structures are trivialisable we fix a trivialisation from the outset. This allows us to describe $P$ as follows. We attach, to each edge $e$, the classical position coordinate $G$, so that classical configurations of our system correspond to elements of
 \begin{equation}
 	\mathcal{A} = \prod_{e\in E} G.
@@ -501,6 +513,11 @@ We henceforth associate the left tensor factor in the direct sum for $\mathcal{H
 		\pi(x) = \bigotimes_{e\in E} L_{x_{e_-}}R_{x_{e_+}}, \quad x\in \mathcal{G}.
 	\end{equation}
 \end{definition}
+
+\subsubsection{Gauge theory on a complex}
+Suppose the $X$ is a $\Delta$-complex. Consider the set of $0$-simplices $\Delta^0_\alpha$ of $X$; this is just a set of points in $\mathbb{R}^n$ which we regard as a vertex set $V$. The set of $1$-simplices $\Delta_\alpha^1$ of $X$ may, in turn, be regarded as a set of ordered tuples of pairs of vertices. Hence we identify each $1$-simplex with a \emph{directed edge} $e$. The collection of all such directed edges is written $E$. In this way we obtain a directed graph from any $\Delta$-complex. The object $(V,E)$ is called the \emph{underlying graph} or the \emph{$1$-skeleton} of $X$.
+
+A gauge theory on the $\Delta$-complex is then simply a gauge theory on the directed graph $(V,E)$.
 
 \subsection{Classical parallel transport}
 The classical notion of parallel transport through a gauge field on a graph may be described as follows. Suppose that we have an object transforming according to a representation $U$ of $G$. We think of the object as living at some vertex $v$. Whenever the object moves to another vertex $w$ along a path $\gamma$ it undergoes the \emph{parallel transport}  
