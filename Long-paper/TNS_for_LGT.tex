@@ -515,7 +515,7 @@ We henceforth associate the left tensor factor in the direct sum for $\mathcal{H
 \end{definition}
 
 \subsubsection{Gauge theory on a complex}
-Suppose the $X$ is a $\Delta$-complex. Consider the set of $0$-simplices $\Delta^0_\alpha$ of $X$; this is just a set of points in $\mathbb{R}^n$ which we regard as a vertex set $V$. The set of $1$-simplices $\Delta_\alpha^1$ of $X$ may, in turn, be regarded as a set of ordered tuples of pairs of vertices. Hence we identify each $1$-simplex with a \emph{directed edge} $e$. The collection of all such directed edges is written $E$. In this way we obtain a directed graph from any $\Delta$-complex. The object $(V,E)$ is called the \emph{underlying graph} or the \emph{$1$-skeleton} of $X$.
+Suppose the $X$ is a $\Delta$-complex. Consider the set of $0$-simplices $\Delta^0_\alpha$ of $X$; this is just a set of points in $\mathbb{R}^n$ which we regard as a vertex set $V$. The set of $1$-simplices $\Delta_\alpha^1$ of $X$ may, in turn, be regarded as a set of ordered tuples of pairs of vertices. Hence we identify each $1$-simplex with a \emph{directed edge} $e$. The collection of all such directed edges is written $E$. In this way we obtain a directed graph from any $\Delta$-complex. The object $(V,E)$ is called the \emph{underlying graph} which may be identified with the \emph{$1$-skeleton} of $X$, i.e., the collection of all $0$- and $1$-simplices of $X$.
 
 A gauge theory on the $\Delta$-complex is then simply a gauge theory on the directed graph $(V,E)$.
 
@@ -1133,7 +1133,9 @@ Therefore we know that the answer is simply given in terms of the eigenvectors o
 \subsection{The general subdivision problem: classical case}
 Here we specify the general subdivision problem and detail an approach to its solution via \emph{Wilson flow}. 
 
-Suppose we have a $2$-simplex $G = (V,E,F)$ and we want to subdivide the faces of the simplex in as flat a way as possible. 
+We work with $\Delta$-complexes and their barycentric subdivisions: suppose that $X$ is a $\Delta$-complex. Write $(V,E)$ for its underlying graph. We also introduce the collection $F$ of \emph{faces}, i.e., the set of all the $2$-simplices of $X$. We can associate a gauge theory with $X$ by simply associating a gauge theory to the underlying graph. 
+
+In the classical case a configuration of the gauge theory is given by a map $U$ from the $1$-simplices to the group $\su2$, i.e., $U$ is simply the collection of parallel transporters for each of the edges of the underlying graph $(V,E)$. What we study here is how to use interpolation to obtain a configuration for the barycentric subdivision $X'$ of $X$. We exploit the fact that the barycentric subdivision is defined recursively, so that each $1$-simplex $e$ in $X$ is replaced with a pair $\{e', e''\}$ of $1$-simplices in $X'$  and define the interpolated connection $U'$ via $U'(e') = U(e)V$ and $U'(e'') = V^\dag$, for a given $V\in \su2$.
 
 \subsection{Response to perturbations}
 In this subsection we study the response of the interpolated set $A_j$ arising from a plaquette subdivision to a perturbation of one of the elements $U_j$.
