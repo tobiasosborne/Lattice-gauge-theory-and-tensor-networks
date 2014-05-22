@@ -1609,11 +1609,11 @@ Write $P_j = (f_j,e_{j+1},f_{j+1})$, $j = 0, 1, \ldots, n-1$ (modulo $n$), for t
 In this section we study $(2+1)$-dimensional Yang-Mills theory compactified onto a cylinder. This quasi one-dimensional system is the first nontrivial incarnation of Yang-Mills theory since the $(1+1)$-dimensional case contains no dynamical degrees of freedom once the gauge freedom is fixed.
 
 \subsection{The petal graph}
-We first consider the case of a line where each vertex is decorated with a petal. As we'll presently argue this case is equivalent to the following Kogut-Susskind model on a petal graph:
+As a warmup we first consider the Kogut-Susskind model on a petal graph:
 \begin{center}
 	\includegraphics{petal2.pdf}
 \end{center}
-where the hamiltonian is given by
+with hamiltonian
 \begin{equation}
 	H = \frac{g^2}{2 a} \sum_{j=1}^n \widehat{\ell}^2_j - \frac{2}{g^2 a} \sum_{j=1}^n \text{Re}(\tr(\widehat{u}_j\widehat{u}_{j+1}^\dag)).
 \end{equation}
@@ -1679,9 +1679,32 @@ The potential energy of the interpolated state is then given by the potential en
 		&= \frac12\int d\mathbf{U}d\mathbf{U}'\, \overline{\psi(\mathbf{U})}\psi(\mathbf{U})  \langle \mathbf{U}'|\textsl{C}\mathcal{U}^\dag ( \tr(\widehat{u}_{2k}\widehat{u}^\dag_{2k+1}) )\textsl{C}\mathcal{U}|\mathbf{U}\rangle \\
 		&= \frac12\int d\mathbf{U}d\mathbf{U}'\,  \tr((U_{j} U_{j+1}^\dag)^{\frac12} )  \overline{\psi(\mathbf{U})}\psi(\mathbf{U})  \langle \mathbf{U}'|\textsl{C}\mathcal{U}^\dag \textsl{C}\mathcal{U}|\mathbf{U}\rangle \\
 		&= \frac12\int d\mathbf{U}d\mathbf{U}'\,  \tr((U_{j} U_{j+1}^\dag)^{\frac12} )  \overline{\psi(\mathbf{U})}\psi(\mathbf{U})  \langle \mathbf{U}'|\mathbf{U}\rangle \\
-		&= \frac12\int d\mathbf{U}d\mathbf{U}'\,    \overline{\psi(\mathbf{U})}\psi(\mathbf{U})  \langle \mathbf{U}'|\tr(\widehat{u}_{k}\widehat{u}^\dag_{k+1}))^{\frac12} )|\mathbf{U}\rangle
+		&= \frac12\int d\mathbf{U}d\mathbf{U}'\,    \overline{\psi(\mathbf{U})}\psi(\mathbf{U})  \langle \mathbf{U}'|\tr((\widehat{u}_{k}\widehat{u}^\dag_{k+1})^{\frac12} )|\mathbf{U}\rangle \\
+		&= \langle \Psi|\tr((\widehat{u}_{k}\widehat{u}^\dag_{k+1})^{\frac12} )|\Psi\rangle.
 	\end{split}
 \end{equation}
+Now we consider the transformation of the kinetic energy, first look at the even sites and calculate
+\begin{equation}
+	\begin{split}
+		L_{e^{i\epsilon \sigma^\alpha_j}}\textsl{C}\mathcal{U} |\Psi\rangle &= \int d\mathbf{U}\,\psi(\mathbf{U}) \left(\cdots |U_{j-1}\rangle |(U_{j} U_{j-1}^\dag)^{\frac12} U_{j-1}\rangle |e^{i\epsilon\sigma^\alpha_j}U_{j}\rangle  |(U_{j+1} U_{j}^\dag)^{\frac12} U_{j}\rangle|U_{j+1}\rangle\cdots\right) \\
+		&= \int d\mathbf{U}\,\psi(\cdots, U_{j-1},e^{-i\epsilon\sigma^\alpha_j}U_{j}, U_{j+1},\cdots) \times \\&\quad\quad  \left(\cdots |U_{j-1}\rangle |(e^{-i\epsilon\sigma^\alpha_j}U_{j} {U_{j-1}}^\dag)^{\frac12} U_{j-1}\rangle |U_{j}\rangle  |(U_{j+1} {U_{j}}^\dag e^{i\epsilon\sigma^\alpha_j})^{\frac12} e^{-i\epsilon\sigma^\alpha_j}U_{j}\rangle|U_{j+1}\rangle\cdots \right)
+	\end{split}
+\end{equation}
+To calculate this expression we exploit (\ref{eq:derivatesu2product}) from the appendix and expand
+\begin{equation}
+	(e^{-i\epsilon\sigma^\alpha_j}U_{j} {U_{j-1}}^\dag)^{\frac12} U_{j-1} = (U_{j} {U_{j-1}}^\dag)^{\frac12} U_{j-1} - i\epsilon M_{\alpha\beta}(U_{j-1}, U_{j})\sigma^\beta(U_{j} {U_{j-1}}^\dag)^{\frac12} U_{j-1} + O(\epsilon),
+\end{equation}
+where
+
+\begin{equation}
+	\begin{split}
+		\langle \Psi|\textsl{C}\mathcal{U}^\dag (\widehat{\ell}^2_{2k})\textsl{C}\mathcal{U}|\Psi\rangle &\equiv -\frac{\partial^2}{\partial\epsilon_1\partial \epsilon_2}\sum_{\alpha = 1}^3\int d\mathbf{U}d\mathbf{U}'\, \overline{\psi(\mathbf{U})}\psi(\mathbf{U})  \langle \mathbf{U}'|\textsl{C}\mathcal{U}^\dag (L_{e^{i\epsilon_1 \sigma^{\alpha}_{2k}}}L_{e^{i\epsilon_2 \sigma_{2k}^{\alpha}}})\textsl{C}\mathcal{U}|\mathbf{U}\rangle \\
+		&=-\frac{\partial^2}{\partial\epsilon_1\partial \epsilon_2}\sum_{\alpha = 1}^3\int d\mathbf{U}d\mathbf{U}'\, \overline{\psi(\mathbf{U})}\psi(\mathbf{U})  \langle \mathbf{U}'|\textsl{C}\mathcal{U}^\dag (L_{e^{i\epsilon_1 \sigma^{\alpha}_{2k}}}L_{e^{i\epsilon_2 \sigma_{2k}^{\alpha}}})\textsl{C}\mathcal{U}|\mathbf{U}\rangle 
+	\end{split}
+\end{equation}
+
+
+
 
 \subsection{The ladder}
 Lattice gauge theory on a ladder
@@ -2103,9 +2126,9 @@ The next step is to exploit the formula
 	S^\dag \sigma^{j} S = \sum_{k = 1}^3 [\mathbf{O}]_{jk} \sigma^k,
 \end{equation}
 for $S \in \su2$. Using this formula we calculate
-\begin{equation}
+\begin{equation}\label{eq:derivatesu2product}
 	\begin{split}
-	\frac{d}{d\epsilon}\sqrt{e^{i\epsilon \sigma^j} VU^\dag}\sqrt{U^\dag V}\bigg|_{\epsilon =0} &= \frac{d}{d\epsilon}\sqrt{e^{i\epsilon \sigma^j} S \Phi S^\dag}\sqrt{S \Phi^\dag S^\dag}\bigg|_{\epsilon =0} \\
+	\frac{d}{d\epsilon}\sqrt{e^{i\epsilon \sigma^j} VU^\dag}\sqrt{U V^\dag}\bigg|_{\epsilon =0} &= \frac{d}{d\epsilon}\sqrt{e^{i\epsilon \sigma^j} S \Phi S^\dag}\sqrt{S \Phi^\dag S^\dag}\bigg|_{\epsilon =0} \\
 	&= S\left[\frac{d}{d\epsilon}\sqrt{e^{i\epsilon S^\dag \sigma^j S}  \Phi }\sqrt{ \Phi^\dag }\right]\bigg|_{\epsilon =0} S^\dag \\
 	&= i \sum_{k=1}^3 [\mathbf{O} \phi ]_{jk}  S\sigma^k S^\dag \\
 	&= i \sum_{k=1}^3 [\mathbf{O} \phi \mathbf{O}^T]_{jk}  \sigma^k, \\
