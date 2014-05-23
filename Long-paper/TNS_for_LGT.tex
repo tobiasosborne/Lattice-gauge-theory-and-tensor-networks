@@ -244,7 +244,48 @@ Define the \emph{position observables} $\widehat{u}_{jk}$ via
 \begin{equation}
 	\widehat{u}_{jk}|g\rangle \equiv t_{jk}^{\frac12}(g)|g\rangle,
 \end{equation} 
-for $j,k \in \{-\frac12, \frac12\}$, i.e., $\widehat{u}_{jk}$ simply gives the matrix elements of the spin-$1/2$ representation of $g$.
+for $j,k \in \{-\frac12, \frac12\}$, i.e., $\widehat{u}_{jk}$ simply gives the matrix elements of the spin-$1/2$ representation of $g$. We compute the matrix elements of the position observable via
+\begin{equation}
+	_{l'}\langle j'k'|\widehat{u}_{\alpha\beta}|jk\rangle_{l} = \sqrt{(2l+1)(2l'+1)}\int dg\, \overline{t^{l'}_{j'k'}}(g)t_{\alpha\beta}^{\frac12}(g) t_{jk}^{l}(g).
+\end{equation}
+This problem is detailed in the appendix; we firstly note that $l' = l\pm \frac12$, otherwise the matrix element is zero. 
+\begin{equation}
+	t_{\alpha\beta}^{\frac12}(g) t_{jk}^{l}(g) = \langle \alpha,j| g\otimes g \otimes \cdots \otimes g|\beta,k\rangle
+\end{equation}
+We then exploit the Clebsch-Gordon transformation to rewrite $|\alpha,j\rangle$ as
+\begin{equation}
+	|\alpha,j\rangle = \sum_{j' = -l-\frac12}^{l+\frac12} c_{j',(\alpha,j)} |j',l+\tfrac12\rangle + \sum_{j' = -l+\frac12}^{l-\frac12} d_{j',(\alpha,j)} |j',l-\tfrac12\rangle
+\end{equation}
+and
+\begin{equation}
+	|\beta,k\rangle = \sum_{k' = -l-\frac12}^{l+\frac12} c_{k',(\beta,k)} |k',l+\tfrac12\rangle + \sum_{k' = -l+\frac12}^{l-\frac12} d_{k',(\beta,k)} |k',l-\tfrac12\rangle,
+\end{equation}
+so that
+\begin{multline}
+		t_{\alpha\beta}^{\frac12}(g) t_{jk}^{l}(g) = \sum_{j',k' = -l-\frac12}^{l+\frac12} \overline{c}_{j',(\alpha,j)}c_{k',(\beta,k)} \langle j',l+\tfrac12| g \otimes g \otimes \cdots \otimes g |k',l+\tfrac12\rangle + \\
+		\sum_{j',k' = -l+\frac12}^{l-\frac12} \overline{d}_{j',(\alpha,j)}d_{k',(\beta,k)} \langle j',l-\tfrac12|g \otimes g \otimes \cdots \otimes g|k',l-\tfrac12\rangle.
+\end{multline}
+which gives us
+\begin{equation}
+		t_{\alpha\beta}^{\frac12}(g) t_{jk}^{l}(g) = \sum_{j',k' = -l-\frac12}^{l+\frac12} \overline{c}_{j',(\alpha,j)}c_{k',(\beta,k)} t_{j'k'}^{l+\frac12}(g) +
+		\sum_{j',k' = -l+\frac12}^{l-\frac12} \overline{d}_{j',(\alpha,j)}d_{k',(\beta,k)} t_{j'k'}^{l-\frac12}(g).
+\end{equation}
+From this we infer that
+\begin{equation}
+	_{l'}\langle j'k'|\widehat{u}_{\alpha\beta}|jk\rangle_{l} = \sqrt{\frac{2l+1}{2l+2}} \overline{c}_{j',(\alpha,j)}c_{k',(\beta,k)}\delta_{l',l+\frac12}  + \sqrt{\frac{2l+1}{2l}}\overline{d}_{j',(\alpha,j)}d_{k',(\beta,k)} \delta_{l',l-\frac12},
+\end{equation}
+which simplifies to
+\begin{equation}
+	_{l'}\langle j'k'|\widehat{u}_{\alpha\beta}|jk\rangle_{l} = \sqrt{\frac{2l+1}{2l+2}} \sqrt{\frac{\ell+2\alpha j + 1}{2\ell+1}}\delta_{j', j + \alpha}  \sqrt{\frac{\ell+2\beta k + 1}{2\ell+1}}\delta_{k', k + \beta}\delta_{l',l+\frac12}  + \sqrt{\frac{2l+1}{2l}}\overline{d}_{j',(\beta,j)}d_{k',(\alpha,k)} \delta_{l',l-\frac12},
+\end{equation}
+
+\begin{equation}
+	c_{k,(\alpha,j)} = \sqrt{\frac{\ell+2\alpha j + 1}{2\ell+1}}\delta_{k, j + \alpha},
+\end{equation}
+where $\alpha = \pm\frac12$. This gives us just over half of the matrix elements unitary transformation between the two bases. To complete our specification of $U_{CG}$ we need to find a basis of vectors for the subspace $(\mathbb{I} - P_{\ell+\frac12})\mathbb{I}_{\frac12}\otimes P_{\ell}$. We do this directly by observing that 
+\begin{equation}
+	d_{k',(\alpha,j)} = -2\alpha\sqrt{\frac{\ell-2\alpha j}{2\ell+1}}\delta_{k', j+\alpha}, \quad k' = -\ell+\frac12, \ldots, \ell-\frac12. 
+\end{equation}
 
 The group $\su2$ is diffeomorphic to the $3$-sphere $S^3$ because of the constraint that $|\alpha|^2 + |\beta|^2 = 1$ for $\left(\begin{smallmatrix}\alpha & -\overline{\beta} \\ \beta & \overline{\alpha} \end{smallmatrix}\right) \in \su2$. 
 
