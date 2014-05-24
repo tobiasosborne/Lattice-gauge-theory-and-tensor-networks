@@ -275,17 +275,10 @@ From this we infer that
 	_{l'}\langle j'k'|\widehat{u}_{\alpha\beta}|jk\rangle_{l} = \sqrt{\frac{2l+1}{2l+2}} \overline{c}_{j',(\alpha,j)}c_{k',(\beta,k)}\delta_{l',l+\frac12}  + \sqrt{\frac{2l+1}{2l}}\overline{d}_{j',(\alpha,j)}d_{k',(\beta,k)} \delta_{l',l-\frac12},
 \end{equation}
 which simplifies to
-\begin{equation}
-	_{l'}\langle j'k'|\widehat{u}_{\alpha\beta}|jk\rangle_{l} = \sqrt{\frac{2l+1}{2l+2}} \sqrt{\frac{\ell+2\alpha j + 1}{2\ell+1}}\delta_{j', j + \alpha}  \sqrt{\frac{\ell+2\beta k + 1}{2\ell+1}}\delta_{k', k + \beta}\delta_{l',l+\frac12}  + \sqrt{\frac{2l+1}{2l}}\overline{d}_{j',(\beta,j)}d_{k',(\alpha,k)} \delta_{l',l-\frac12},
-\end{equation}
-
-\begin{equation}
-	c_{k,(\alpha,j)} = \sqrt{\frac{\ell+2\alpha j + 1}{2\ell+1}}\delta_{k, j + \alpha},
-\end{equation}
-where $\alpha = \pm\frac12$. This gives us just over half of the matrix elements unitary transformation between the two bases. To complete our specification of $U_{CG}$ we need to find a basis of vectors for the subspace $(\mathbb{I} - P_{\ell+\frac12})\mathbb{I}_{\frac12}\otimes P_{\ell}$. We do this directly by observing that 
-\begin{equation}
-	d_{k',(\alpha,j)} = -2\alpha\sqrt{\frac{\ell-2\alpha j}{2\ell+1}}\delta_{k', j+\alpha}, \quad k' = -\ell+\frac12, \ldots, \ell-\frac12. 
-\end{equation}
+\begin{multline}
+	_{l'}\langle j'k'|\widehat{u}_{\alpha\beta}|jk\rangle_{l} = \sqrt{\frac{(\ell+2\alpha j + 1)(\ell+2\beta k + 1)}{(2\ell+1)(2l+2)}} \delta_{j', j + \alpha}\delta_{k', k + \beta}\delta_{l',l+\frac12}  + \\
+	4\alpha\beta\sqrt{\frac{(\ell-2\alpha j)(\ell-2\beta k)}{2l(2l+1)}}\delta_{j', j+\beta}\delta_{k', k+\alpha}\delta_{l',l-\frac12}.
+\end{multline}
 
 The group $\su2$ is diffeomorphic to the $3$-sphere $S^3$ because of the constraint that $|\alpha|^2 + |\beta|^2 = 1$ for $\left(\begin{smallmatrix}\alpha & -\overline{\beta} \\ \beta & \overline{\alpha} \end{smallmatrix}\right) \in \su2$. 
 
