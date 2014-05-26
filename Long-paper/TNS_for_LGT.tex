@@ -280,6 +280,11 @@ which simplifies to
 	4\alpha\beta\sqrt{\frac{(\ell-2\alpha j)(\ell-2\beta k)}{2l(2l+1)}}\delta_{j', j+\beta}\delta_{k', k+\alpha}\delta_{l',l-\frac12}.
 \end{multline}
 
+As a simple example we explicitly compute the matrix elements of $\widehat{u}_{\alpha\beta}$ truncated to $l\le \frac12$:
+\begin{equation}
+	\widehat{u}_{\alpha\beta} = \frac{1}{\sqrt{2}}|\alpha\beta\rangle_{\frac12}{}_0\langle 00| + \frac{4\alpha\beta}{\sqrt2}|00\rangle_{0}{}_{\frac12}\langle {-\alpha}{-\beta}|.
+\end{equation}
+
 The group $\su2$ is diffeomorphic to the $3$-sphere $S^3$ because of the constraint that $|\alpha|^2 + |\beta|^2 = 1$ for $\left(\begin{smallmatrix}\alpha & -\overline{\beta} \\ \beta & \overline{\alpha} \end{smallmatrix}\right) \in \su2$. 
 
 Let $\tau^\mu$, $\mu= 0, 1, 2, 3$, denote the basis where
@@ -1177,10 +1182,10 @@ i.e., it is the sum of the curvatures $\tr({U}_{\cwplaqsub}(f))$ of the configur
 
 Given that $X$ is a subdivision of $X'$ we can express the classical curvature interpolation problem as follows 
 \begin{equation}
-\begin{split}
-	\min_{V} \quad &2\sum_{f'\in F'} \text{Re}(\tr({V}_{\cwplaqsub}(f'))) \\
-	\text{subject to} \quad & V(e') = \prod_{e\cap e' \not=\emptyset} U(e), \quad e'\in E'.   
-\end{split}
+	\begin{split}
+		\min_{V} \quad &2\sum_{f'\in F'} \text{Re}(\tr({V}_{\cwplaqsub}(f'))) \\
+		\text{subject to} \quad & V(e') = \prod_{e |e\cap e' \not=\emptyset} U(e), \quad e'\in E'.   
+	\end{split}
 \end{equation}
 
 
