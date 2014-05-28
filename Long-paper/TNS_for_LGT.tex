@@ -1748,7 +1748,30 @@ To calculate this expression we exploit (\ref{eq:derivatesu2product}) from the a
 \begin{equation}
 	(e^{-i\epsilon\sigma^\alpha_j}U_{j} {U_{j-1}}^\dag)^{\frac12} U_{j-1} = (U_{j} {U_{j-1}}^\dag)^{\frac12} U_{j-1} - i\epsilon M_{\alpha\beta}(U_{j-1}, U_{j})\sigma^\beta(U_{j} {U_{j-1}}^\dag)^{\frac12} U_{j-1} + O(\epsilon),
 \end{equation}
-where
+where, following the appendix, we have
+\begin{equation}
+	\begin{split}
+		\frac{d}{d\epsilon}\sqrt{e^{i\epsilon \sigma^\alpha} U_{j}U_{j-1}^\dag}\sqrt{U_{j-1}U_{j}^\dag}\Bigg|_{\epsilon = 0} &= \frac{d}{d\epsilon}\sqrt{e^{i\epsilon \sigma^\alpha} S\Phi S^\dag}\sqrt{S\Phi^\dag S^\dag}\Bigg|_{\epsilon = 0} \\
+		&= i\sum_{\beta = 1}^3 [O\phi O^T]_{\alpha\beta}\sigma^\beta,
+	\end{split}
+\end{equation}
+and
+\begin{equation}
+	\phi = \begin{pmatrix}
+		\frac12 & \frac{1-\cos(\phi)}{2\sin(\phi)} & 0 \\
+		-\frac{1-\cos(\phi)}{2\sin(\phi)} & \frac12 & 0 \\
+		0 & 0 & \frac12
+	\end{pmatrix},
+\end{equation}
+with
+\begin{equation}
+	M_{\alpha\beta} \equiv [O\phi O^T]_{\alpha\beta}.
+\end{equation}
+From this we deduce that
+\begin{equation}
+	\frac{d}{d\epsilon}|(e^{-i\epsilon\sigma^\alpha_j}U_{j} {U_{j-1}}^\dag)^{\frac12} U_{j-1}\rangle\Big|_{\epsilon = 0} = \frac{d}{d\epsilon} L_{e^{-i\epsilon \sum_{\beta = 1}^3M_{\alpha\beta}\sigma^\beta}} |(U_{j} {U_{j-1}}^\dag)^{\frac12} U_{j-1}\rangle\Big|_{\epsilon = 0}.
+\end{equation}
+
 
 \begin{equation}
 	\begin{split}
