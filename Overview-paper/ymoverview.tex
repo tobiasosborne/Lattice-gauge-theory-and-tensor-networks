@@ -1,4 +1,4 @@
- \documentclass[twocolumn,lengthcheck,superscriptaddress]{revtex4-1}
+\documentclass[twocolumn,lengthcheck,superscriptaddress]{revtex4-1}
 
 \usepackage{amsmath}
 \usepackage{amsthm}
@@ -76,7 +76,7 @@ It is the purpose of the paper to propose such an ansatz: we argue here that the
 
 Our study takes its inspiration from quantum-information theoretic driven progress in condensed matter physics. Here the variational method, combined with expressive variational classes, has proved to be a powerful tool in our understanding of the strongly correlated physics of \emph{quantum spin systems} \cite{auerbach:1994a, sachdev:2011a}. These variational approaches fall under the rubric of the \emph{density matrix renormalisation group} (DMRG) \cite{schollwoeck:2005a,schollwock:2011a} and have led to remarkable insights in recent years providing new tools to overcome many previously insurmountable roadblocks such as the simulation of dynamics \cite{vidal:2003a, haegeman:2011b} and fermions \cite{corboz:2009a, corboz:2010a, corboz:2010b, kraus:2010a} without sign problems and the determination of spectral information \cite{haegeman:2012a}. These developments are due, in no small part, to new impetus from quantum information theory in the understanding of \emph{quantum entanglement}. New entanglement-inspired tensor network state variational classes, including the projected entangled-pair states (PEPS) \cite{verstraete:2004a} and the multiscale entanglement renormalisation ansatz (MERA) \cite{vidal:2006a, vidal:2007a} have led to major progress in our understanding of strongly correlated phenomena.
 
-There are now several crucial hints that tensor networks might be a powerful tool in the study of lattice gauge theory. Firstly, several recent studies have applied one-dimensional TNS, i.e., matrix product states (MPS), to the Schwinger model with very encouraging results, including the determination of the particle content and real time evolution \cite{byrnes:2002a,sugihara:2005a,banuls:2013b,banuls:2013a,buyens:2013a,rico:2013a}. Secondly, the ground state space of $\mathbb{Z}/2\mathbb{Z}$-lattice gauge theory (and associated quantum double models) admits an efficient exact description as a TNS, namely a PEPS or a MERA, \cite{dennis:2002a, aguado:2008a}, a result later generalised to include string-net models \cite{buerschaper:2009a, koenig:2009a}. This construction has been supplemented with numerical results \cite{tagliacozzo:2011a} strongly indicating the utility of the MERA ansatz in the description of the low-energy physics of lattice gauge theories. These results are rather suggestive that an economic description of the low-energy limit of Yang-Mills theory might be found in a TNS.
+There are now several crucial hints that tensor networks might be a powerful tool in the study of lattice gauge theory. Firstly, several recent studies have applied one-dimensional TNS, i.e., matrix product states (MPS), to the Schwinger model with very encouraging results, including the determination of the particle content and real time evolution \cite{byrnes:2002a,sugihara:2005a,banuls:2013b,banuls:2013a,buyens:2014,buyens:2015dkc,rico:2014,kuhn:2015}. Secondly, the ground state space of $\mathbb{Z}/2\mathbb{Z}$-lattice gauge theory (and associated quantum double models) admits an efficient exact description as a TNS, namely a PEPS or a MERA, \cite{dennis:2002a, aguado:2008a}, a result later generalised to include string-net models \cite{buerschaper:2009a, koenig:2009a}. This construction has been supplemented with numerical results \cite{tagliacozzo:2011a} strongly indicating the utility of the MERA ansatz in the description of the low-energy physics of lattice gauge theories. These results are rather suggestive that an economic description of the low-energy limit of Yang-Mills theory might be found in a TNS.
 
 There are, however, still many challenges facing the hypothesis that TNS are useful for the solution of Yang-Mills theory: there is still a large divide between the discrete gauge groups considered in most investigations so far and the compact gauge groups $\su2$ and $\textsl{SU}(3)$ relevant for the standard model. Additionally, there is not yet any systematic way to take a continuum limit of a TNS to obtain a representation of the $n$-point  functions required for a quantum field description. (Continuum generalisations of the MPS, PEPS, and MERA TNS are available \cite{haegeman:2011a}, but they don't seem particularly well suited for locally gauge-invariant quantum fields.)
 
@@ -105,6 +105,12 @@ with ``inner product''
 \end{equation}
 A useful intuitive picture to keep in mind here is that the $\uone$ case is equivalent to a standard Schr\"odinger particle on the circle and the $\su2$ case is equivalent to a particle on the three-dimensional sphere $S^3$.
 
+We often exploit the \emph{left} and \emph{right} rotations $L_U$ and $R_U$ on $L^2(G)$, which are unitary operations given by
+\begin{equation}
+	L_U|V\rangle \equiv |UV\rangle, \quad \text{and} \quad R_U|V\rangle \equiv |VU^\dag\rangle,
+\end{equation} 
+where for abelian $G$ we have $R_U = L_U^\dagger$.
+
 We call an assignment of elements of $G$ to the links a \emph{connection} or a \emph{gauge field}. When we have a representation $\pi$ of $G$ we call the matrix representation $\pi(U_e)$ of a link variable $U_e\in G$ a \emph{parallel transporter}. (We often overload this terminology and refer to $U_e$ both as an abstract group element \emph{and} as the defining representation of $G$.)
 
 
@@ -118,13 +124,7 @@ where $dU$ is the Haar measure. The Peter-Weyl theorem shows that $L^2(G)$ may b
 \begin{equation}\label{eq:peterweyl}
 	L^2(G) \cong \bigoplus_{l} V_l\otimes V_l^*,
 \end{equation}
-where $l$ indexes the irreps, $V_l$ denotes the vector space furnishing the irreducible representation $t^l$, and $V^*_l$ its dual.
-
-We often exploit the \emph{left} and \emph{right} rotations $L_U$ and $R_U$ on $L^2(G)$, which are unitary operations given by
-\begin{equation}
-	L_U|V\rangle \equiv |UV\rangle, \quad \text{and} \quad R_U|V\rangle \equiv |VU^\dag\rangle.
-\end{equation} 
-
+where $l$ indexes the irreps, $V_l$ denotes the vector space furnishing the irreducible representation $t^l$, and $V^*_l$ its dual. In the case of $G \cong \uone$ all the $V_l$ are one dimensional and Eq.~(\ref{eq:peterweyl}) reduces to the familiar \emph{fourier decomposition} of functions on the circle. For $\su2$ Eq.~(\ref{eq:peterweyl}) represents a \emph{generalised fourier decomposition} where the ``modes'' have additional structure corresponding to the $V_l$ having dimension $\ge 1$.
 
 The irreducible unitary representations $t^l$ of $\su2$ are labelled by non-negative half integers, $l \in \frac12\mathbb{Z}^+$, and have dimension $d_l = 2l+1$.
 According to the Peter-Weyl theorem the matrix elements $t^l_{jk}$ of the irreducible representations furnish a basis for $L^2(\su2)$; we write
@@ -143,11 +143,26 @@ and the summations over $j$ and $k$ are taken in integer steps from $-l$ to $l$.
 \begin{equation}
 	\widehat{\phi}_{jk}^l = {_l\langle jk|\phi\rangle} = \sqrt{2l+1}\int dU \, \overline{t^l_{jk}}(U) \phi(U).
 \end{equation}
-Thanks to Eq.~(\ref{eq:peterweyl}) we know that $L^2(\su2)$ has the structure of a direct sum of bipartite hilbert spaces thus it may be regarded, \emph{for all practical purposes}, as the state space of a bipartite quantum system. This is one point where $\su2$ and $\uone$ differ: crucially we do \emph{not} have this bipartite structure in the $\uone$ case because all of its irreps are one dimensional. In the $\su2$ case we visualise the bipartite-like structure graphically by adding virtual vertices to the ends of a link, intended to represent these two different subsystems: we now picture an arbitrary state $|\psi\rangle$ of a single link as  
+
+In the case of $\uone$ we may use simpler notation since its irreducible unitary representations are
+all one dimensional. They are labelled by the integers $n \in \mathbb{Z}$ so that we may decompose a wavefunction as
+\begin{equation}
+	|\phi\rangle = \sum_{n=-\infty}^{+\infty} \widehat{\phi}_n |n\rangle,
+\end{equation}
+with
+\begin{equation}
+	\widehat{\phi}_n = {\langle n|\phi\rangle} =  \int_0^{2\pi} \frac{d\theta}{2\pi} \, e^{-in\theta} \phi(\theta),
+\end{equation}
+where we have written out the haar measure in terms of positions on the circle
+$0 \le \theta < 2\pi$.
+
+Thanks to Eq.~(\ref{eq:peterweyl}) we know that $L^2(\su2)$ has the structure of a direct sum of bipartite hilbert spaces thus it may be regarded, \emph{for all practical purposes}, as the state space of a bipartite quantum system. We visualise this bipartite-like structure graphically by adding virtual vertices to the ends of a link, intended to represent these two different subsystems: we now picture an arbitrary state $|\psi\rangle$ of a single link as  
 \begin{center}
-\includegraphics{edgespace.pdf}
+\includegraphics{edgespace.pdf} \quad .
 \end{center}
-According to this observation we extend our original lattice representation by associating the degrees of freedom at the ends of a link with auxiliary vertices associated with the lattice locations:
+Note that we cannot draw this picture in the $\uone$ case because all the irreps of $\uone$ are one dimensional. Nevertheless it is still useful to distinguish the two ends of a link because, as we will see below, they can be manipulated separately using \emph{parallel transport} operations.
+
+According to these observations we extend our original lattice representation by associating the degrees of freedom at the ends of a link with auxiliary vertices associated with the lattice locations:
 \begin{center}
 	\includegraphics{decoratedlattice2.pdf}
 \end{center}
@@ -155,16 +170,16 @@ To distinguish the auxiliary vertices from the lattice sites we refer to the for
  
 In two spatial dimensions we have, associated to each lattice location $v$, the tensor product space 
 \begin{equation}
-	\mathcal{H}_v \equiv \bigoplus_{l_1,l_2,l_3,l_4\in\frac12\mathbb{Z}} V_{l_1}^*\otimes V_{l_2}^*\otimes V_{l_3}\otimes V_{l_4},
+	\mathcal{H}_v \equiv \bigoplus_{l_1,l_2,l_3,l_4} V_{l_1}^*\otimes V_{l_2}^*\otimes V_{l_3}\otimes V_{l_4},
 \end{equation}
 corresponding to the degrees of freedom at the sources and targets of links incident with the corresponding lattice point. Thus the total hilbert space may be written alternatively as 
 \begin{equation}
-	\mathcal{H} \equiv \bigotimes_{e\in E} L^2(\su2) \cong \bigotimes_{v\in V} \mathcal{H}_v.
+	\mathcal{H} \equiv \bigotimes_{e\in E} L^2(G) \cong \bigotimes_{v\in V} \mathcal{H}_v.
 \end{equation}
  There is a similar decomposition for arbitrary graphs \cite{baez:1996a}.
 
 
-Define the \emph{position observables} $\widehat{u}_{jk}$ via
+Define the $\su2$ \emph{position observables} $\widehat{u}_{jk}$ via
 \begin{equation}
 	\widehat{u}_{jk}|U\rangle \equiv t_{jk}^{\frac12}(U)|U\rangle \equiv [U]_{jk}|U\rangle,
 \end{equation} 
@@ -172,13 +187,21 @@ for $j,k \in \{-\frac12, \frac12\}$, i.e., $\widehat{u}_{jk}$ simply gives the m
 \begin{equation}
 	\widehat{u}_{jk}(\gamma) \equiv \widehat{u}_{j j_1}(e_1)\widehat{u}_{j_1j_2}(e_2)\cdots \widehat{u}_{j_{n-1} k}(e_n),
 \end{equation}
-where $\widehat{u}(e)$ denotes the position observable for link $e$ and repeated indices are summed. In the case where the path $\gamma$ is closed we set $k=j$ and sum over the index $j$; such observables are denoted 
+where $\widehat{u}(e)$ denotes the position observable for link $e$ and repeated indices are summed. Note that $\widehat{u}_{jk}(e) = \widehat{u}_{jk}$ in case $\gamma$ traverses edge $e$ \emph{against} the direction of $e$ and $\widehat{u}_{jk}(e) = \widehat{u}^{\dagger}_{kj}$ if the traversal direction is \emph{the same} as the direction of $e$. In the case where the path $\gamma$ is closed we set $k=j$ and sum over the index $j$; such observables are denoted 
 \begin{equation}
 	\tr(\widehat{u}_{\gamma}) \equiv \sum_{j}\widehat{u}_{j j_1}(e_1)\widehat{u}_{j_1j_2}(e_2)\cdots \widehat{u}_{j_{n-1} j}(e_n),
 \end{equation}
 and are known as \emph{Wilson loops}. We explicitly allow the case where a path visits a given link/edge more than once. In the special case where the path $\gamma$ traverses a \emph{plaquette} or \emph{face} in the clockwise direction we denote the Wilson loop as $\tr(\widehat{u}_{\cwplaqsub})$.
 
-Consider the Lie algebra $\lasu2$ of \su2:
+For $G \cong \uone$ the position observable
+\begin{equation}
+	\widehat{u}|\theta\rangle \equiv e^{i\theta}|U\rangle
+\end{equation}
+has no additional indices
+so that the trace is not needed when defining loops: 
+$\tr(\widehat{u}_{\cwplaqsub}) = \widehat{u}_{\cwplaqsub}$.
+
+Consider now the Lie algebra $\lasu2$ of \su2:
 \begin{equation}
 	[\tau^j, \tau^k] = -2{\varepsilon^{jk}}_l\tau^l.
 \end{equation}
@@ -188,11 +211,11 @@ These generators, which play the role of momentum operators, are represented on 
 \end{equation}
 with a similar definition for $\widehat{\ell}^\alpha_{R}$. The commutation relations between the position and momentum observables is
 \begin{equation}
-	[\widehat{\ell}_L, \widehat{u}_{jk}]= - [\sigma^\alpha \widehat{u}]_{jk}.
+	[\widehat{\ell}_L, \widehat{u}_{jk}]= -[\tau^\alpha \widehat{u}]_{jk}.
 \end{equation} 
 In terms of the momentum operators we have the casimir element, the \emph{laplacian}
 \begin{equation}
-	-\triangle = \sum_{\alpha = 1}^3 (\widehat{\ell}_L^{\alpha})^2 =  \sum_{\alpha = 1}^3 (\widehat{\ell}_R^{\alpha})^2 = \bigoplus_{l} (d_l^2-1) \mathbb{I}_l.
+	\triangle = \sum_{\alpha = 1}^3 (\widehat{\ell}_L^{\alpha})^2 =  \sum_{\alpha = 1}^3 (\widehat{\ell}_R^{\alpha})^2 = \bigoplus_{l} (d_l^2-1) \mathbb{I}_l.
 \end{equation}
 
 \section{The Kogut-Susskind hamiltonian}
@@ -203,7 +226,7 @@ The model we study in this paper arises as the spatial discretisation of the Yan
 \end{equation}
 where the sum is over all plaquettes of the lattice graph.  
 
-In many ways this is a remarkably simple model: it comprises only two really different terms, a ``kinetic energy'' term $\text{KE} \equiv -\sum_{e\in E} \triangle_e$ and a ``potential energy'' term $\text{PE} \equiv \sum_{\square} 2 -\text{Re}(\tr(\widehat{u}_{\cwplaqsub}))$, both of which can be exactly diagonalised. The $\text{KE}$ term is diagonal in the $|jk\rangle_l$, $l\in\frac12\mathbb{Z}^+$, $j,k = -l,\ldots, l$, ``momentum'' basis and the $\text{PE}$ term is diagonal in conjugate ``position'' basis $|U\rangle$, $U\in \su2$.
+In many ways this is a remarkably simple model: it comprises only two really different terms, a ``kinetic energy'' term $\text{KE} \equiv -\sum_{e\in E} \triangle_e$ and a ``potential energy'' term $\text{PE} \equiv \sum_{\square} 2 -\text{Re}(\tr(\widehat{u}_{\cwplaqsub}))$, both of which can be exactly diagonalised. The $\text{KE}$ term is diagonal in the $|jk\rangle_l$ ``momentum'' basis and the $\text{PE}$ term is diagonal in conjugate ``position'' basis $|U\rangle$, $U\in G$.
 
 The physics of this model is therefore determined by the competition between the $\text{KE}$ and $\text{PE}$ terms: the \emph{lattice strong-coupling} ($g_H\rightarrow \infty$) limit ground state is a product state $|\Omega(\infty)\rangle = \bigotimes_{e\in E} |00\rangle_0$ and the \emph{lattice zero-coupling} ($g_H=0$) limit ground state is a superposition of all \emph{flat} gauge-field configurations in the position basis, namely, those connections satisfying $\prod_{e\in \square} U_e = \mathbb{I}$ for every plaquette $\square$. Note that for both of these extremes this lattice model gives \emph{no} nontrivial dynamics: this is why we insisted on calling the two extremes the ``lattice" strong- and zero-coupling limits in order to distinguish them from the \emph{field} strong and zero-coupling limits (discussed below) which \emph{do} yield nontrivial dynamics.
 
@@ -241,7 +264,7 @@ We have now collected enough preliminary material to finally describe the proble
 
 
 \section{The gauge invariant sector}\label{sec:gis}
-Although we are working in the temporal gauge there is still a residual gauge freedom \cite{creutz:1985a}. This freedom is expressed in terms of the \emph{gauge group} $\mathcal{G}$ which is the cartesian product of $\su2$ over all the lattice points, $\mathcal{G}\cong \prod_{v\in V} \su2$, and which is represented on $\mathcal{H}$ by 
+Although we are working in the temporal gauge there is still a residual gauge freedom \cite{creutz:1985a}. This freedom is expressed in terms of the \emph{gauge group} $\mathcal{G}$ which is the cartesian product of the group $G \cong \su2$ or $\uone$ over all the lattice points, $\mathcal{G}\cong \prod_{v\in V} G$, and which is represented on $\mathcal{H}$ by 
 \begin{equation}
 	x \mapsto \bigotimes_{e\in E} L_{x_{e_-}}R_{x_{e_+}}, \quad x\in \mathcal{G}.
 \end{equation}
@@ -250,14 +273,14 @@ All physical states live in the \emph{gauge-invariant subspace} $\mathcal{H}_{\m
 	\bigotimes_{e\in E} L_{x_{e_-}}R_{x_{e_+}}|\psi\rangle = |\psi\rangle, \quad \forall x \in \mathcal{G}.
 \end{equation}
 
-The most important gauge-invariant state is built from the trivial representation of $\su2$ and is given by
+The most important gauge-invariant state is built from the trivial representation of $G$ and is given by
 \begin{equation}
 	|\omega_0\rangle = \int |U\rangle\, dU.
 \end{equation}
-The wavefunction for this state is simply the constant function corresponding to the basis vector $|00\rangle_0 \cong t^0_{00}(g)$. 
+The wavefunction for this state is simply the constant function corresponding to the basis vector, $|00\rangle_0 \cong t^0_{00}(g)$ for $\su2$ and $|0\rangle \cong e^{i0\theta} = 1$ for $\uone$. 
 Note that left and right invariance of the haar measure implies that
 \begin{equation}
-	L_U|\omega_0\rangle = R_U|\omega_0\rangle = |\omega_0\rangle, \quad \forall U\in \su2.
+	L_U|\omega_0\rangle = R_U|\omega_0\rangle = |\omega_0\rangle, \quad \forall U\in G.
 \end{equation}
 Using $|\omega_0\rangle$ we can build the state 
 \begin{equation}
@@ -269,32 +292,32 @@ In the next section we show how to represent any state in the gauge-invariant se
 \begin{center}
 	\includegraphics{singlevertex.pdf}
 \end{center}
-The hilbert space for this system is $L^2(\su2)$ and the gauge-invariant sector $\mathcal{H}_{\mathcal{G}}$ is found as follows. The local gauge group $\mathcal{G} \cong \su2$ acts as
+The hilbert space for this system is $L^2(G)$ and the gauge-invariant sector $\mathcal{H}_{\mathcal{G}}$ is found as follows. The local gauge group $\mathcal{G}$ acts as
 \begin{equation}
-	|\psi\rangle \mapsto L_xR_x |\psi\rangle, \quad \forall x\in \su2.
+	|\psi\rangle \mapsto L_xR_x |\psi\rangle, \quad \forall x\in G.
 \end{equation}
 Thus a state $|\psi\rangle$ is gauge invariant if and only if
 \begin{equation}\label{eq:classstate}
-	\int \psi(U) |U\rangle\, dU = \int  \psi(x^{-1}Ux) |U\rangle\, dU, \quad\forall x\in \su2.
+	\int \psi(U) |U\rangle\, dU = \int  \psi(x^{-1}Ux) |U\rangle\, dU, \quad\forall x\in G.
 \end{equation}
-Because $\mathcal{G}$ acts \emph{irreducibly} $\psi$ must be a \emph{class function}, i.e., $\psi(x^{-1}Ux) = \psi(U)$. 
+Because $\mathcal{G}$ acts \emph{irreducibly} $\psi$ must be a \emph{class function}, i.e., $\psi(x^{-1}Ux) = \psi(U)$. Note that this is a trivial requirement in the abelian case $G \cong \uone$, where we have $L_xR_x = \mathbb{I}$.
 
 A generalisation of the single-loop graph is the \emph{petal} graph 
 \begin{center}
 	\includegraphics{petal.pdf}
 \end{center}
-comprising a single vertex and $n$ edges. The configuration space for this system is $\mathcal{H} = \bigotimes_{j=1}^n L^2(\su2)$. The local gauge group $\mathcal{G}$ is again isomorphic to a single copy of $\su2$ and now acts as a tensor product:
-\begin{equation}
+comprising a single vertex and $n$ edges. The configuration space for this system is $\mathcal{H} = \bigotimes_{j=1}^n L^2(G)$. The local gauge group $\mathcal{G}$ is again isomorphic to a single copy of $G$ and now acts as a tensor product:
+\begin{equation} \label{eq:petalinvariance}
 	|\psi\rangle \mapsto (L_xR_x)^{\otimes n} |\psi\rangle, \quad \forall x\in \mathcal{G},
 \end{equation}
 i.e., a gauge-invariant wavefunction obeys $\psi(x^{-1}U_1x, x^{-1}U_2x, \ldots, x^{-1}U_nx) = \psi(U_1, U_2, \ldots, U_n)$, $\forall x\in \mathcal{G}$.
-Since $\mathcal{G}$ now acts \emph{reducibly} the gauge-invariant sector is no longer spanned by states whose wavefunctions are class functions; instead a gauge invariant state for the petal graph is equivalent to a superposition of \emph{intertwiners} for $\su2$ \cite{baez:1996a}. 
+Since $\mathcal{G}$ now acts \emph{reducibly} the gauge-invariant sector is no longer spanned by states whose wavefunctions are class functions; instead a gauge invariant state for the petal graph is equivalent to a superposition of \emph{intertwiners} for $G$ \cite{baez:1996a}. 
 
 
 As we'll see, the single-loop and petal graph cases turn out to play an important role in the construction of general gauge-invariant states for arbitrary lattices.
 
 \section{Parallel transport}\label{sec:paralleltx}
-The classical notion of parallel transport through a gauge field on a lattice is described as follows. Suppose that we have an object transforming according to a representation $\pi$ of $\su2$. We think of the object as living at some vertex $v$. Whenever the object moves to another vertex $w$ along a path $\gamma$ it undergoes the \emph{parallel transport}  
+The classical notion of parallel transport through a gauge field on a lattice is described as follows. Suppose that we have an object transforming according to a representation $\pi$ of $G$. We think of the object as living at some vertex $v$. Whenever the object moves to another vertex $w$ along a path $\gamma$ it undergoes the \emph{parallel transport}  
 \begin{equation}\label{eq:ugamma}
 	\pi(\gamma) \equiv \prod_{e\in \gamma} \pi(U_{e}^{-\sgn_\gamma{e}}),
 \end{equation}
@@ -304,7 +327,7 @@ The quantum representation of the parallel transport is furnished by a fundament
 \begin{equation}
 	\CU \equiv \int |U\rangle\langle U| \otimes \pi(U)\,dU,
 \end{equation}
-where $\pi$ is unitary representation of $\su2$ on a vector space $V_\pi$. The controlled rotation is a unitary operator on $L^2(\su2)\otimes V_\pi$; the first tensor factor is called the \emph{control} and the second factor the \emph{target}. We think of $V_\pi$ as the configuration space of a quantum particle initially located at the source of the link and, after the application of $\CU$ the particle has been transported to the target of the link. To describe more complicated parallel transport operations let $\gamma$ be a path in $(V,E)$ and denote by
+where $\pi$ is unitary representation of $G$ on a vector space $V_\pi$. The controlled rotation is a unitary operator on $L^2(G)\otimes V_\pi$; the first tensor factor is called the \emph{control} and the second factor the \emph{target}. We think of $V_\pi$ as the configuration space of a quantum particle initially located at the source of the link and, after the application of $\CU$ the particle has been transported to the target of the link. To describe more complicated parallel transport operations let $\gamma$ be a path in $(V,E)$ and denote by
 \begin{equation}
 	\begin{split}
 		\CU_\gamma &\equiv \int   \left(\bigotimes_{e\in \gamma} |U_e\rangle\langle U_e|\right) \otimes \pi(\gamma)\, \left(\prod_{e\in \gamma} dU_e\right) \\
@@ -318,7 +341,7 @@ It is clear that $\CU_\gamma$ is an \emph{entangling} operation and, hence, ther
 
 Thus far in our discussion here the target of the parallel transport gate has been an \emph{additional} degree of freedom so that the appropriate hilbert space for this system is $\mathcal{H}\otimes V_\pi$. In this way it is a simple matter to introduce additional fields at the vertices, e.g.\ fermions, which correspond to quarks, or bosons, appropriate for Higgs models (this will be investigated in a later paper). However, our focus here is on \emph{pure} Yang-Mills theory, so we now describe how to exploit the quantum parallel transport operation directly without the introduction of ancillary degrees of freedom.
 
-In pure gauge theory a vertex at the end of a link may itself be regarded as a quantum particle transforming according to a representation of $\su2$, namely, the left or right regular representation. Hence, we can exploit parallel transport to move these vertices (and their associated edges) around the gauge network. This operation is effected by using for the representation $\pi(U)$ either the left and right multiplication operations $L_U$ or $R_U$ as follows. Suppose we wish to move the target vertex $v = f_+$ of an edge $f \in E$ to some other lattice point $w$ along a path $\gamma$. Then we simply apply the operation
+In pure gauge theory a vertex at the end of a link may itself be regarded as a quantum particle transforming according to a representation of $G$, namely, the left or right regular representation. Hence, we can exploit parallel transport to move these vertices (and their associated edges) around the gauge network. This operation is effected by using for the representation $\pi(U)$ either the left and right multiplication operations $L_U$ or $R_U$ as follows. Suppose we wish to move the target vertex $v = f_+$ of an edge $f \in E$ to some other lattice point $w$ along a path $\gamma$. Then we simply apply the operation
 \begin{equation}
 	\CR_\gamma \equiv \prod_{e\in \gamma} {\CR_{e f}}^{-\sgn_\gamma{e}}
 \end{equation}
@@ -363,7 +386,7 @@ The edge subdivision procedure is simply a parallel transport of the source vert
 We now have all the ingredients to describe how to construct an arbitrary state in the gauge-invariant sector. The key observation is that both the operations of edge and lattice point addition are isometric and can be applied \emph{in reverse} to move edges to loops at a single lattice location and, crucially, to isometrically \emph{remove} lattice points with degree $2$. The following argument is reminiscent of the proof of the van Kampen theorem \cite{hatcher:2002}.
 
 Suppose we have an arbitrary state $|\Phi\rangle$ of a graph $(V,E)$. The first step is to identify a \emph{maximal tree}, which is a maximal connected subgraph $T$ of $(V,E)$ containing no loops (there are many such subgraphs of any graph). Note that all the vertices $V$ of our initial graph participate in $T$. Locate and mark the root lattice site $v$ of the tree. All the edges which aren't in $T$ have their ends on lattice points in the tree. The next step is to parallel transport all of these edges along the tree to loops based at the root vertex $v$. We are now left with a bunch of loops based at $v$ and the tree $T$. The final step is to apply lattice point removal to contract all the leaves of $T$ to the root site $v$. At the end of this process we end up with a petal graph of loops based at a single lattice point $v$. 
-Since this entire process was isometric we  see that the gauge-invariant subspace of $\mathcal{H}$ is equivalent to space of gauge invariant states of a petal graph, which, in turn is given by the space of intertwiners. An illustration of this procedure is shown in Fig.~\ref{fig:gis}. 
+Since this entire process was isometric we see that the gauge-invariant subspace of $\mathcal{H}$ is equivalent to the space of gauge invariant states of a petal graph, which, in turn is given by the space of intertwiners. An illustration of this procedure is shown in Fig.~\ref{fig:gis}. Note that, for $G \cong \uone$ the gauge-invariant space of a petal graph is the full Hilbert space of the petal graph; there is \emph{no residual gauge freedom} because Eq.~(\ref{eq:petalinvariance}) is trivial, unlike for $G \cong \su2$.
 
 Notice that we never needed to fix a gauge to carry out this process. In lattice gauge theory there is an entirely analogous procedure used to \emph{fix a gauge}: a maximal tree is identified and the gauge freedom is then fixed on the tree. For a discussion of this in the hamiltonian formalism see \cite{ligterink:2000a}. In contrast, our description is gauge invariant and does not rely on fixing the constant residual gauge freedom.
 
@@ -392,20 +415,28 @@ There is a pleasing congruence between the notion of interpolation described her
 \subsection{Interpolation for classical nonabelian gauge fields}
 In this subsection we describe our interpolation procedure, as applied to \emph{classical} gauge-field configurations. In the next subsection we describe how to use this method to obtain a quantum interpolation prescription.
 
-As a warm up we first consider the problem of interpolation for a tiny ``lattice'' of two points and two edges. Here the task is to interpolate between the parallel transporters, $U_0$ and $U_n$, on the two edges:
+As a warm up we first consider the problem of interpolation for a tiny ``lattice'' of two points and two edges with $G \cong \su2$. Here the task is to interpolate between the parallel transporters, $U_0$ and $U_n$, on the two edges:
 \begin{center}
 	\includegraphics{facemsection.pdf}
 \end{center}
 The solution may be  found variationally. Consider the expression for the total curvature of the subdivided plaquette:
-\begin{equation}
+\begin{equation} \label{eq:interpmin}
  4n- 2 \sum_{j=0}^{n-1}  \text{Re}\tr(U_j^\dag U_{j+1}) 
 	=  \sum_{j=0}^{n-1} \|U_j-U_{j+1}\|_2^2 .
 \end{equation}
 We minimise this quantity over ${U_1, \ldots, U_{n-1} \in \su2}$ and find the variational optima is achieved by
-\begin{equation}
-	U_j = U_0 (U_0^\dag U_{n})^{\frac{j}{n}}, \quad j = 1, 2, \ldots, n-1.
+\begin{equation} \label{eq:slerp}
+	U_j = U_0 (U_0^\dag U_{n})^{\frac{j}{n}}, \quad j = 1, 2, \ldots, n-1,
 \end{equation}
-Notice that this solution transforms correctly under local gauge transformations. Incidentally, this interpolation procedure is familiar from 3D animation and robotics where it is known as SLERP \cite{shoemake:1985a}.
+where for the minimum of Eq. (\ref{eq:interpmin}) we take the principal $n$th root.
+Notice that this solution transforms correctly under local gauge transformations. Incidentally, this interpolation procedure is familiar from 3D animation and robotics where it is known as SLERP \cite{shoemake:1985a}. 
+% Eq. (\ref{eq:slerp}) can also be written in an additive form 
+% \begin{equation} \label{eq:slerpadd}
+% 	U_j = \frac{\sin((1-\frac{j}{n})\Omega)}{\sin \Omega} U_0
+%           + \frac{\sin(\frac{j}{n}\Omega)}{\sin \Omega} U_n,
+% \end{equation}
+% where $\cos(\Omega) = \frac{1}{2} \tr(U_0 U_n^\dag)$. Choosing $-\pi < \Omega \le +\pi$ we have the solution that minimizes Eq. (\ref{eq:interpmin}).
+Note that, since $\uone \subset \su2$, the same result applies in case $G \cong U(1)$ with $U_j = e^{i\theta_j} \in \uone$. 
 
 Motivated by this simple case we now tackle the general interpolation problem: suppose we have a plaquette with $n$ edges. We study the task of subdividing the plaquette and the corresponding parallel transporters $U_e$ into subplaquettes in as ``flat'' a way as possible:
 \begin{center}
@@ -429,6 +460,8 @@ The interpolated curvature for these solutions becomes
 	E = 4n-4n \cos\left(\frac{\phi - 2\pi k}{n}\right).
 \end{equation}
 Depending on the \emph{flux} $\Phi$ through the original plaquette it may be necessary to take $k\not=0$ in order to achieve the variational optimum. If $\phi$ is close to zero, however, we see that the total interpolated curvature of the subdivided plaquette scales as $\phi^2/n$. Thus we see that the flux $\Phi$ per plaquette undergoes the transformation $\Phi\mapsto \Phi^{\frac{1}{n}}$ under interpolation, i.e., the flux is simply divided into $n$ pieces and redistributed equally amongst the $n$ new plaquettes.
+
+Checking for consistency with the solution of Eq.~(\ref{eq:interpmin}) we find that, for $n=2$, we recover (for $k=0$) $A_1^\dag A_0 = U_0(U_0^\dag U_1^\dag)^{\frac{1}{2}}$ as expected from Eq. (\ref{eq:slerp}). As before, the $\su2$ solutions also apply when $G \cong \uone$, in which case $\eta = 1$, $\Phi = e^{i\phi} = U_{n-1}^\dag \dots U_0^\dag$, and $\mu^{jk} = e^{\frac{i2\pi jk}{n}}$. 
 
 Suppose we have a regular lattice in two spatial dimensions. If we successively subdivide plaquettes $m$ times then the curvature \emph{per plaquette} in the refined lattice scales as $\phi^2/4^m$.  If we don't rescale lattice spacing this means that, as $m\rightarrow \infty$, the interpolated connection tends exponentially quickly to a flat connection.
 
@@ -503,7 +536,7 @@ Writing $U(\gamma_0)=U_1U_0$, $U(\gamma_1)=U_3^\dag U_2$, $U(\gamma_2)=U_5^\dag 
 \begin{equation}
 	A_j, \quad j = 0, 1, 2, 3,
 \end{equation}
-the elements of $\su2$ found using the interpolation procedure of the previous subsection applied to the tuple $(U(\gamma_0), U(\gamma_1), U(\gamma_2), U(\gamma_3))$. Finally, we introduce the controlled unitary 
+the elements of $G$ found using the interpolation procedure of the previous subsection applied to the tuple $(U(\gamma_0), U(\gamma_1), U(\gamma_2), U(\gamma_3))$. Finally, we introduce the controlled unitary 
 \begin{equation}
 	\textsl{CI} \equiv \int |\mathbf{U} \rangle\langle \mathbf{U}|\otimes L_{A_0}\otimes L_{A_1} \otimes R_{A_2} \otimes R_{A_3}  \,d\mathbf{U},
 \end{equation}
@@ -525,7 +558,7 @@ This hamiltonian has, in general, interactions involving up to $12$ edges.
 
 The entire quantum interpolation procedure may be written as a gigantic isometry
 \begin{equation}
-	|\Psi'\rangle \equiv \textsl{C}\mathcal{V}_{\psi} |\Psi\rangle,
+	|\Psi'\rangle \equiv \mathcal{V}_{\psi} |\Psi\rangle,
 \end{equation}
 where we've explicitly denoted the dependence on the added vertex loops $|\psi\rangle$. 
 
@@ -563,7 +596,6 @@ One can reinterpret the RG maps described here in the context of \emph{multigrid
  
 
 \section{The ground-state ansatz}
-Review of MERA properties.
 
 \subsection{The basic ansatz}
 The quantum interpolation procedure described in the previous section may be exploited to write down a contractible tensor network state, a MERA, which satisfies properties 1., 2., 3., and, to some extent, 5.\ of Sec.~\ref{sec:problem}. The basic idea is simple: recursively define
@@ -697,6 +729,67 @@ We can also readily calculate the $n$-point correlation functions of observables
 \end{equation}
 where $\square \sim \square'$ means that both plaquettes are situated within the same coarse plaquette.
 
+\section{Numerical examples}
+
+\begin{figure}[b]
+  \includegraphics{petal_earring_text.pdf}
+  \caption{\label{fig:earring} Two possible embeddings (a) and (b) of the graph associated with the
+           Hamiltonian lattice principal chiral field model.
+           For the gauge groups $G=U(1)$ and $G=SU(2)$ this model is equivalent to the
+           (1+1)-dimensional quantum rotor model
+           for the rotation groups $O(2)$ and $O(4)$, respectively.
+           }
+\end{figure}
+
+Here we present some preliminary results for interpolation of the $1+1$D principal chiral field model with $G \cong \uone$ and $G \cong \su2$ on a spatial lattice (a chain). This model has the Kogut-Susskind Hamiltonian
+\begin{equation} \label{eq:H_R}
+	H_R(g) = -\frac{g^2}{2 a} \sum_e \Delta_e + \frac{1}{g^2 a}\left( 2 - \sum_e \text{Re}(\tr (\widehat{u}_e \widehat{u}_{e+1}^\dagger)) \right),
+\end{equation}
+and is equivalent to the $O(2)$, $O(4)$ quantum rotor models in $1+1$D \cite{sachdev:2011a} in case $G \cong \uone$, $G \cong \su2$, respectively, insofar as we do not restrict to gauge-invariant states. The graph describing the gauge-symmetry of (\ref{eq:H_R}) is visualized in Figure \ref{fig:earring}.  As noted in section \ref{sec:gis}, on such a graph the gauge symmetry is reduced to a global $G$ symmetry, or no symmetry at all in case of abelian $G$. $H_R$ is further invariant under global rotations $(L_g)^{\otimes N}$ and $(R_g)^{\otimes N}$ $\forall g \in G$. Note that, unlike local gauge symmetry, these global symmetries can be spontaneously broken, albeit not in the ground state (as known from the Coleman-Mermin-Wagner theorem, see for example \cite{peskin:1995a}).
+
+The $G \cong \uone$ model is known to have a confining phase at large $g$ in which the Hamiltonian has a spectral gap between the ground state and the first excited state, as well as a deconfined, gapless phase at small $g$ in which correlations decay algebraically, and which is described by a free bosonic conformal field theory (central charge $c=1$). The transition separating the two phases is of the Kosterlitz-Thouless type \cite{sachdev:2011a}. The nonabelian case of $G \cong \su2$ behaves very differently, having only one confining phase that persists across strong and weak couplings \cite{sachdev:2011a}. However, despite the lack of a phase transition there is a fairly sharp \emph{crossover} region separating weak and strong coupling in which the scaling with $g$ of quanitites such as the mass gap changes suddenly. This phase structure, including the crossover phenomenon, is thought to be shared by $3+1$D lattice Yang-Mills theory for nonabelian $G$, as is borne out in numerical studies \cite{creutz:1985a}. Similarly, the $G = \uone$ phase diagram is similar to that of $3+1$D $\uone$ lattice gauge theory (pure, compact QED), except that the phase transition of the latter theory is thought to be first order \cite{arnold:2003a}. Despite the lack of local gauge symmetry, these similarities make $H_R$ a useful toy model for testing the fine-graining ansatz presented in this paper.
+
+The model (\ref{eq:H_R}) was recently studied numerically using MPS as a variational class of tensor network states \cite{milsted:2015a}. Here, we apply curvature interpolation to ground states obtained in that study as a test of our refinement ansatz. The isometries consist of adding new, uncorrelated loops, situated between the existing loops of the chain, and then applying an interpoation map 
+\begin{equation} \label{eq:interp_R}
+  \textsl{C}\mathcal{I} = \prod_{e} \textsl{C}I_{e,e',e + 1},
+\end{equation}
+where $e'$ refers to the new loop between edges $e$ and $e + 1$ and 
+\begin{align}
+  \textsl{C}I_{e,e',e + 1} = \int &|U_e\rangle \langle U_e | \;  \otimes R^\dagger_{A(U_e, U_{e+1})} \\
+                        &\otimes \; |U_{e+1}\rangle \langle U_{e+1}| \; dU_e dU_{e+1}, \nonumber
+\end{align}
+where the classical solution to the interpolation problem is given by 
+\begin{equation}
+  A(U_e, U_{e+1}) \equiv  \left(U_e \sqrt{U_e^\dagger U_{e+1}} \right),
+\end{equation}
+which is the SLERP result (\ref{eq:slerp}) for $n=2$.
+
+To represent states living in the Hilbert space $\mathcal{H} = \bigotimes_e L^2(G)$ as MPS with a finite-dimensional effective local Hilbert space, we choose the basis of Fourier modes and implement a momentum cutoff specified by the label of the irrep with the maximum allowed momentum. See \cite{milsted:2015a} for the expression of the $\widehat{u}_e$ and $\Delta_e$ operators in the Fourier basis.
+
+To test the curvature interpolation ansatz, we apply the fine-graining isometry 
+\begin{equation} \label{eq:interp_R}
+  \mathcal{V}_\psi = \prod_{e} \textsl{C}I_{e,e',e + 1} |\psi\rangle_{e'},
+\end{equation}
+to an MPS ground state $|\Omega(g_0^2)\rangle$ of the $G \cong \uone$ model at inverse coupling $g_0^{-2}$ with 
+\begin{equation}
+  |\psi(\lambda)\rangle = \sum_{n = -n_{\max}}^{+n_{\max}} e^{-\lambda n} |n\rangle,
+\end{equation}
+computing the fidelity per site \cite{someone} of the resulting state $\mathcal{V}(\lambda)$ and the MPS ground states $|\Omega(g^2)\rangle$ at larger inverse couplings. If curvature interpolation is a good fine-graining ansatz, we expect the fidelity to be peaked at an inverse coupling larger than $g_0^{-1}$. For $\lambda \le 2$ we find that this is indeed the case. However, the interpolated state has an energy density significantly larger than the ground state energy density with respect to $H(g^{2})$ for the same range of inverse couplings, confirming the presence of errors. Some of these errors may be due to the Fourier mode cutoff, but it seems likely that they are mostly due to the sub-optimality of the present refinement ansatz.
+
+\begin{figure}
+  \includegraphics[width=\linewidth]{interpfidu1.pdf}
+  \caption{\label{fig:interp-fid-u1} Fidelity per site
+    $f(g_0^2, g^2, \lambda)$ of the interpolated ground state
+    $V(\lambda) |\Omega(g_0^2)\rangle$ of the model (\ref{eq:H_R}) at
+    coupling $g_0^{-2} = 0.3$ with the MPS ground states at weaker
+    couplings $|\Omega(g^2)\rangle$, for different initial states of
+    the added loops $|\psi(\lambda)\rangle$. All MPS ground states
+    have $D=22$ and we use a Fourier mode cutoff $|n| \le 5$.
+    For smaller values of $\lambda$, the fidelity has a clear
+    maximum at a larger value of the inverse coupling $> g_0^{-2}$, showing
+    that the interpolated state is closer to the ground state at a larger
+    inverse coupling than to the original ground state at $g_0^{-2}$.}
+\end{figure}
 
 \section{The continuum limit}
 Conditioned on the validity of the previously mentioned conjectures, we've produced a sequence of states $|\Psi_m\rangle$ which tend, in the limit, to the (lattice) zero-coupling state. The important observation here is that since each term in our sequence is a MERA the correlation length of $|\Psi_m\rangle$ is given by $\xi_m = a_m\lambda^m$, for some $\lambda>0$.  Given that the correlation length $\xi$ of pure Yang-Mills theory is only determined up to a constant which is ultimately fixed by experiment forces us to set the lattice spacing $a_m$ of the state $|\Psi_m\rangle$ to $a_m = a_0\lambda^{-m}$, where $a_0$ is a constant. Thus we have a sequence of states $|\Psi_m\rangle$ for lattices of ever finer discretisation. Further, we can compute all $n$-point functions for this sequence. 
