@@ -1,8 +1,10 @@
 \documentclass[twocolumn,lengthcheck,superscriptaddress]{revtex4-1}
 
+\usepackage{lmodern}
 \usepackage{amsmath}
 \usepackage{amsthm}
 \usepackage{amssymb}
+\usepackage{amsfonts}
 \usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage{color}
@@ -596,6 +598,7 @@ One can reinterpret the RG maps described here in the context of \emph{multigrid
  
 
 \section{The ground-state ansatz}
+\label{sec:gs-ansatz}
 
 \subsection{The basic ansatz}
 The quantum interpolation procedure described in the previous section may be exploited to write down a contractible tensor network state, a MERA, which satisfies properties 1., 2., 3., and, to some extent, 5.\ of Sec.~\ref{sec:problem}. The basic idea is simple: recursively define
@@ -741,55 +744,70 @@ where $\square \sim \square'$ means that both plaquettes are situated within the
            }
 \end{figure}
 
-Here we present some preliminary results for interpolation of the $1+1$D principal chiral field model with $G \cong \uone$ and $G \cong \su2$ on a spatial lattice (a chain). This model has the Kogut-Susskind Hamiltonian
+\begin{figure*}[ht]
+  \includegraphics[width=0.48\linewidth]{interpfidu1.pdf}
+  \includegraphics[width=0.48\linewidth]{interpfidsu2.pdf}
+  \caption{\label{fig:interp-fid} The fidelity per site $f$ of the 
+    MPS ground state of the $G \cong \uone$ and $G \cong \su2$ 
+    principal chiral field models (\ref{eq:H_R}) at inverse coupling $g^{-2}$ 
+    with the fine-grained state $V(\lambda) |\Omega(g_0^{-2})\rangle$ for
+    $g_0^{-2} = 0.3$. The initial state of the added loops is $|\psi(\lambda)\rangle$. 
+    As a reference, we also plot the fidelity with $|\Omega(g_0^{-2})\rangle$.
+    MPS ground states have bond dimension and Fourier mode cutoff $D=22$ and $|n| \le 5$
+    for $G \cong \uone$, and $D=14$ and $l \le \frac{3}{2}$ for $G \cong \su2$. The
+    interpolated states have $D=64$ and $D=30$, respectively.
+    We see that $f(g_0^{-2}, g^{-2}, \lambda)$ has a clear
+    maximum for $g^{-2} > g_0^{-2}$, showing
+    that the fine-grained state is closer to the ground state at a larger
+    inverse coupling than to the original ground state at $g_0^{-2}$. Furthermore, 
+    the fine-grained states are often significantly better approximations than 
+    $|\Omega(g_0^{-2})\rangle$ for smaller values of $\lambda$.
+    Note that some of the error in the fine-grained states is due to 
+    finite-entanglement effects and the Fourier-mode cutoff, particularly
+    at larger~$g^{-2}$ and for $G \cong \su2$.
+}
+\end{figure*}
+
+Here we present some preliminary results for interpolation of the $1+1$D principal chiral field model with $G \cong \uone$ and $G \cong \su2$ on a spatial lattice (a chain of $N$ sites). This model has the Kogut-Susskind Hamiltonian
 \begin{equation} \label{eq:H_R}
 	H_R(g) = -\frac{g^2}{2 a} \sum_e \Delta_e + \frac{1}{g^2 a}\left( 2 - \sum_e \text{Re}(\tr (\widehat{u}_e \widehat{u}_{e+1}^\dagger)) \right),
 \end{equation}
-and is equivalent to the $O(2)$, $O(4)$ quantum rotor models in $1+1$D \cite{sachdev:2011a} in case $G \cong \uone$, $G \cong \su2$, respectively, insofar as we do not restrict to gauge-invariant states. The graph describing the gauge-symmetry of (\ref{eq:H_R}) is visualized in Figure \ref{fig:earring}.  As noted in section \ref{sec:gis}, on such a graph the gauge symmetry is reduced to a global $G$ symmetry, or no symmetry at all in case of abelian $G$. $H_R$ is further invariant under global rotations $(L_g)^{\otimes N}$ and $(R_g)^{\otimes N}$ $\forall g \in G$. Note that, unlike local gauge symmetry, these global symmetries can be spontaneously broken, albeit not in the ground state (as known from the Coleman-Mermin-Wagner theorem, see for example \cite{peskin:1995a}).
+and is, insofar as we do not restrict to gauge-invariant states, equivalent to the $O(2)$ ($O(4)$) quantum rotor models in $1+1$D~\cite{sachdev:2011a} in case $G \cong \uone$ ($G \cong \su2$). The graph describing the gauge-symmetry of~(\ref{eq:H_R}) is visualized in Figure~\ref{fig:earring}.  As noted in Section~\ref{sec:gis}, on such a graph the gauge symmetry is reduced to a global $G$~symmetry, or no symmetry at all in case of abelian~$G$. $H_R$~is further invariant under global rotations $(L_g)^{\otimes N}$ and $(R_g)^{\otimes N}$ $\forall g \in G$. Note that, unlike local gauge symmetry, these global symmetries can be spontaneously broken, albeit not in the ground state (a consequence of the Coleman-Mermin-Wagner theorem, see for example~\cite{peskin:1995a}).
 
-The $G \cong \uone$ model is known to have a confining phase at large $g$ in which the Hamiltonian has a spectral gap between the ground state and the first excited state, as well as a deconfined, gapless phase at small $g$ in which correlations decay algebraically, and which is described by a free bosonic conformal field theory (central charge $c=1$). The transition separating the two phases is of the Kosterlitz-Thouless type \cite{sachdev:2011a}. The nonabelian case of $G \cong \su2$ behaves very differently, having only one confining phase that persists across strong and weak couplings \cite{sachdev:2011a}. However, despite the lack of a phase transition there is a fairly sharp \emph{crossover} region separating weak and strong coupling in which the scaling with $g$ of quanitites such as the mass gap changes suddenly. This phase structure, including the crossover phenomenon, is thought to be shared by $3+1$D lattice Yang-Mills theory for nonabelian $G$, as is borne out in numerical studies \cite{creutz:1985a}. Similarly, the $G = \uone$ phase diagram is similar to that of $3+1$D $\uone$ lattice gauge theory (pure, compact QED), except that the phase transition of the latter theory is thought to be first order \cite{arnold:2003a}. Despite the lack of local gauge symmetry, these similarities make $H_R$ a useful toy model for testing the fine-graining ansatz presented in this paper.
+The $G \cong \uone$ model is known to have a confining phase at large $g$ in which the Hamiltonian has a spectral gap between the ground state and the first excited state, as well as a deconfined, gapless phase at small $g$ in which correlations decay algebraically, and which is described by a free bosonic conformal field theory (central charge $c=1$). The transition separating the two phases is of the Kosterlitz-Thouless type~\cite{sachdev:2011a}. The nonabelian case of $G \cong \su2$ behaves very differently, having only one confining phase that persists across strong and weak couplings~\cite{sachdev:2011a}. However, despite the lack of a phase transition there is a \emph{crossover} region separating weak and strong coupling in which the scaling with $g$ of quantities such as the mass gap changes rapidly. There is much evidence~\cite{creutz:1985a} suggesting that this phase structure, including the crossover phenomenon, is shared by $3+1$D lattice Yang-Mills theory for nonabelian~$G$. Similarly, the $G \cong \uone$ phase diagram is similar to that of $3+1$D $\uone$ lattice gauge theory (pure, compact QED), except that the phase transition of the latter theory is thought to be first order~\cite{arnold:2003a}. Despite the lack of local gauge symmetry, these similarities to Yang-Mills theory make $H_R$ a useful toy model for testing the fine-graining ansatz presented in this paper.
 
-The model (\ref{eq:H_R}) was recently studied numerically using MPS as a variational class of tensor network states \cite{milsted:2015a}. Here, we apply curvature interpolation to ground states obtained in that study as a test of our refinement ansatz. The isometries consist of adding new, uncorrelated loops, situated between the existing loops of the chain, and then applying an interpoation map 
+Using the numerical framework developed in \cite{milsted:2015a}, in which $H_R$ was studied using infinite matrix product states (MPS) as a variational class of states, we test curvature interpolation by comparing MPS ground states before and after fine-graining. 
+To represent states in $\mathcal{H} = (L^2(G))^{\otimes N}$ as MPS with a finite-dimensional effective local Hilbert space, we use the Fourier modes of $G$ as a basis for $L^2(G)$ and implement a momentum cutoff specified by the label $l_{\max}$ of the irrep with the maximum allowed kinetic energy. 
+%See~\cite{milsted:2015a} for the expression of the $\widehat{u}_e$ and $\Delta_e$ operators in the Fourier basis.
+
+The fine-graining isometries 
 \begin{equation} \label{eq:interp_R}
-  \textsl{C}\mathcal{I} = \prod_{e} \textsl{C}I_{e,e',e + 1},
+  \mathcal{V}_\psi = \prod_{e} \textsl{C}I_{e,e',e + 1} |\psi\rangle_{e'},
 \end{equation}
-where $e'$ refers to the new loop between edges $e$ and $e + 1$ and 
+consist of adding a new uncorrelated loop $e'$ in some state $|\psi\rangle$, situated between the existing loops $e$ and $e+1$ of the chain, 
+and then applying an interpolation map 
 \begin{align}
   \textsl{C}I_{e,e',e + 1} = \int &|U_e\rangle \langle U_e | \;  \otimes R^\dagger_{A(U_e, U_{e+1})} \\
                         &\otimes \; |U_{e+1}\rangle \langle U_{e+1}| \; dU_e dU_{e+1}, \nonumber
 \end{align}
-where the classical solution to the interpolation problem is given by 
+using the classical solution to the interpolation problem 
 \begin{equation}
   A(U_e, U_{e+1}) \equiv  \left(U_e \sqrt{U_e^\dagger U_{e+1}} \right),
 \end{equation}
 which is the SLERP result (\ref{eq:slerp}) for $n=2$.
-
-To represent states living in the Hilbert space $\mathcal{H} = \bigotimes_e L^2(G)$ as MPS with a finite-dimensional effective local Hilbert space, we choose the basis of Fourier modes and implement a momentum cutoff specified by the label of the irrep with the maximum allowed momentum. See \cite{milsted:2015a} for the expression of the $\widehat{u}_e$ and $\Delta_e$ operators in the Fourier basis.
-
-To test the curvature interpolation ansatz, we apply the fine-graining isometry 
-\begin{equation} \label{eq:interp_R}
-  \mathcal{V}_\psi = \prod_{e} \textsl{C}I_{e,e',e + 1} |\psi\rangle_{e'},
-\end{equation}
-to an MPS ground state $|\Omega(g_0^2)\rangle$ of the $G \cong \uone$ model at inverse coupling $g_0^{-2}$ with 
+A candidate $|\psi\rangle$ that is compatible with the Fourier cutoff is the gauge-invariant single-loop state
 \begin{equation}
-  |\psi(\lambda)\rangle = \sum_{n = -n_{\max}}^{+n_{\max}} e^{-\lambda n} |n\rangle,
+  |\psi(\lambda)\rangle \propto \sum_{l}^{\text{cutoff}} e^{-\lambda |l|}\; |\mathbb{I}\rangle_l,
 \end{equation}
-computing the fidelity per site \cite{someone} of the resulting state $\mathcal{V}(\lambda)$ and the MPS ground states $|\Omega(g^2)\rangle$ at larger inverse couplings. If curvature interpolation is a good fine-graining ansatz, we expect the fidelity to be peaked at an inverse coupling larger than $g_0^{-1}$. For $\lambda \le 2$ we find that this is indeed the case. However, the interpolated state has an energy density significantly larger than the ground state energy density with respect to $H(g^{2})$ for the same range of inverse couplings, confirming the presence of errors. Some of these errors may be due to the Fourier mode cutoff, but it seems likely that they are mostly due to the sub-optimality of the present refinement ansatz.
+where $l = [-l_{\max}, l_{\max}]$ for $\uone$ and $l = 0, \frac{1}{2},\dots, l_{\max}$ for $\su2$. $|\mathbb{I}\rangle_l$ is the irrep-$l$ representation of the identity element of $G$. To further mitigate errors due to the cutoff, we additionally set $\langle \psi(\lambda) | \mathbb{I}\rangle_{l_{\max}} = 0$.
 
-\begin{figure}
-  \includegraphics[width=\linewidth]{interpfidu1.pdf}
-  \caption{\label{fig:interp-fid-u1} Fidelity per site
-    $f(g_0^2, g^2, \lambda)$ of the interpolated ground state
-    $V(\lambda) |\Omega(g_0^2)\rangle$ of the model (\ref{eq:H_R}) at
-    coupling $g_0^{-2} = 0.3$ with the MPS ground states at weaker
-    couplings $|\Omega(g^2)\rangle$, for different initial states of
-    the added loops $|\psi(\lambda)\rangle$. All MPS ground states
-    have $D=22$ and we use a Fourier mode cutoff $|n| \le 5$.
-    For smaller values of $\lambda$, the fidelity has a clear
-    maximum at a larger value of the inverse coupling $> g_0^{-2}$, showing
-    that the interpolated state is closer to the ground state at a larger
-    inverse coupling than to the original ground state at $g_0^{-2}$.}
-\end{figure}
+To evaluate this fine-graining ansatz we apply $\mathcal{V}(\lambda)~\equiv~\mathcal{V}_{\psi(\lambda)}$ to an MPS ground state $|\Omega(g_0^{-2})\rangle$ of $H_R$ at inverse coupling $g_0^{-2}$ and compute the fidelity per site
+\begin{equation}
+  f(g_0^{-2}, g^{-2}, \lambda) \equiv \lim_{N \rightarrow \infty} \frac{1}{N} \langle\Omega(g^{-2})|\mathcal{V}(\lambda)|\Omega(g_0^{-2})\rangle,
+\end{equation}
+of the fine-grained state $\mathcal{V}(\lambda)|\Omega(g_0^{-2})\rangle$ and the MPS ground state $|\Omega(g^{-2})\rangle$ for a range of $g^{-2} > g_0^{-2}$. If curvature interpolation is a good fine-graining ansatz we should find that $f(g_0^{-2}, g^{-2}, \lambda)$ has a peak for some $g^{-2} > g_0^{-2}$ for fixed $g_0^{-2}$, $\lambda$. 
+
+Figure~\ref{fig:interp-fid} shows our results for $G~\cong~\uone$ and $G~\cong~\su2$. In both cases we find values of $\lambda$ for which $\mathcal{V}(\lambda)|\Omega(g_0^{-2})\rangle$ is a significantly better approximation than $|\Omega(g_0^{-2})\rangle$ to MPS ground states at larger inverse couplings, showing promise for curvature interpolation as a fine-graining ansatz. However, errors are clearly introduced, and we observe a corresponding shift in the ground state energy density of the fine-grained states, compared to the closest true ground state. It may be necessary to repair these errors to obtain a truly useful fine-graining ansatz, as described in Section~\ref{sec:gs-ansatz}. It also remains to be seen how well the curvature interpolation functions in the crossover region of nonabelian theories.
 
 \section{The continuum limit}
 Conditioned on the validity of the previously mentioned conjectures, we've produced a sequence of states $|\Psi_m\rangle$ which tend, in the limit, to the (lattice) zero-coupling state. The important observation here is that since each term in our sequence is a MERA the correlation length of $|\Psi_m\rangle$ is given by $\xi_m = a_m\lambda^m$, for some $\lambda>0$.  Given that the correlation length $\xi$ of pure Yang-Mills theory is only determined up to a constant which is ultimately fixed by experiment forces us to set the lattice spacing $a_m$ of the state $|\Psi_m\rangle$ to $a_m = a_0\lambda^{-m}$, where $a_0$ is a constant. Thus we have a sequence of states $|\Psi_m\rangle$ for lattices of ever finer discretisation. Further, we can compute all $n$-point functions for this sequence. 
