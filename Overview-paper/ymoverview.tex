@@ -9,6 +9,7 @@
 \usepackage{hyperref}
 \usepackage{color}
 \usepackage{braket}
+\usepackage{boondox-cal}
 
 \newcommand{\spec}{\operatorname{spec}}
 \DeclareMathOperator{\paulivec}{\boldsymbol{\sigma}}
@@ -53,6 +54,11 @@
 
 \title{Quantum Yang-Mills theory: an overview of a programme}
 
+\author{Ashley Milsted}
+\affiliation{Perimeter Institute for Theoretical Physics, Waterloo, Ontario N2L 2Y5, Canada}
+\affiliation{Institut f\"ur Theoretische Physik, Leibniz Universit\"at Hannover, Appelstr. 2, 30167 Hannover, Germany}
+
+
 \author{Tobias J.\ Osborne}
 \affiliation{Institut f\"ur Theoretische Physik, Leibniz Universit\"at Hannover, Appelstr. 2, 30167 Hannover, Germany}
 
@@ -78,22 +84,22 @@ It is the purpose of the paper to propose such an ansatz: we argue here that the
 
 Our study takes its inspiration from quantum-information theoretic driven progress in condensed matter physics. Here the variational method, combined with expressive variational classes, has proved to be a powerful tool in our understanding of the strongly correlated physics of \emph{quantum spin systems} \cite{auerbach:1994a, sachdev:2011a}. These variational approaches fall under the rubric of the \emph{density matrix renormalisation group} (DMRG) \cite{schollwoeck:2005a,schollwock:2011a} and have led to remarkable insights in recent years providing new tools to overcome many previously insurmountable roadblocks such as the simulation of dynamics \cite{vidal:2003a, haegeman:2011b} and fermions \cite{corboz:2009a, corboz:2010a, corboz:2010b, kraus:2010a} without sign problems and the determination of spectral information \cite{haegeman:2012a}. These developments are due, in no small part, to new impetus from quantum information theory in the understanding of \emph{quantum entanglement}. New entanglement-inspired tensor network state variational classes, including the projected entangled-pair states (PEPS) \cite{verstraete:2004a} and the multiscale entanglement renormalisation ansatz (MERA) \cite{vidal:2006a, vidal:2007a} have led to major progress in our understanding of strongly correlated phenomena.
 
-There are now several crucial hints that tensor networks might be a powerful tool in the study of lattice gauge theory. Firstly, several recent studies have applied one-dimensional TNS, i.e., matrix product states (MPS), to the Schwinger model with very encouraging results, including the determination of the particle content and real time evolution \cite{byrnes:2002a,sugihara:2005a,banuls:2013b,banuls:2013a,buyens:2014,buyens:2015dkc,rico:2014,kuhn:2015}. Secondly, the ground state space of $\mathbb{Z}/2\mathbb{Z}$-lattice gauge theory (and associated quantum double models) admits an efficient exact description as a TNS, namely a PEPS or a MERA, \cite{dennis:2002a, aguado:2008a}, a result later generalised to include string-net models \cite{buerschaper:2009a, koenig:2009a}. This construction has been supplemented with numerical results \cite{tagliacozzo:2011a} strongly indicating the utility of the MERA ansatz in the description of the low-energy physics of lattice gauge theories. These results are rather suggestive that an economic description of the low-energy limit of Yang-Mills theory might be found in a TNS.
+There are now several crucial hints that tensor networks might be a powerful tool in the study of lattice gauge theory. Firstly, several recent studies have applied one-dimensional TNS, i.e., matrix product states (MPS), to the Schwinger model with very encouraging results, including the determination of the particle content and real time evolution \cite{byrnes:2002a,sugihara:2005a,banuls:2013b,banuls:2013a,buyens:2014,buyens:2015dkc,rico:2014,kuhn:2015,buyens_tensor_2015,pichler_real-time_2016,dittrich_decorated_2014,tagliacozzo_tensor_2014,silvi_lattice_2014,dalmonte_lattice_2016}. Secondly, the ground state space of $\mathbb{Z}/2\mathbb{Z}$-lattice gauge theory (and associated quantum double models) admits an efficient exact description as a TNS, namely a PEPS or a MERA, \cite{dennis:2002a, aguado:2008a}, a result later generalised to include string-net models \cite{buerschaper:2009a, koenig:2009a}. This construction has been supplemented with numerical results \cite{tagliacozzo:2011a} strongly indicating the utility of the MERA ansatz in the description of the low-energy physics of lattice gauge theories. These results are rather suggestive that an economic description of the low-energy limit of Yang-Mills theory might be found in a TNS.
 
-There are, however, still many challenges facing the hypothesis that TNS are useful for the solution of Yang-Mills theory: there is still a large divide between the discrete gauge groups considered in most investigations so far and the compact gauge groups $\su2$ and $\textsl{SU}(3)$ relevant for the standard model. Additionally, there is not yet any systematic way to take a continuum limit of a TNS to obtain a representation of the $n$-point  functions required for a quantum field description. (Continuum generalisations of the MPS, PEPS, and MERA TNS are available \cite{haegeman:2011a}, but they don't seem particularly well suited for locally gauge-invariant quantum fields.)
+There are, however, still many challenges facing the hypothesis that TNS are useful for the solution of Yang-Mills theory: there is still a large divide between the discrete gauge groups considered in most investigations so far and the compact gauge groups $\su2$ and $\textsl{SU}(3)$ relevant for the standard model (for some recent progress on the continuous gauge group case see \cite{tagliacozzo_tensor_2014} and \cite{silvi_lattice_2014}). Additionally, there is not yet any systematic way to take a continuum limit of a TNS to obtain a representation of the $n$-point  functions required for a quantum field description. (Continuum generalisations of the MPS, PEPS, and MERA TNS are available \cite{haegeman:2011a}, but they don't seem particularly well suited for locally gauge-invariant quantum fields.)
 
 In this paper we pursue a description of the ground-state of lattice gauge theory in terms of a TNS. We work with pure gauge theory in the hamiltonian formalism \cite{kogut:1975a} and study the locally gauge invariant sector of hilbert space.  We develop a toolkit to describe states in this sector, exploiting parallel transport operations and block-spin averaging operations to construct hierarchical tensor networks. While the lattice regulator breaks lorentz invariance, time is continuous in the hamiltonian setting; we later argue that lorentz invariance is recovered in the continuum limit as the regulator is removed. This paper is intended as a high-level overview of an ongoing programme: the results reported here are mostly described at a heuristic level and are still replete with conjectures. A more thorough explanation of the results described here is in preparation and will be presented in a series of future papers.
 
 Before we begin, it is worth mentioning that there have been several notable mathematical approaches to the study of Yang-Mills theory, strongly related in spirit to ours. These approaches rely, in various ways, upon the renormalisation group \cite{wilson:1975a} and path-integral type formalisms in terms of action functionals on spacetime. The first programme \cite{balaban:1985a,balaban:1988a,balaban:1984a,balaban:1984b,balaban:1985b,balaban:1985c,balaban:1985d,balaban:1989a,balaban:1989b,balaban:1987a,balaban:1988b}, due to Ba{\l}aban, studies the behaviour of the partition function for lattice gauge theory under the action of block-spin renormalisation operations. This approach has yielded major successes, including, a proof of the ultraviolet stability of the partition function \cite{balaban:1985d} in three spacetime dimensions. Similar to Ba{\l}aban, the second programme \cite{federbush:1987a,federbush:1986a,federbush:1987b,federbush:1987c,federbush:1988a,federbush:1990a}, due to Federbush, yields a continuum limit of the lattice gauge theory as an inductive limit of block-spin renormalisations. The final approach \cite{magnen:1993a} studies pure Yang-Mills in the continuous case, but in the presence of an infrared cutoff. Here the existence of pure Yang-Mills theory is proved and the associated Schwinger functionals constructed. The limit where the cutoff is removed was so far not considered.
 
-The programme outlined here has a different emphasis to the aforementioned mathematical approaches. The ultimate (and perhaps impossible!) objective of this work is to obtain an efficiently contractible representation of the ground state  and low-lying excitations of QCD which will be useful for perturbative and nonperturbative calculations. To do this we are willing to take on faith several key physical assumptions, including, asymptotic freedom and the existence of a spectral gap for lattice gauge theory. Thus we are not so much concerned with questions of existence in the mathematically rigourous sense. That is not to say that the approach here has nothing to say about this question, only that we haven't considered it yet \footnote{If you allow me to speculate wildly for a moment I would say that an efficiently contractible ansatz for the ground state of Yang-Mills could well lead to progress on question of existence in the constructive QFT sense: one only needs to look to condensed matter physics and the examples of the BCS state and the Laughlin wavefunctions to see how a good ansatz leads to both physical and mathematical progress.}. 
+The programme outlined here has a different emphasis to the aforementioned mathematical approaches. The ultimate (and perhaps impossible!) objective of this work is to obtain an efficiently contractible representation of the ground state  and low-lying excitations of QCD which will be useful for perturbative and nonperturbative calculations. To do this we are willing to take on faith several key physical assumptions, including, asymptotic freedom and the existence of a spectral gap for lattice gauge theory. Thus we are not so much concerned with questions of existence in the mathematically rigourous sense. That is not to say that the approach here has nothing to say about this question, only that we haven't considered it yet \footnote{If we are to speculate wildly for a moment we would say that an efficiently contractible ansatz for the ground state of Yang-Mills could well lead to progress on question of existence in the constructive QFT sense: one only needs to look to condensed matter physics and the examples of the BCS state and the Laughlin wavefunctions to see how a good ansatz leads to both physical and mathematical progress.}. 
 
 \section{Hilbert space}
 We discuss here Yang-Mills theory in the temporal gauge and hamiltonian setting on a regular spatial lattice $a\mathbb{Z}^d$ with lattice spacing $a > 0$ embedded in $\mathbb{R}^d$ \cite{kogut:1975a}. The lattice comprises a set of \emph{directed links} $E$, given by line segments decorated with an arrow, pointing from lattice points $ax\in a\mathbb{Z}^d$ to all neighbouring points $ax+a\widehat{\mu}$, with $\widehat{\mu} \equiv (0, 0, \ldots, 0_{\mu-1}, 1_\mu, 0_{\mu+1}, \ldots, 0)$ and $\mu = 1, 2, \ldots, d$:
 \begin{center}
 	\includegraphics{basiclattice.pdf}
 \end{center}
-We sometimes refer to the link going pointing from the lattice site $ax$ in the direction $\widehat{\mu}$ using the notation $e_{x,\widehat{\mu}}$.
+We sometimes refer to the link pointing from lattice site $ax$ in the direction $\widehat{\mu}$ using the notation $e_{x,\widehat{\mu}}$.
 
 If $e\in E$ is a directed link we denote by $e_-$ the \emph{source} lattice point at the origin of the segment and $e_+$ the \emph{target} lattice point. We often require more general structures than regular lattices: when necessary we work with \emph{directed graphs} $(V,E)$ comprising a set of vertices $V$ and directed edges (or links) $E$. Again we decorate the edges with an arrow to indicate their orientation. 
 
@@ -189,7 +195,7 @@ for $j,k \in \{-\frac12, \frac12\}$, i.e., $\widehat{u}_{jk}$ simply gives the m
 \begin{equation}
 	\widehat{u}_{jk}(\gamma) \equiv \widehat{u}_{j j_1}(e_1)\widehat{u}_{j_1j_2}(e_2)\cdots \widehat{u}_{j_{n-1} k}(e_n),
 \end{equation}
-where $\widehat{u}(e)$ denotes the position observable for link $e$ and repeated indices are summed. Note that $\widehat{u}_{jk}(e) = \widehat{u}_{jk}$ in case $\gamma$ traverses edge $e$ \emph{against} the direction of $e$ and $\widehat{u}_{jk}(e) = \widehat{u}^{\dagger}_{kj}$ if the traversal direction is \emph{the same} as the direction of $e$. In the case where the path $\gamma$ is closed we set $k=j$ and sum over the index $j$; such observables are denoted 
+where $\widehat{u}(e)$ denotes the position observable for link $e$ and repeated indices are summed. Note that $\widehat{u}_{jk}(e) = \widehat{u}_{jk}$ in the case $\gamma$ traverses edge $e$ \emph{against} the direction of $e$ and $\widehat{u}_{jk}(e) = \widehat{u}^{\dagger}_{kj}$ if the traversal direction is \emph{the same} as the direction of $e$. In the case where the path $\gamma$ is closed we set $k=j$ and sum over the index $j$; such observables are denoted 
 \begin{equation}
 	\tr(\widehat{u}_{\gamma}) \equiv \sum_{j}\widehat{u}_{j j_1}(e_1)\widehat{u}_{j_1j_2}(e_2)\cdots \widehat{u}_{j_{n-1} j}(e_n),
 \end{equation}
@@ -234,7 +240,9 @@ The physics of this model is therefore determined by the competition between the
 
 Notice that the lattice length $a$ plays no role in the diagonalisation of $H$, except to set the overall energy scaling; in pure Yang-Mills theory the ground state acquires a lengthscale only through the spontaneous generation of a spectral gap:  by matching the energy $\Delta E(g_H)$ of the first excited state to the mass of the observed fundamental excitation \footnote{The (conjectured) fundamental excitation of pure Yang-Mills theory, the \emph{glueball}, has not yet been observed directly.}, we determine $a$ as a function of $g_H$. Alternatively, because of the gap, the ground state $|\Omega(g_H)\rangle$ of $H(g_H)$ will have a correlation function decaying exponentially with separation according to a dynamically generated correlation length $\xi(g_H)$. Thus we can also fix $a$ by demanding that $a\xi(g_H)$ tends to a constant. This phenomena is known as \emph{dimensional transmutation} and is a familiar feature of condensed matter systems in the \emph{scaling limit} \cite{sachdev:2011a}.
 
-The way a lattice system such as the Kogut-Susskind model describes a continuous quantum field is via a \emph{scaling limit} of a second- or higher-order quantum phase transition: we need to find a point where the correlation length $\xi(g_H)$ (measured in lattice sites) diverges so that the corresponding lattice spacing --- fixed by $a\xi(g_H) = \text{const.}$ --- goes to $0$. In a later section of this paper we  describe a precise way to build a quantum-field hilbert space for the quantum fluctuations around this scaling limit. Our task thus becomes to locate the second-order phase transitions for the KG model and to analyse their scaling limits. 
+The way a lattice system such as the Kogut-Susskind model describes a continuous quantum field is via a \emph{scaling limit} of a second- or higher-order quantum phase transition: we need to find a point where the correlation length $\xi(g_H)$ (measured in lattice sites) diverges so that the corresponding lattice spacing --- fixed by $a\xi(g_H) = \text{const.}$ --- goes to $0$. 
+%In a later section of this paper we  describe a precise way to build a quantum-field hilbert space for the quantum fluctuations around this scaling limit. 
+Our task thus becomes to locate the second-order phase transitions for the KG model and to analyse their scaling limits. 
 
 It is now understood that \emph{nonabelian} Yang-Mills theory is \emph{asymptotically free}. What this means in the present context is that the spectral gap $\Delta E(g_H)$ between the ground and first-excited states of $H(g_H)$ is nonvanishing for all $g_H >0$ and only disappears when $g_H$ is exactly zero \footnote{Presumably $\Delta(g_H)$ could be monotonically decreasing as a function of $g_H$, but this is unlikely as the addition of irrelevant ultraviolet interactions could easily modify the behaviour of the gap for large coupling $g_H$ without leading to any impact on the large-scale physics.}. In the condensed-matter context we understand asymptotic freedom as saying that the only quantum phase transition for the model occurs at \emph{exactly} $g_H=0$ and that this transition is (at least) second order; this is a property shared by, e.g., rotor models \cite{sachdev:2011a}. Asymptotic freedom has profound consequences for the analysis of Yang-Mills theory as it allows us to apply perturbation theory around the exactly solvable field zero-coupling point. In this way many deep insights have been obtained into high energy processes. It is worth pointing out that asymptotic freedom for the lattice gauge theory is not universally accepted \cite{seiler:2003a}: it is logically possible that the KG model has a phase transition at some intermediate value of $g_H$ and that pure Yang-Mills theory corresponds somehow to the scaling limit of that transition. 
 
@@ -246,17 +254,17 @@ The Kogut-Susskind hamiltonian is a regulated version of quantum Yang-Mills theo
 \end{equation}
 where $H_{\text{YM}}(g)$ is the full nonperturbative hamiltonian for continuum quantum Yang-Mills theory with some definite value of the \emph{Yang-Mills coupling constant} $g$ and $H_{\text{C}}(\Lambda)$ is a regulator with cutoff $\Lambda \equiv \Lambda(g)$. There is a complicated relationship between $\Lambda$, $g_H$, and $g$ determined by the renormalisation group. In a condensed-matter physics language, these statements are equivalent to saying that $H_{\text{KS}}$ is the same as a \emph{critical model} $H_{\text{YM}}(g)$ in the presence of an external field $H_{\text{C}}(\Lambda)$. Our objective is then, given only $H_{\text{KS}}(g_H)$, to obtain $H_{\text{YM}}(g)$ by removing the cutoff $H_{\text{C}}(\Lambda)$. This amounts to studying the quantum phase transition at $g_H = 0$.
 
-Note that the question of whether the Kogut-Susskind hamiltonian $H_{\text{KS}}(g_H)$ has a gap $\Delta E(g_H)$ for all $g_H > 0$ is logically distinct from the (considerably more challenging) problem of determining whether the full nonperturbative \emph{quantum Yang-Mills theory} $H_{\text{YM}}(g)$ has a spectral gap, a question which is (part of) the content of the first Clay maths millennium problem \cite{cmproblem:1st}. If the programme set out in this paper were to come to fruition then we should be able to deduce that $\Delta E(g_H) >0$ implies the \emph{existence} of quantum Yang-Mills theory. Whether our ground-state ansatz could ever lead to a proof of the mass gap is somewhat more tendentious but, presumably, not impossible.
+Note that the question of whether the Kogut-Susskind hamiltonian $H_{\text{KS}}(g_H)$ has a gap $\Delta E(g_H)$ for all $g_H > 0$ is logically distinct from the (considerably more challenging) problem of determining whether the full nonperturbative \emph{quantum Yang-Mills theory} $H_{\text{YM}}(g)$ has a spectral gap, a question which is (part of) the content of the first Clay maths millennium problem \cite{cmproblem:1st}. If the programme set out in this paper were to come to fruition then we should be able to deduce that $\Delta E(g_H) >0$ implies the \emph{existence} of quantum Yang-Mills theory. Whether our ground-state ansatz could ever lead to a proof of the mass gap is somewhat more tendentious but, hopefully, not impossible.
 
 It is now worth contrasting the $\su2$ case with the $\uone$ case: it turns out that \emph{abelian} Yang-Mills theory on the lattice, known as \emph{periodic} or \emph{compact} Maxwell theory, is dramatically different \cite{polyakov:1975a, villain:1975a, polyakov:1977a, banks:1977a, peskin:1978a, kogut:2004a} to its nonabelian counterpart. It is understood that, in the abelian case, there is a phase transition --- possibly of second order --- at a finite value of $g_H$. This means that the strong-coupling phase is separated from the zero-coupling phase and the scaling limit found from approaching the critical value of $g_H$ from the strong-coupling side is a physically distinct quantum field theory --- known to be confining --- from the scaling limit found by approaching the transition from the zero-coupling side, which, presumably, gives us standard $\uone$ gauge theory. In order to approximate standard $\uone$ gauge theory we would need to start from the zero-coupling fixed point and develop an ansatz which approaches the phase transition from below. As will become evident, our ansatz is not well-suited for this task and, in the $\uone$ case, is likely to only describe the physics of the strong-coupling phase. 
 
 The Kogut-Susskind hamiltonian still possesses a tremendous amount of local symmetry: although we are working in the temporal gauge any constant gauge transformation is still a symmetry of the model. We elaborate on this local gauge symmetry in Sec.~\ref{sec:gis}.
 
 \section{The problem}\label{sec:problem}
-We have now collected enough preliminary material to finally describe the problem we are aiming to solve. We want to find a one-parameter family of quantum states $|\Phi(g_H)\rangle$ for lattice gauge theory with the following properties:
+We have now collected enough preliminary material to finally describe the problem we are aiming to solve. We want to find a one-parameter family of quantum states $|\Phi(g_H)\rangle$ for hamiltonian lattice gauge theory with the following properties:
 \begin{enumerate}
 	\item The state $|\Phi(g_H)\rangle$ is an efficiently contractible tensor network state for all dimensions $d$ and all couplings $g_H$.
-	\item It interpolates between the zero-coupling and strong-coupling limits where, respectively, $|\Phi(0)\rangle = |\Omega(0)\rangle$ and $|\Phi(\infty)\rangle = |\Omega(\infty)\rangle$. 
+	\item It interpolates between the lattice zero-coupling and lattice strong-coupling limits where, respectively, $|\Phi(0)\rangle = |\Omega(0)\rangle$ and $|\Phi(\infty)\rangle = |\Omega(\infty)\rangle$. 
 	\item The TNS $|\Phi(g_H)\rangle$ is (manifestly) locally gauge invariant.
 	\item The state $|\Phi(g_H)\rangle$ differs from $|\Omega(g_H)\rangle$ only by \emph{irrelevant} UV features. That is, $|\Phi(g_H)\rangle$ is the ground state of a \emph{parent} hamiltonian $H'(g_H)$ such that the operator $H'(g_H)-H(g_H)$ is irrelevant for the RG. 
 	\item The continuum limit of $|\Phi(g_H)\rangle$ may be analytically obtained and is lorentz invariant.
@@ -266,7 +274,7 @@ We have now collected enough preliminary material to finally describe the proble
 
 
 \section{The gauge invariant sector}\label{sec:gis}
-Although we are working in the temporal gauge there is still a residual gauge freedom \cite{creutz:1985a}. This freedom is expressed in terms of the \emph{gauge group} $\mathcal{G}$ which is the cartesian product of the group $G \cong \su2$ or $\uone$ over all the lattice points, $\mathcal{G}\cong \prod_{v\in V} G$, and which is represented on $\mathcal{H}$ by 
+Although we are working in the temporal gauge there is still a residual gauge freedom \cite{creutz:1985a}. This freedom is respectively expressed in terms of the \emph{gauge group} $\mathcal{G}$ which is the cartesian product of the group $G \cong \su2$ or $\uone$ over all the lattice points, $\mathcal{G}\cong \prod_{v\in V} G$, and which is represented on $\mathcal{H}$ by 
 \begin{equation}
 	x \mapsto \bigotimes_{e\in E} L_{x_{e_-}}R_{x_{e_+}}, \quad x\in \mathcal{G}.
 \end{equation}
@@ -607,7 +615,7 @@ The quantum interpolation procedure described in the previous section may be exp
 \end{equation}
 with $|\Psi_0\rangle \equiv |\Omega(\infty)\rangle$. Because $|\Psi_m\rangle$ may be written as a sequence of a local introduction of ancillary product states followed by local unitaries it acquires the structure of a multi-scale entanglement renormalisation ansatz (MERA). This immediately entails a \emph{contractibility} guarantee: the computation of all $n$-pt correlation functions may be efficiently --- and analytically --- carried out. 
 
-Properties 1., 2., and 3., of Sec.~\ref{sec:problem} are true by construction. However, we will have to work harder to establish properties 4.\ and 5. There are a couple of undesirable features of the family $|\Psi_m\rangle$: (a) the ansatz isn't manifestly rotation invariant; (b) all Wilson loops have a zero expectation value; and (c) the family is an \emph{ansatz}, i.e., it is not \emph{exactly} the ground state of $H(g_H)$ for any value of $g_H$. These defects can be corrected in at least three different ways via: (i) producing a more complicated tensor network by exploiting a tool from the analysis of strongly interacting quantum spin systems, namely \emph{quasi-adiabatic continuation}; (ii) exploiting a more complicated initial state $|\Psi_0\rangle$; or (iii) carefully adjusting the ancillary states $|\psi\rangle$ introduced at each stage. It turns out that these three expedients are essentially equivalent, however, they have different strengths and weaknesses. We'll explore them in turn in the following subsections.  
+Properties 1., 2., and 3., of Sec.~\ref{sec:problem} are true by construction. However, we will have to work harder to establish properties 4.\ and 5. There are a couple of undesirable features of the family $|\Psi_m\rangle$: (a) the ansatz isn't manifestly invariant under euclidean symmetries; (b) all Wilson loops have a zero expectation value; and (c) the family is an \emph{ansatz}, i.e., it is not \emph{exactly} the ground state of $H(g_H)$ for any value of $g_H$. These defects can be corrected in at least three different ways via: (i) producing a more complicated tensor network by exploiting a tool from the analysis of strongly interacting quantum spin systems, namely \emph{quasi-adiabatic continuation}; (ii) exploiting a more complicated initial state $|\Psi_0\rangle$; or (iii) carefully adjusting the ancillary states $|\psi\rangle$ introduced at each stage. It turns out that these three expedients are essentially equivalent, however, they have different strengths and weaknesses. We'll explore them in turn in the following subsections.  
 
 \subsection{Improving the ansatz: quasi-adiabatic continuation}
 %Consider the ground state $|\Psi_0\rangle$ at $g_H = \infty$. This is the exact ground state of $H(\infty)$. Suppose we make several interpolations and produce the state $|\Psi_m\rangle$. This state is \emph{no longer} the ground state of $H(g_H)$ for any value of $g_H$. We could find the value of $g_H$ for which $|\Psi_m\rangle$ is the closest to being the ground state by a simple minimisation:
@@ -643,11 +651,11 @@ Properties 1., 2., and 3., of Sec.~\ref{sec:problem} are true by construction. H
 
 %Here we pursue a different approach to the construction of the ground state of pure Yang Mills theory on the lattice. 
 
-In the first approach to improve our ansatz we just directly construct the exact ground state of $H_{\text{KS}}(g_H)$. This is achieved by employing a procedure known as \emph{quasi-adiabatic continuation} \cite{hastings:2005a, osborne:2006a} (see App.~\ref{app:qacont} for a short review of quasi-adiabatic evolution). The way this works is as follows. Suppose we've exactly constructed the ground state $|\Omega(g)\rangle$ for some non-infinite value of $g$. We now subdivide this state according to the quantum interpolation procedure to produce $|\Psi'\rangle = \textsl{C}\mathcal{V}_{\psi}|\Omega(g)\rangle$. We \emph{conjecture} that $|\Omega(g')\rangle$ is an approximation to the ground state of $H_{\text{KS}}(g'_H)$ for $g'_H < g_H$: this is entirely plausible as the interpolation algorithm exactly minimises the potential energy of the new degrees of freedom at the expense of the kinetic energy so the resulting state should be closer to the ground state of $H_{\text{KS}}(g_H)$ with a smaller value of $g_H$. The state $|\Psi'\rangle$ has a \emph{parent hamiltonian} $H'$ given by the prescription described in Sec.~\ref{sec:qinterp}. We now write 
+In the first approach to improve our ansatz we just directly construct the exact ground state of $H_{\text{KS}}(g_H)$. This is achieved by employing a procedure known as \emph{quasi-adiabatic continuation} \cite{hastings:2005a, osborne:2006a}. The way this works is as follows. Suppose we've exactly constructed the ground state $|\Omega(g)\rangle$ for some non-infinite value of $g$. We now subdivide this state according to the quantum interpolation procedure to produce $|\Psi'\rangle = \textsl{C}\mathcal{V}_{\psi}|\Omega(g)\rangle$. We \emph{conjecture} that $|\Omega(g')\rangle$ is an approximation to the ground state of $H_{\text{KS}}(g'_H)$ for $g'_H < g_H$: this is entirely plausible as the interpolation algorithm exactly minimises the potential energy of the new degrees of freedom at the expense of the kinetic energy so the resulting state should be closer to the ground state of $H_{\text{KS}}(g_H)$ with a smaller value of $g_H$. The state $|\Psi'\rangle$ has a \emph{parent hamiltonian} $H'$ given by the prescription described in Sec.~\ref{sec:qinterp}. We now write 
 \begin{equation}
 	H(g'_H) = H' + \Delta',
 \end{equation}
-and regard $\Delta'$ as a \emph{perturbation}. We now make a crucial second \emph{conjecture}, namely that $H'$ is in \emph{the same phase} as $H(g'_H)$. A limited form of this conjecture follows from a generalisation of the methods of \cite{bravyi:2010b, bravyi:2010c, michalakis:2013a}; one needs to develop a generalised Lieb-Robinson bound \cite{lieb:1972a, hastings:2005b, nachtergaele:2010b} on the propagation of quantum correlations which applies to our specific setting: while the potential energy term is a sum of bounded operators the kinetic energy term is a sum of unbounded operators, and the standard Lieb-Robinson bound doesn't apply. (Such a bound may be found by generalising the construction of \cite{premont-schwarz:2010a}.) In order to establish our second conjecture in full generality would require techniques going beyond those developed for the study of the stability of quantum phases. One key feature which acts in our favour here is that we are free to modify the Kogut-Susskind hamiltonian by the addition of arbitrary UV irrelevant terms: this relaxes our task by allowing us to explore more general adiabatic paths.
+and regard $\Delta'$ as a \emph{perturbation}. We now make a crucial second \emph{conjecture}, namely that $H'$ is in \emph{the same phase} as $H(g'_H)$. A limited form of this conjecture follows from a generalisation of the methods of \cite{bravyi:2010b, bravyi:2010c, michalakis:2013a}; one needs to develop a generalised Lieb-Robinson bound \cite{lieb:1972a, hastings:2005b, nachtergaele:2010b} on the propagation of quantum correlations which applies to our specific setting: while the potential energy term is a sum of bounded operators the kinetic energy term is a sum of unbounded operators, and the standard Lieb-Robinson bound doesn't apply. (Such a bound may be found by generalising the construction of \cite{premont-schwarz:2010a}.) Establishing our second conjecture in full generality would require techniques going beyond those developed for the study of the stability of quantum phases. One key feature which acts in our favour here is that we are free to modify the Kogut-Susskind hamiltonian by the addition of arbitrary UV irrelevant terms: this relaxes our task by allowing us to explore more general adiabatic paths.
 
 If our second conjecture is correct then we can adiabatically deform $H'$ to $H(g'_H)$ without closing the gap and encountering a quantum phase transition. Thus we construct the interpolating hamiltonian 
 \begin{equation}
@@ -665,12 +673,10 @@ The procedure we've just described yields a contractible tensor network: we simp
 
 The price we pay for the improved results of the corrected ansatz is that the causal cone is widened (indeed, it becomes infinite). This is not immediately a problem as the cone is effectively finite, with exponentially damped tails. However it does become more computationally demanding to extract expectation values.
 
-The quasi-adiabatic correction procedure may be regarded as compensating for the errors made in ignoring the kinetic energy term of the Kogut-Susskind hamitonian when the interpolation is carried out. Indeed, without correction, it is easy to see that the expectation value of the kinetic energy operator on the new edges diverges. One might imagine that there is a simpler way to modify the ansatz by exploiting the \emph{heat flow} generated by the kinetic energy, i.e., by postulating the ansatz
-
-Unfortunately, because the heat flow is not unitary, this will not directly lead to a contractible tensor network as the causal structure is lost. 
+The quasi-adiabatic correction procedure may be regarded as compensating for the errors made in ignoring the kinetic energy term of the Kogut-Susskind hamiltonian when the interpolation is carried out. Indeed, without correction, it is easy to see that the expectation value of the kinetic energy operator on the new edges diverges. One might imagine that there is a simpler way to modify the ansatz by exploiting the \emph{heat flow} generated by the kinetic energy, however, unfortunately, because the heat flow is not unitary, this will not directly lead to a contractible tensor network as the causal structure is lost. 
 
 \subsection{Improving the ansatz: more complicated initial states}
-Here we explore a second approach to improving our basic ansatz. The physical motivation here comes from regarding our quantum interpolation procedure as an \emph{ultraviolet completion} whereby the state of an initial coarse lattice with correposponding momentum cutoff $\Lambda$ is refined, shifting the UV cutoff upwards. According to this interpretation we require that the initial state faithfully encodes the large-scale low-energy physics of Yang-Mills theory; the UV completion provided by the quantum interpolation procedure then takes care of the high-energy small-scale processes. Here we are helped out by the observation that at large scale quantum Yang-Mills theory is very close to the strong-coupling fixed point. 
+Here we explore a second approach to improving our basic ansatz. The physical motivation here comes from regarding our quantum interpolation procedure as an \emph{ultraviolet completion} whereby the state of an initial coarse lattice with correposponding momentum cutoff $\Lambda$ is refined, shifting the UV cutoff upwards. According to this interpretation we require that the initial state faithfully encodes the large-scale low-energy physics of Yang-Mills theory; the UV completion provided by the quantum interpolation procedure then takes care of the high-energy small-scale processes. Here we are helped out by the observation that at large scales quantum Yang-Mills theory is very close to the strong-coupling fixed point. 
 
 Our basic ansatz is simply the case where the initial state is at \emph{lattice} strong coupling. However, this is not sufficient to give a good enough approximation because there are no correlations and when the UV completion is carried out large-scale Wilson loops are identically zero. This can be corrected by slightly moving away from lattice strong coupling; we consider instead the initial state
 \begin{equation}
@@ -681,7 +687,7 @@ where $\epsilon > 0$ is small but nonzero. Now it follows from a generalisation 
 After the improved initial state is obtained we simply apply the quantum interpolation isometry to send the lattice spacing to zero. We are now guaranteed that infrared contributions to the correlation functions are well represented. Indeed, it follows that wilson loops now enjoy an area law scaling. 
 
 \subsection{Improving the ansatz: smoother interpolation}
-A final approach to improving the basic ansatz is to make smaller interpolation steps. The problem is that our interpolation procedure is somewhat discontinuous because it effects a scale change by a discrete factor of $2$ and this introduces UV artifacts that need to be corrected by quasi-adiabatic continuation. A possible way to deal with this is to make smaller scale changes. Indeed, the optimal situation would be to make an \emph{infinitesimal} scale change. Here we explore how to implement such gradual scale changes in the lattice setting. 
+A final approach to improving the basic ansatz is to make smaller interpolation steps. The problem is that our interpolation procedure is somewhat discontinuous because it effects a scale change by a discrete factor of $2$ and this introduces UV artifacts that need to be corrected by quasi-adiabatic continuation. A possible way to deal with this is to make smaller scale changes. Indeed, the optimal situation would be to make an \emph{infinitesimal} scale change. Making smaller scale changes could be carried out by studying the curvature interpolation problem where instead of subdiving a single plaquette we take $m$ plaquettes and replace them, in as smooth a way as possible, by $n>m$ plaquettes. We haven't had much success in formalising this intuition yet, and leave it as an interesting open problem for the reader.
 
 \subsection{Expectation values}
 Here we describe how to compute the expectation values of local operators and string operators for both the basic ansatz Eq.~(\ref{eq:basicansatz}) and the improved ansatz Eq.~(\ref{eq:imprvansatz}). The discussion in this section is framed in the setting of a lattice in two spatial dimensions. The results we present here are, however, representative of the somewhat more involved general case.
@@ -768,13 +774,13 @@ where $\square \sim \square'$ means that both plaquettes are situated within the
 }
 \end{figure*}
 
-Here we present some preliminary results for interpolation of the $1+1$D principal chiral field model with $G \cong \uone$ and $G \cong \su2$ on a spatial lattice (a chain of $N$ sites). This model has the Kogut-Susskind Hamiltonian
+Here we present some preliminary results for interpolation of the $(1+1)$D principal chiral field model with $G \cong \uone$ and $G \cong \su2$ on a spatial lattice (a chain of $N$ sites). This model has the Kogut-Susskind Hamiltonian
 \begin{equation} \label{eq:H_R}
 	H_R(g) = -\frac{g^2}{2 a} \sum_e \Delta_e + \frac{1}{g^2 a}\left( 2 - \sum_e \text{Re}(\tr (\widehat{u}_e \widehat{u}_{e+1}^\dagger)) \right),
 \end{equation}
-and is, insofar as we do not restrict to gauge-invariant states, equivalent to the $O(2)$ ($O(4)$) quantum rotor models in $1+1$D~\cite{sachdev:2011a} in case $G \cong \uone$ ($G \cong \su2$). The graph describing the gauge-symmetry of~(\ref{eq:H_R}) is visualized in Figure~\ref{fig:earring}.  As noted in Section~\ref{sec:gis}, on such a graph the gauge symmetry is reduced to a global $G$~symmetry, or no symmetry at all in case of abelian~$G$. $H_R$~is further invariant under global rotations $(L_g)^{\otimes N}$ and $(R_g)^{\otimes N}$ $\forall g \in G$. Note that, unlike local gauge symmetry, these global symmetries can be spontaneously broken, albeit not in the ground state (a consequence of the Coleman-Mermin-Wagner theorem, see for example~\cite{peskin:1995a}).
+and is, insofar as we do not restrict to gauge-invariant states, equivalent to the $O(2)$ ($O(4)$) quantum rotor models in $(1+1)$D~\cite{sachdev:2011a} in case $G \cong \uone$ ($G \cong \su2$). The graph describing the gauge-symmetry of~(\ref{eq:H_R}) is visualized in Figure~\ref{fig:earring}.  As noted in Section~\ref{sec:gis}, on such a graph the gauge symmetry is reduced to a global $G$~symmetry, or no symmetry at all in case of abelian~$G$. $H_R$~is further invariant under global rotations $(L_g)^{\otimes N}$ and $(R_g)^{\otimes N}$ $\forall g \in G$. Note that, unlike local gauge symmetry, these global symmetries can be spontaneously broken, albeit not in the ground state (a consequence of the Coleman-Mermin-Wagner theorem, see for example~\cite{peskin:1995a}).
 
-The $G \cong \uone$ model is known to have a confining phase at large $g$ in which the Hamiltonian has a spectral gap between the ground state and the first excited state, as well as a deconfined, gapless phase at small $g$ in which correlations decay algebraically, and which is described by a free bosonic conformal field theory (central charge $c=1$). The transition separating the two phases is of the Kosterlitz-Thouless type~\cite{sachdev:2011a}. The nonabelian case of $G \cong \su2$ behaves very differently, having only one confining phase that persists across strong and weak couplings~\cite{sachdev:2011a}. However, despite the lack of a phase transition there is a \emph{crossover} region separating weak and strong coupling in which the scaling with $g$ of quantities such as the mass gap changes rapidly. There is much evidence~\cite{creutz:1985a} suggesting that this phase structure, including the crossover phenomenon, is shared by $3+1$D lattice Yang-Mills theory for nonabelian~$G$. Similarly, the $G \cong \uone$ phase diagram is similar to that of $3+1$D $\uone$ lattice gauge theory (pure, compact QED), except that the phase transition of the latter theory is thought to be first order~\cite{arnold:2003a}. Despite the lack of local gauge symmetry, these similarities to Yang-Mills theory make $H_R$ a useful toy model for testing the fine-graining ansatz presented in this paper.
+The $G \cong \uone$ model is known to have a confining phase at large $g$ in which the Hamiltonian has a spectral gap between the ground state and the first excited state, as well as a deconfined, gapless phase at small $g$ in which correlations decay algebraically, and which is described by a free bosonic conformal field theory (central charge $c=1$). The transition separating the two phases is of the Kosterlitz-Thouless type~\cite{sachdev:2011a}. The nonabelian case of $G \cong \su2$ behaves very differently, having only one confining phase that persists across strong and weak couplings~\cite{sachdev:2011a}. However, despite the lack of a phase transition there is a \emph{crossover} region separating weak and strong coupling in which the scaling with $g$ of quantities such as the mass gap changes rapidly. There is much evidence~\cite{creutz:1985a} suggesting that this phase structure, including the crossover phenomenon, is shared by $(3+1)$D lattice Yang-Mills theory for nonabelian~$G$. Similarly, the $G \cong \uone$ phase diagram is similar to that of $(3+1)$D $\uone$ lattice gauge theory (pure, compact QED), except that the phase transition of the latter theory is thought to be first order~\cite{arnold:2003a}. Despite the lack of local gauge symmetry, these similarities to Yang-Mills theory make $H_R$ a useful toy model for testing the fine-graining ansatz presented in this paper.
 
 Using the numerical framework developed in \cite{milsted:2015a}, in which $H_R$ was studied using infinite matrix product states (MPS) as a variational class of states, we test curvature interpolation by comparing MPS ground states before and after fine-graining. 
 To represent states in $\mathcal{H} = (L^2(G))^{\otimes N}$ as MPS with a finite-dimensional effective local Hilbert space, we use the Fourier modes of $G$ as a basis for $L^2(G)$ and implement a momentum cutoff specified by the label $l_{\max}$ of the irrep with the maximum allowed kinetic energy. 
@@ -810,240 +816,47 @@ of the fine-grained state $\mathcal{V}(\lambda)|\Omega(g_0^{-2})\rangle$ and the
 Figure~\ref{fig:interp-fid} shows our results for $G~\cong~\uone$ and $G~\cong~\su2$. In both cases we find values of $\lambda$ for which $\mathcal{V}(\lambda)|\Omega(g_0^{-2})\rangle$ is a significantly better approximation than $|\Omega(g_0^{-2})\rangle$ to MPS ground states at larger inverse couplings, showing promise for curvature interpolation as a fine-graining ansatz. However, errors are clearly introduced, and we observe a corresponding shift in the ground state energy density of the fine-grained states, compared to the closest true ground state. It may be necessary to repair these errors to obtain a truly useful fine-graining ansatz, as described in Section~\ref{sec:gs-ansatz}. It also remains to be seen how well the curvature interpolation functions in the crossover region of nonabelian theories.
 
 \section{The continuum limit}
-Conditioned on the validity of the previously mentioned conjectures, we've produced a sequence of states $|\Psi_m\rangle$ which tend, in the limit, to the (lattice) zero-coupling state. The important observation here is that since each term in our sequence is a MERA the correlation length of $|\Psi_m\rangle$ is given by $\xi_m = a_m\lambda^m$, for some $\lambda>0$.  Given that the correlation length $\xi$ of pure Yang-Mills theory is only determined up to a constant which is ultimately fixed by experiment forces us to set the lattice spacing $a_m$ of the state $|\Psi_m\rangle$ to $a_m = a_0\lambda^{-m}$, where $a_0$ is a constant. Thus we have a sequence of states $|\Psi_m\rangle$ for lattices of ever finer discretisation. Further, we can compute all $n$-point functions for this sequence. 
+In this section we sketch how to build a hilbert space associated with the continuum limit of quantum lattice gauge theory. Some of the mathematical details are involved and are postponed to a future paper, however the core idea can be expressed succinctly. 
+
+Conditioned on the validity of the previously mentioned conjectures, we've produced a sequence of states $|\Psi_m\rangle$ which tend, in the limit, to the (lattice) zero-coupling state. The important observation here is that since each term in our sequence is a MERA the correlation length of $|\Psi_m\rangle$ is given by $\xi_m = a_m\lambda^m$, for some $\lambda>0$.  Given that the correlation length $\xi$ of pure Yang-Mills theory is only determined up to a constant which is ultimately fixed by experiment forces us to set the lattice spacing $a_m$ of the state $|\Psi_m\rangle$ to $a_m = a_0\lambda^{-m}$, where $a_0$ is a constant. Thus we have a sequence of states $|\Psi_m\rangle$ for lattices of ever finer discretisation. Each term in the sequence is the result of an isometry applied to a previous term. Further, we can compute all $n$-point functions for this sequence. It turns out that this is enough data to specify a continuum hilbert space and a canonical continuum ground state. 
+
+The continuum hilbert space we describe here is known as a \emph{direct limit} of hilbert spaces; in the context we use it here we call this direct limit the \emph{semicontinuous limit} \footnote{This terminology was suggested to us by Vaughan Jones.} to indicate that it doesn't quite correspond to what we might demand of a full continuous quantum Yang-Mills theory. Note that the direct limit is a basic categorical construction (you can read about it further in, e.g., \cite{lang:2002a}). The application of the direct limit to hilbert spaces has a very long history; one early proposal to use the direct limit to model continuum limits can be found in \cite{bimonte_lattices_1996}, but there are surely prior proposals. A recent fascinating attempt to use the direct limit to build continuum limits of lattice theories, in particular, conformal field theories, can be found in \cite{jones_unitary_2014}.
+
+Let $\mathcal{D}$ be the directed set of regular partitions of $\mathbb{R}^d$ induced by integer lattices with lattice spacing $a$, i.e., $a\mathbb{Z}^d$. This set is directed by \emph{refinement}, i.e., a partition $Q$ is a \emph{refinement} of $P$, denoted $P\le Q$, if every element of $Q$ is a subset of an element of $P$. (A useful mnemonic to remember the ordering is that $Q$ has ``more'' elements than $P$.) We regard every lattice spacing $a$ as giving rise to a \emph{physically different} lattice.
+ 
+Suppose, further, we associate a hilbert space $\mathcal{h}_P$ with each partition $P\in\mathcal{D}$:
+\begin{equation}
+	P \mapsto \mathcal{h}_P
+\end{equation}
+such that for every pair $P\preceq Q$ we have an isometry $T_{Q}^P:\mathcal{h}_P\rightarrow \mathcal{h}_Q$ with the property that for all $P\preceq Q\preceq R$
+\begin{equation}
+	T_{R}^QT_{Q}^P=T_{R}^P,
+\end{equation}
+and $T^{P}_P = \mathbb{I}$ for all $P\in\mathcal{D}$. This is, of course, precisely the data specifying a direct system of hilbert spaces. Thus we have enough information to build the \emph{direct limit} hilbert space:
+\begin{equation}
+	\mathcal{H} \equiv \varinjlim \mathcal{h}_P.
+\end{equation}
+This space is given by the disjoint union 
+\begin{equation}
+	\biguplus_{P\in\mathcal{D}}\mathcal{h}_P,
+\end{equation}
+whose elements are pairs $\langle |\phi\rangle, P\rangle$, $P\in\mathcal{D}$ and $|\phi\rangle\in \mathcal{h}_P$, 
+modulo the equivalence relation $\langle |\phi\rangle, P\rangle \sim \langle |\psi\rangle, Q\rangle$ if $|\phi\rangle \in \mathcal{h}_P$ and $|\psi\rangle \in \mathcal{h}_Q$ and there is a partition $R\in\mathcal{D}$ with $P\preceq R$ and $Q\preceq R$ with $T_{R}^P|\phi\rangle = T_{R}^Q|\psi\rangle$. This disjoint union is then completed with respect to the norm $\|\cdot\|$ so that
+\begin{equation}
+	 \mathcal{H} \equiv \left(\biguplus_{P\in\mathcal{D}}\mathcal{h}_P\bigg/\sim\right)^{\|.\|}.
+\end{equation} 
+This is the \emph{semicontinuous limit}. You should think of the residents of $\mathcal{H}$ as the \emph{UV completions} of states defined in the IR.  
+
+In our specific case we take for the isometries $T^{P}_Q$ connecting a lattice $P$ and its subdivision refinement $Q$ the combined MERA step $\textsl{C}\mathcal{V}_{\psi}$. In the case where $Q$ is the lattice resulting from several subdivisions we simply take the product $\textsl{C}\mathcal{V}_{\psi}$ of the MERA steps, i.e., $T^{P}_Q = \textsl{C}\mathcal{V}_{\psi}\textsl{C}\mathcal{V}_{\psi}\cdots \textsl{C}\mathcal{V}_{\psi}$. It is easy to check that this leads to a direct system of hilbert spaces. The sequence $|\Psi_m\rangle$ of ground states hence all belong to the \emph{same} single equivalence class $[\langle |\Psi_m\rangle, P_m\rangle]$, i.e., the sequence corresponds to exactly one state $|\Omega\rangle \equiv [\langle |\Psi_m\rangle, P_m\rangle]$ in the semicontinuous limit space $\mathcal{H}$. We conjecture that each improved ansatz corresponds to a different state in $\mathcal{H}$, and that each of these states are ground states of the full continuum quantum Yang-Mills theory with different values of $g$. 
 
 \section{Conclusions}
+In this paper we have sketched a programme to understand the ground state and low-energy excited states of quantum Yang-Mills theory in the temporal gauge as a sequence of tensor network states. We showed how the gauge-invariant sector of hamiltonian lattice gauge theory may be completely parametrised using the expedient of \emph{quantum parallel transport}. Then we introduced the idea of \emph{curvature interpolation} to build an RG which interpolates between the lattice zero coupling and infinite coupling ground states. This leads to a sequence of tensor network states as MERA which we hypothesise to be a model for the ground state of continuous quantum Yang-Mills theory. This hypothesis was validated numerically for the $(1+1)$-dimensional principal chiral field model. We rounded up this paper with a quick overview of how to build the continuous limit rigourously via a construction known as the \emph{semicontinuous limit}. 
+
+There are many things still to be done. Most of the assertions we made are conditioned on major conjectures, which are likely to be hard to resolve. Nonetheless, we feel that there is much to be gained by proceeding with this programme. The most important point we'd like to end on is that the TNS ansatz we've promoted here is \emph{efficiently computable}: all $n$-point correlation functions for local operators can be efficiently computed. This seems important enough by itself to merit further study. 
+
+\acknowledgements{This work was supported by the ERC grants QFTCMPS and SIQS, and by the cluster of excellence EXC201 Quantum Engineering and Space-Time Research.}
 
 \bibliography{Physics}
 
-\widetext
-
-\appendix
-
-\section{Quasi-adiabatic continuation}\label{app:qacont}
-The dynamics generated by the adiabatic evolution of a quantum
-system is an important paradigm in the study of quantum mechanics.
-One question which is particularly pertinent for the simulation of
-quantum systems is: can adiabatic evolution be simulated by the
-time-dependent dynamics of some (possibly different) quantum system?
-In the case of adiabatic evolution the answer is yes: one method is
-to just slowly turn on the interactions on a timescale which is
-small compared to the gap of the system. While this is an entirely
-satisfactory solution in and of itself one limitation lies in the
-error of this approximation; when adiabatic dynamics is simulated
-via this method the error decreases as an inverse polynomial in the
-timescale $T$ of the slowly changing dynamics
-\cite{reichardt:2004a}. Thus we are inspired to search for methods
-which provide better error scaling. One such method is provided by
-\emph{quasi-adiabatic evolution} \cite{wen:2005a} (see also
-\cite{avron:1999a}). In this case we find that the error scales
-\emph{exponentially} as a function of the timescale $T$ set by the
-gap of the system. In this appendix we show this exponential
-scaling. Our discussion is set in the wider context of ``adiabatic''
-evolutions whose differential generators can be arbitrary.
-
-The framework we describe in this appendix to discuss quasi-adiabatic
-evolutions is similar to that introduced by \cite{avron:1999a} and
-\cite{wen:2005a}.
-
-We consider adiabatic quantum evolution generated by a
-parameter-dependent hamiltonian $H(s)$ as $s$ is varied
-adiabatically from $s=0$ to $s=1$. Thus we would like to understand
-the ground state $|\Omega(s)\rangle$ of $H(s)$. We do this by
-setting up a differential equation for $|\Omega(s)\rangle$:
-\begin{equation}\label{eq:pformula}
-\frac{d}{ds} |\Omega(s)\rangle = P'(s)|\Omega(s)\rangle,
-\end{equation}
-where $P'(s) = \frac{d}{ds}(|\Omega(s)\rangle\langle\Omega(s)|)$ and
-we've set phases so that $\langle
-\Omega'(s)|\Omega(s)\rangle = 0$. Because $P'(s)$ is not
-antihermitian the dynamics generated by this equation are not
-unitary.
-
-There are at least two ways to set up differential equations for
-$|\Omega(s)\rangle$ which \emph{do} generate unitary dynamics. The
-first is via \emph{exact adiabatic evolution} (see
-\cite{avron:1987a, avron:1993a} for a rigourous discussion of rather
-general results about exact adiabatic evolution):
-\begin{equation}\label{eq:gpformula}
-\frac{d}{ds} |\Omega(s)\rangle = -[P(s), P'(s)]|\Omega(s)\rangle.
-\end{equation}
-Because of the gap condition on $H(s)$, the ``hamiltonian''
-$[P(s),P'(s)]$ for this dynamics is given by first-order stationary
-perturbation theory:
-\begin{equation}
-[P(s), P'(s)] = |\Omega(s)\rangle \langle \Omega(s)| \frac{\partial
-H(s)}{\partial s} \frac{\mathbb{I}}{\Omega(s)\mathbb{I}-H(s)} - 
-\frac{\mathbb{I}}{\Omega(s)\mathbb{I}-H(s)} \frac{\partial
-H(s)}{\partial s} |\Omega(s)\rangle \langle \Omega(s)|,
-\end{equation}
-where $\Omega(s)$ is the ground-state energy of $H(s)$, and we
-define $\frac{\mathbb{I}}{\Omega(s)\mathbb{I}-H(s)}$ via the
-Moore-Penrose inverse:
-$\frac{\mathbb{I}}{\Omega(s)\mathbb{I}-H(s)}|\Omega(s)\rangle =0$.
-
-We now define an infinitesimal generator for a quantum evolution
-which is meant to simulate the adiabatic evolution. We begin by
-specifying a function $\chi_{\gamma}(t)$ which is an even real
-function whose fourier transform $\widehat{\chi}_\gamma$ is
-\emph{decaying rapidly} outside some region $[-\gamma, \gamma]$, and
-which is normalised so that $\widehat{\chi}_\gamma(0) =1$. We use
-this function to create an operator $Q(s)$ which is meant to
-approximate $P(s)$:
-\begin{equation}\label{eq:gsproj}
-Q(s) = \int_{-\infty}^{\infty} \chi_{\gamma}(t)
-e^{-it\Omega(s)}e^{itH(s)}dt,
-\end{equation}
-The following formula for $Q(s)$ may be verified by writing
-$e^{itH}$ in its eigenbasis and exploiting the $L_2$ unitarity of
-the fourier transform:
-\begin{equation}
-Q(s) = \sum_{j=0}^{2^n-1} \widehat{\chi}_\gamma(E_j(s) - \Omega(s))
-|E_j(s)\rangle \langle E_j(s)|
-\end{equation}
-
-How close is $Q(s)$ to $P(s)$? We measure distance in operator norm:
-\begin{equation}
-\|Q(s)-P(s)\| = \sup_{z \in \spectrum(H(s))\setminus \Omega(s)}
-\widehat{\chi}_\gamma(z - \Omega(s)).
-\end{equation}
-This formula shows us that, in the case where $H(s)$ has a gap
-$\Delta E(s) \ge \Delta$, $Q(s)$ is close $P(s)$ in operator norm as
-long as $|\widehat{\chi}_\gamma(z)|$ decays rapidly for $|z| \gtrsim
-\Delta$.
-
-In the case that $\chi_{\gamma}(t)$ is an even real function whose
-fourier transform $\widehat{\chi}_\gamma$ is $C^\infty$, has compact
-support in $[-\gamma, \gamma]$, and is normalised so that
-$\widehat{\chi}_\gamma(0) =1$ with $\gamma < \Delta$ to ensure that
-only the ground state appears on the RHS of (\ref{eq:gsproj}) we can
-recover exact adiabatic dynamics: we first use the formula
-\begin{equation*}
-\frac{d}{ds}e^{itH(s)} =  i\int_0^t e^{i(t-u)H(s)}\frac{\partial
-H(s)}{\partial s} e^{iuH(s)} du,
-\end{equation*}
-to rewrite (\ref{eq:pformula}):
-\begin{equation}
-\frac{d}{ds} |\Omega(s)\rangle = -i \frac{d\Omega(s)}{ds}
-\int_{-\infty}^{\infty} t\chi_\gamma(t) dt|\Omega(s)\rangle +
-i\int_{-\infty}^{\infty}
-\chi_{\gamma}(t)e^{-it\Omega(s)}\left(\int_0^t
-\tau_u^{H(s)}\left(\frac{\partial H(s)}{\partial s}\right) du\right)
- e^{itH(s)}dt|\Omega(s)\rangle.
-\end{equation}
-Using the fact that $\chi_\gamma(t)$ is an even function of $t$ and
-cancelling phases we obtain
-\begin{equation}\label{eq:exadinfgen}
-\frac{d}{ds} |\Omega(s)\rangle = i\int_{-\infty}^{\infty}
-\chi_{\gamma}(t)\left(\int_0^t \tau_u^{H(s)}\left(\frac{\partial
-H(s)}{\partial s}\right) du\right)
- dt|\Omega(s)\rangle.
-\end{equation}
-By integrating this expression for $\frac{d}{ds} |\Omega(s)\rangle$
-in the energy eigenbasis of $H(s)$ and using the assumed gap
-structure one can find that this expression is equivalent to the
-usual expression obtained from first-order perturbation theory:
-\begin{equation}
-\frac{d}{ds} |\Omega(s)\rangle =
-\frac{\mathbb{I}}{\Omega(s)\mathbb{I} - H(s)}\frac{\partial
-H(s)}{\partial s} |\Omega(s)\rangle.
-\end{equation}
-
-We use the form (\ref{eq:exadinfgen}) to deduce a \emph{hermitian}
-infinitesimal generator
-\begin{equation}\label{eq:exadinfinfgen}
-K(s) = \int_{-\infty}^{\infty} \chi_{\gamma}(t)\left(\int_0^t
-\tau_u^{H(s)}\left(\frac{\partial H(s)}{\partial s}\right) du\right)
-dt
-\end{equation}
-of exact adiabatic evolution.  Thus we find
-\begin{equation}
-|\Omega(s)\rangle = \mathcal{T} e^{i\int^{t}_0 K(s) \,ds}
-|\Omega(0)\rangle = \mathcal{U}(t;0)|\Omega(0)\rangle
-\end{equation}
-where we define
-\begin{equation}\label{eq:adevol}
-\mathcal{U}(t;0) = \mathcal{T} e^{i\int^{t}_0 K(s) \,ds}.
-\end{equation}
-It is now easy to guess a form for the infinitesimal generator
-$L_{\chi_\gamma}(s)$ which is meant to approximate exact adiabatic
-dynamics: we just allow the function $\chi_\gamma(s)$ in
-(\ref{eq:exadinfinfgen}) to be arbitrary:
-\begin{equation}\label{eq:exadinfinfgen2}
-L_{\chi_\gamma}(s) = \int_{-\infty}^{\infty}
-\chi_{\gamma}(t)\left(\int_0^t \tau_u^{H(s)}\left(\frac{\partial
-H(s)}{\partial s}\right) du\right) dt.
-\end{equation}
-(We drop the subscript on $L_{\chi_\gamma}(s)$ from now on.) The
-corresponding dynamics are obtained by integration:
-\begin{equation}\label{eq:qadevol}
-\mathcal{V}(t;0) = \mathcal{T} e^{i\int^{t}_0 L(s) \,ds}.
-\end{equation}
-We call the dynamics $\mathcal{V}(t;0)$ a \emph{quasi-adiabatic
-evolution}.
-
-With the definition (\ref{eq:qadevol}) of quasi-adiabatic evolution
-we now define the (time-dependent) state $|\Phi(t)\rangle$:
-\begin{equation}
-|\Phi(t)\rangle = \mathcal{V}(t;0)|\Omega(0)\rangle.
-\end{equation}
-The idea is that $|\Phi(t)\rangle$ should be very close to
-$|\Omega(t)\rangle$ as long as $\|Q(s)-P(s)\|$ is small. We make
-this rigourous in the next section.
-
 \end{document}
-\section{The u1 case}
-In the abelian case $G \cong \uone$ with
-\begin{equation}
-   \uone = \left\{ z \middle| z = e^{i\theta}, -\pi \le \theta < \pi \right\},
-\end{equation}
-the space $L^2(\uone)$ is that of the functions $\phi(\theta)$
-such that $\langle \phi | \phi \rangle = \frac{1}{2\pi}\int_{-\pi}^{\pi} d\theta \, \overline{\phi(\theta)} \phi(\theta)$ is
-finite. The irreducible representations of $\uone$ are given by
-$t^l \cong e^{il\theta}$ with $l \in \mathbb{Z}$. We exploit the notation
-\begin{equation}
-  |l\rangle \cong e^{il\theta}
-\end{equation}
-and decompose functions $\phi(\theta)$ via
-\begin{equation}
-  |\phi\rangle = \sum_l \widehat{\phi}^l |l\rangle,
-\end{equation}
-where $\widehat{\phi}^l$ are the fourier coefficients of $\phi(\theta)$
-\begin{equation}
-  \widehat{\phi}^l = \langle l|\phi\rangle = \frac{1}{2\pi} \int_{-\pi}^{\pi} d\theta \, e^{-il\theta} \phi(\theta).
-\end{equation}
-We define the \emph{position observable} $\widehat{u}$ via
-\begin{equation}
-  \widehat{u}|\theta\rangle = e^{i\theta} |\theta\rangle.
-\end{equation} 
-
-The Lie algebra $\lauone$ consists of the antihermitian $1 \times 1$ matrices.
-A basis is given by the imaginary unit $i$ and elements of $\lauone$ correspond to infinitesimal rotations: setting $U = e^{i\epsilon}$ we obtain the 
-infinitesimal left and right rotations
-\begin{equation}
-  \widehat{\ell}_L \equiv \frac{d}{d\epsilon}L_{e^{i\epsilon}} |_{\epsilon = 0}, \quad \text{and}\quad \widehat{\ell}_R \equiv \frac{d}{d\epsilon}R_{e^{i\epsilon}} |_{\epsilon = 0}.
-\end{equation}
-
-The matrix elements of $\widehat{\ell}_L$ and $\widehat{\ell}_R$
-in terms of the fourier basis are
-\begin{equation}
-  \langle l|\widehat{\ell}_L |m\rangle = \int_{-\pi}^{+\pi} \frac{d\theta}{2\pi}
-    e^{-il\theta} \frac{d}{d\epsilon} e^{im(\theta - \epsilon)} \bigg|_{\epsilon = 0}
-    = -il\delta_{lm},
-\end{equation}
-and, similarly, $\langle l|\widehat{\ell}_R |m\rangle = il\delta_{lm}$. 
-
-\section{Block spin transformations}
-
-natural classes of gauge invariant tensor networks built using the primitives of edge and vertex addition. The main idea in this section is that there are two important states which admit an efficient exact description in terms of tree tensor networks, namely, the strong coupling fixed point and the zero-coupling limit. The strong coupling limit is simply $|\Omega_0\rangle$, which is a trivial tensor network. The zero-coupling limit is a tree tensor network and is an example of a \emph{flat} state of the gauge field. Thus both of these states are \emph{fixed points} of the renormalisation group. In order to see this we will develop the technology of block spin averaging and its inverse, \emph{interpolation}. Using block spin transformations we'll show how the strong and zero-coupling limits are RG fixed points.
-
-We develop our discussion of the renormalisation group by explaining, in operational terms, some of the additional complexities presented by the gauge invariant sector. The constraint of gauge invariance means that we are only able to measure observables which are themselves gauge invariant. Thus, the space of all observables for our system is no longer the space of \emph{arbitrary} operators on $\mathcal{H}$ which forms, conveniently an algebra, but rather, some subalgebra of \emph{gauge-invariant observables}. This space is a little more difficult to characterise but there are at least three equivalent ways to do this, namely via: (a) Wilson loops; (b) spin networks; or (c) by adding vertices. The first algebra of observables, $\mathcal{A}_W$, is that generated by all observables of the form $\tr(\widehat{u}_\gamma)$, as $\gamma$ runs over all possible closed loops on the lattice (with repeated edges allowed) \cite{wilson:1974b}. It is clear that the algebra of all such observables are locally gauge invariant by construction. The second way to define locally gauge invariant observables is to consider the algebra of position-space observables generated by the following recipe: choose an irrep. $V_e$, one per link $e\in E$, labelled by a half-integer $\ell(e)$; next choose an \emph{intertwiner}, which is a linear map on $\bigotimes_{e\in E} V_e$ which commutes with the action of the local gauge group $\mathcal{G}$; then the function $\mathcal{S}(g_{e_1}, g_{e_2}, \ldots) \equiv \tr(\pi(g_{e_1})\otimes \cdots \times I)$ is locally gauge invariant. Such functions are known as \emph{spin networks} \cite{baez:1996a}. It turns out \cite{levy:2004a} that these two algebras are, in fact, equivalent.
-
-
-Explanation of the observables.
-
-Now that we've characterised the operationally meaningful observables we can discuss what is meant by block-spin renormalisation. This operation is, at its heart, simply a way to \emph{discard} information about features on the lengthscale of a block. This is achieved using a \emph{completely positive} map (CP) map $\mathcal{E}$, which is the most general linear operation allowed in quantum mechanics. The usual example of the RG in the lattice context is afforded by Kadanoff block decimation, i.e., the simple \emph{partial trace} operation. Unfortunately, however, this RG is not available to us as it breaks local gauge invariance. Thus there is a tension between the requirement of gauge invariance and the discarding of information in gauge theories. We resolve this tension by focusing on its action of the gauge-invariant observable algebra instead, where gauge invariance is manifest.
-
-It is difficult to describe our RG in the Schr\"odinger picture as the requirement of complete positivity can be difficult to enforce, however, in the Heisenberg picture there is a simple operationally clear definion: $\mathcal{E}^\times$ is the \emph{restriction} of the algebra $\mathcal{A}_W$ to the algebra of wilson loops defined with respect to paths on a \emph{sublattice} (or, in the general case, a \emph{subgraph}). In the general case that concerns us here, namely the regular lattice $a\mathbb{Z}^d$, the sublattice in question is simply $2a\mathbb{Z}^d$. This linear map is manifestly CP and trace preserving. It is also 
-
 
