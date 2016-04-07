@@ -434,7 +434,7 @@ The solution may be  found variationally. Consider the expression for the total 
  4n- 2 \sum_{j=0}^{n-1}  \text{Re}\tr(U_j^\dag U_{j+1}) 
 	=  \sum_{j=0}^{n-1} \|U_j-U_{j+1}\|_2^2 .
 \end{equation}
-We minimise this quantity over ${U_1, \ldots, U_{n-1} \in \su2}$ and find the variational optima is achieved by
+We minimise this quantity over ${U_1, \ldots, U_{n-1} \in \su2}$ and find the variational optimum is achieved by
 \begin{equation} \label{eq:slerp}
 	U_j = U_0 (U_0^\dag U_{n})^{\frac{j}{n}}, \quad j = 1, 2, \ldots, n-1,
 \end{equation}
@@ -471,7 +471,7 @@ The interpolated curvature for these solutions becomes
 \end{equation}
 Depending on the \emph{flux} $\Phi$ through the original plaquette it may be necessary to take $k\not=0$ in order to achieve the variational optimum. If $\phi$ is close to zero, however, we see that the total interpolated curvature of the subdivided plaquette scales as $\phi^2/n$. Thus we see that the flux $\Phi$ per plaquette undergoes the transformation $\Phi\mapsto \Phi^{\frac{1}{n}}$ under interpolation, i.e., the flux is simply divided into $n$ pieces and redistributed equally amongst the $n$ new plaquettes.
 
-Checking for consistency with the solution of Eq.~(\ref{eq:interpmin}) we find that, for $n=2$, we recover (for $k=0$) $A_1^\dag A_0 = U_0(U_0^\dag U_1^\dag)^{\frac{1}{2}}$ as expected from Eq. (\ref{eq:slerp}). As before, the $\su2$ solutions also apply when $G \cong \uone$, in which case $\eta = 1$, $\Phi = e^{i\phi} = U_{n-1}^\dag \dots U_0^\dag$, and $\mu^{jk} = e^{\frac{i2\pi jk}{n}}$. 
+Checking for consistency with the solution of Eq.~(\ref{eq:interpmin}) we find that, for $n=2$, we recover (for $k=0$) $A_1^\dag A_0 = U_0(U_0^\dag U_1^\dag)^{\frac{1}{2}}$ as expected from Eq. (\ref{eq:slerp}). As before, the above solutions also apply when $G \cong \uone$, in which case $\eta = 1$, $\Phi = e^{i\phi} = U_{n-1}^\dag \dots U_0^\dag$, and $\mu^{jk} = e^{\frac{i2\pi jk}{n}}$. 
 
 Suppose we have a regular lattice in two spatial dimensions. If we successively subdivide plaquettes $m$ times then the curvature \emph{per plaquette} in the refined lattice scales as $\phi^2/4^m$.  If we don't rescale lattice spacing this means that, as $m\rightarrow \infty$, the interpolated connection tends exponentially quickly to a flat connection.
 
@@ -682,7 +682,7 @@ Our basic ansatz is simply the case where the initial state is at \emph{lattice}
 \begin{equation}
 	|\Psi_0\rangle \equiv \lim_{\beta\rightarrow\infty} \frac{e^{-\beta H_{\text{KS}}(\epsilon)}|\Omega_\infty\rangle}{\|e^{-\beta H_{\text{KS}}(\epsilon)}|\Omega_\infty\rangle\|^{\frac12}},
 \end{equation}    
-where $\epsilon > 0$ is small but nonzero. Now it follows from a generalisation of the arguments of \cite{bravyi:2010c,michalakis:2013a} that there is a nonzero $\epsilon$ such that $H_{\text{KS}}(\epsilon)$ which is \emph{adiabatically connected} to $H_{\text{KS}}(0)$. By again employing a quasi-adiabatic continuation process we can infer that $|\Psi_0\rangle$ is a contractible tensor network: this follows from a straightforward generalisation of the arguments of \cite{osborne:2006a,wen:2005a}. 
+where $\epsilon > 0$ is small but nonzero. Now it follows from a generalisation of the arguments of \cite{bravyi:2010c,michalakis:2013a} that there is a nonzero $\epsilon$ such that $H_{\text{KS}}(\epsilon)$ is \emph{adiabatically connected} to $H_{\text{KS}}(0)$. By again employing a quasi-adiabatic continuation process we can infer that $|\Psi_0\rangle$ is a contractible tensor network: this follows from a straightforward generalisation of the arguments of \cite{osborne:2006a,wen:2005a}. 
 
 After the improved initial state is obtained we simply apply the quantum interpolation isometry to send the lattice spacing to zero. We are now guaranteed that infrared contributions to the correlation functions are well represented. Indeed, it follows that wilson loops now enjoy an area law scaling. 
 
@@ -784,7 +784,6 @@ The $G \cong \uone$ model is known to have a confining phase at large $g$ in whi
 
 Using the numerical framework developed in \cite{milsted:2015a}, in which $H_R$ was studied using infinite matrix product states (MPS) as a variational class of states, we test curvature interpolation by comparing MPS ground states before and after fine-graining. 
 To represent states in $\mathcal{H} = (L^2(G))^{\otimes N}$ as MPS with a finite-dimensional effective local Hilbert space, we use the Fourier modes of $G$ as a basis for $L^2(G)$ and implement a momentum cutoff specified by the label $l_{\max}$ of the irrep with the maximum allowed kinetic energy. 
-%See~\cite{milsted:2015a} for the expression of the $\widehat{u}_e$ and $\Delta_e$ operators in the Fourier basis.
 
 The fine-graining isometries 
 \begin{equation} \label{eq:interp_R}
@@ -822,7 +821,7 @@ Conditioned on the validity of the previously mentioned conjectures, we've produ
 
 The continuum hilbert space we describe here is known as a \emph{direct limit} of hilbert spaces; in the context we use it here we call this direct limit the \emph{semicontinuous limit} \footnote{This terminology was suggested to us by Vaughan Jones.} to indicate that it doesn't quite correspond to what we might demand of a full continuous quantum Yang-Mills theory. Note that the direct limit is a basic categorical construction (you can read about it further in, e.g., \cite{lang:2002a}). The application of the direct limit to hilbert spaces has a very long history; one early proposal to use the direct limit to model continuum limits can be found in \cite{bimonte_lattices_1996}, but there are surely prior proposals. A recent fascinating attempt to use the direct limit to build continuum limits of lattice theories, in particular, conformal field theories, can be found in \cite{jones_unitary_2014}.
 
-Let $\mathcal{D}$ be the directed set of regular partitions of $\mathbb{R}^d$ induced by integer lattices with lattice spacing $a$, i.e., $a\mathbb{Z}^d$. This set is directed by \emph{refinement}, i.e., a partition $Q$ is a \emph{refinement} of $P$, denoted $P\le Q$, if every element of $Q$ is a subset of an element of $P$. (A useful mnemonic to remember the ordering is that $Q$ has ``more'' elements than $P$.) We regard every lattice spacing $a$ as giving rise to a \emph{physically different} lattice.
+Let $\mathcal{D}$ be the directed set of regular partitions of $\mathbb{R}^d$ induced by integer lattices with lattice spacing $a$, i.e., $a\mathbb{Z}^d$. This set is directed by \emph{refinement}, i.e., a partition $Q$ is a \emph{refinement} of $P$, denoted $P \preceq Q$, if every element of $Q$ is a subset of an element of $P$. (A useful mnemonic to remember the ordering is that $Q$ has ``more'' elements than $P$.) We regard every lattice spacing $a$ as giving rise to a \emph{physically different} lattice.
  
 Suppose, further, we associate a hilbert space $\mathcal{h}_P$ with each partition $P\in\mathcal{D}$:
 \begin{equation}
@@ -854,7 +853,7 @@ In this paper we have sketched a programme to understand the ground state and lo
 
 There are many things still to be done. Most of the assertions we made are conditioned on major conjectures, which are likely to be hard to resolve. Nonetheless, we feel that there is much to be gained by proceeding with this programme. The most important point we'd like to end on is that the TNS ansatz we've promoted here is \emph{efficiently computable}: all $n$-point correlation functions for local operators can be efficiently computed. This seems important enough by itself to merit further study. 
 
-\acknowledgements{This work was supported by the ERC grants QFTCMPS and SIQS, and by the cluster of excellence EXC201 Quantum Engineering and Space-Time Research.}
+\acknowledgements{This work was supported by the ERC grants QFTCMPS and SIQS, and by the cluster of excellence EXC201 Quantum Engineering and Space-Time Research. This research was supported in part by Perimeter Institute for Theoretical Physics. Research at Perimeter Institute is supported by the Government of Canada through Industry Canada and by the Province of Ontario through the Ministry of Research and Innovation.}
 
 \bibliography{Physics}
 
